@@ -1,6 +1,6 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>Website.Foundation</Name>
+    <Name>$safeprojectname$.Foundation</Name>
     <Description>common template for foundation module of website</Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>
