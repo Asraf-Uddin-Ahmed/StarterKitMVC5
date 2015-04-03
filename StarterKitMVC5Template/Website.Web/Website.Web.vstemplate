@@ -1,0 +1,218 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Website.Web</Name>
+    <Description>common web template for website</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>$safeprojectname$.Web</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="Website.Web.csproj" File="Website.Web.csproj" ReplaceParameters="true">
+      <Folder Name="App_Data" TargetFolderName="App_Data" />
+      <Folder Name="App_Start" TargetFolderName="App_Start">
+        <ProjectItem ReplaceParameters="true" TargetFileName="BundleConfig.cs">BundleConfig.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="FilterConfig.cs">FilterConfig.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="NinjectWebCommon.cs">NinjectWebCommon.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="RouteConfig.cs">RouteConfig.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Startup.Auth.cs">Startup.Auth.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="AppSettings.config">AppSettings.config</ProjectItem>
+      <Folder Name="Codes" TargetFolderName="Codes">
+        <Folder Name="Helper" TargetFolderName="Helper">
+          <ProjectItem ReplaceParameters="true" TargetFileName="IUrlMakerHelper.cs">IUrlMakerHelper.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UrlMakerHelper.cs">UrlMakerHelper.cs</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="NinjectWebModule.cs">NinjectWebModule.cs</ProjectItem>
+        <Folder Name="Service" TargetFolderName="Service">
+          <ProjectItem ReplaceParameters="true" TargetFileName="EmailService.cs">EmailService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IEmailService.cs">IEmailService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IMembershipService.cs">IMembershipService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IValidationMessageService.cs">IValidationMessageService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MembershipService.cs">MembershipService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ValidationMessageService.cs">ValidationMessageService.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Template" TargetFolderName="Template">
+          <ProjectItem ReplaceParameters="false" TargetFileName="EmailConfirmUser.tt">EmailConfirmUser.tt</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="EmailConfirmUser.cs">EmailConfirmUser.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="EmailConfirmUserExtended.cs">EmailConfirmUserExtended.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="EmailForgotPassword.tt">EmailForgotPassword.tt</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="EmailForgotPassword.cs">EmailForgotPassword.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="EmailForgotPasswordExtended.cs">EmailForgotPasswordExtended.cs</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="UserSession.cs">UserSession.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ConnectionString.config">ConnectionString.config</ProjectItem>
+      <Folder Name="Content" TargetFolderName="Content">
+        <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.css">bootstrap.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.min.css">bootstrap.min.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Custom.css">Custom.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Site.css">Site.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="validationEngine.jquery.css">validationEngine.jquery.css</ProjectItem>
+      </Folder>
+      <Folder Name="Controllers" TargetFolderName="Controllers">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AccountController.cs">AccountController.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ErrorController.cs">ErrorController.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="HomeController.cs">HomeController.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="CustomErrors.config">CustomErrors.config</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Global.asax">Global.asax</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Global.asax.cs">Global.asax.cs</ProjectItem>
+      <Folder Name="Images" TargetFolderName="Images">
+        <ProjectItem ReplaceParameters="false" TargetFileName="loading.gif">loading.gif</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="log4net.config">log4net.config</ProjectItem>
+      <Folder Name="Models" TargetFolderName="Models">
+        <Folder Name="Account" TargetFolderName="Account">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordViewModel.cs">ChangePasswordViewModel.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordViewModel.cs">ForgotPasswordViewModel.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="LoginViewModel.cs">LoginViewModel.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="RegisterViewModel.cs">RegisterViewModel.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ShowUserModel.cs">ShowUserModel.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Home" TargetFolderName="Home" />
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Project_Readme.html">Project_Readme.html</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Scripts" TargetFolderName="Scripts">
+        <ProjectItem ReplaceParameters="true" TargetFileName="_references.js">_references.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.js">bootstrap.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.min.js">bootstrap.min.js</ProjectItem>
+        <Folder Name="Custom" TargetFolderName="Custom">
+          <ProjectItem ReplaceParameters="true" TargetFileName="global.js">global.js</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="loader.js">loader.js</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="validaion_message.js">validaion_message.js</ProjectItem>
+        </Folder>
+        <Folder Name="i18n" TargetFolderName="i18n">
+          <Folder Name="validationEngine" TargetFolderName="validationEngine">
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-bn.js">jquery.validationEngine-bn.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-ca.js">jquery.validationEngine-ca.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-cz.js">jquery.validationEngine-cz.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-da.js">jquery.validationEngine-da.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-de.js">jquery.validationEngine-de.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-en.js">jquery.validationEngine-en.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-es.js">jquery.validationEngine-es.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-et.js">jquery.validationEngine-et.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-fa.js">jquery.validationEngine-fa.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-fi.js">jquery.validationEngine-fi.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-fr.js">jquery.validationEngine-fr.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-hr.js">jquery.validationEngine-hr.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-hu.js">jquery.validationEngine-hu.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-id.js">jquery.validationEngine-id.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-it.js">jquery.validationEngine-it.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-ja.js">jquery.validationEngine-ja.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-lt.js">jquery.validationEngine-lt.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-nl.js">jquery.validationEngine-nl.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-no.js">jquery.validationEngine-no.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-pl.js">jquery.validationEngine-pl.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-pt.js">jquery.validationEngine-pt.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-pt_BR.js">jquery.validationEngine-pt_BR.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-ro.js">jquery.validationEngine-ro.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-ru.js">jquery.validationEngine-ru.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-sv.js">jquery.validationEngine-sv.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-tr.js">jquery.validationEngine-tr.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-vi.js">jquery.validationEngine-vi.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-zh_CN.js">jquery.validationEngine-zh_CN.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine-zh_TW.js">jquery.validationEngine-zh_TW.js</ProjectItem>
+          </Folder>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-2.1.1.intellisense.js">jquery-2.1.1.intellisense.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-2.1.1.js">jquery-2.1.1.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-2.1.1.min.js">jquery-2.1.1.min.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-2.1.1.min.map">jquery-2.1.1.min.map</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine.js">jquery.validationEngine.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="modernizr-2.6.2.js">modernizr-2.6.2.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="respond.js">respond.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="respond.min.js">respond.min.js</ProjectItem>
+      </Folder>
+      <Folder Name="Service References" TargetFolderName="Service References" />
+      <ProjectItem ReplaceParameters="true" TargetFileName="Startup.cs">Startup.cs</ProjectItem>
+      <Folder Name="Views" TargetFolderName="Views">
+        <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
+        <Folder Name="Account" TargetFolderName="Account">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ChangePassword.cshtml">ChangePassword.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordConfirmation.cshtml">ChangePasswordConfirmation.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ConfirmUser.cshtml">ConfirmUser.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPassword.cshtml">ForgotPassword.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordConfirmation.cshtml">ForgotPasswordConfirmation.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Login.cshtml">Login.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Register.cshtml">Register.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ShowUser.cshtml">ShowUser.cshtml</ProjectItem>
+        </Folder>
+        <Folder Name="Error" TargetFolderName="Error">
+          <ProjectItem ReplaceParameters="true" TargetFileName="AccessDenied.cshtml">AccessDenied.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="InternalServerError.cshtml">InternalServerError.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="PageNotFound.cshtml">PageNotFound.cshtml</ProjectItem>
+        </Folder>
+        <Folder Name="Home" TargetFolderName="Home">
+          <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+        </Folder>
+        <Folder Name="Shared" TargetFolderName="Shared">
+          <ProjectItem ReplaceParameters="true" TargetFileName="_Layout.cshtml">_Layout.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Lockout.cshtml">Lockout.cshtml</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web.Debug.config">Web.Debug.config</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web.Release.config">Web.Release.config</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <packages repository="extension" repositoryId="StarterKitMVC5Installer - 1">
+      <package id="Antlr" version="3.4.1.9004" targetFramework="net45" />
+      <package id="bootstrap" version="3.0.0" targetFramework="net45" />
+      <package id="EntityFramework" version="6.1.1" targetFramework="net45" />
+      <package id="jQuery" version="1.10.2" targetFramework="net45" />
+      <package id="jQuery.Validation" version="1.11.1" targetFramework="net45" />
+      <package id="log4net" version="2.0.3" targetFramework="net45" />
+      <package id="Microsoft.AspNet.Identity.Core" version="2.1.0" targetFramework="net45" />
+      <package id="Microsoft.AspNet.Identity.EntityFramework" version="2.1.0" targetFramework="net45" />
+      <package id="Microsoft.AspNet.Identity.Owin" version="2.1.0" targetFramework="net45" />
+      <package id="Microsoft.AspNet.Mvc" version="5.2.2" targetFramework="net45" />
+      <package id="Microsoft.AspNet.Razor" version="3.2.2" targetFramework="net45" />
+      <package id="Microsoft.AspNet.Web.Optimization" version="1.1.3" targetFramework="net45" />
+      <package id="Microsoft.AspNet.WebPages" version="3.2.2" targetFramework="net45" />
+      <package id="Microsoft.jQuery.Unobtrusive.Validation" version="3.2.2" targetFramework="net45" />
+      <package id="Microsoft.Owin" version="3.0.0" targetFramework="net45" />
+      <package id="Microsoft.Owin.Host.SystemWeb" version="3.0.0" targetFramework="net45" />
+      <package id="Microsoft.Owin.Security" version="3.0.0" targetFramework="net45" />
+      <package id="Microsoft.Owin.Security.Cookies" version="3.0.0" targetFramework="net45" />
+      <package id="Microsoft.Owin.Security.Facebook" version="3.0.0" targetFramework="net45" />
+      <package id="Microsoft.Owin.Security.Google" version="3.0.0" targetFramework="net45" />
+      <package id="Microsoft.Owin.Security.MicrosoftAccount" version="3.0.0" targetFramework="net45" />
+      <package id="Microsoft.Owin.Security.OAuth" version="3.0.0" targetFramework="net45" />
+      <package id="Microsoft.Owin.Security.Twitter" version="3.0.0" targetFramework="net45" />
+      <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" targetFramework="net45" />
+      <package id="Modernizr" version="2.6.2" targetFramework="net45" />
+      <package id="Newtonsoft.Json" version="6.0.4" targetFramework="net45" />
+      <package id="Ninject" version="3.2.2.0" targetFramework="net45" />
+      <package id="Ninject.Extensions.Logging" version="3.2.2.0" targetFramework="net45" />
+      <package id="Ninject.Extensions.Logging.Log4net" version="3.2.2.0" targetFramework="net45" />
+      <package id="Ninject.MVC5" version="3.2.1.0" targetFramework="net45" />
+      <package id="Ninject.Web.Common" version="3.2.3.0" targetFramework="net45" />
+      <package id="Ninject.Web.Common.WebHost" version="3.2.0.0" targetFramework="net45" />
+      <package id="Owin" version="1.0" targetFramework="net45" />
+      <package id="Ratul.Mvc" version="1.0.3" targetFramework="net45" />
+      <package id="Ratul.Utility" version="1.0.0" targetFramework="net45" />
+      <package id="Respond" version="1.2.0" targetFramework="net45" />
+      <package id="WebActivatorEx" version="2.0.6" targetFramework="net45" />
+      <package id="WebGrease" version="1.5.2" targetFramework="net45" />
+    </packages>
+  </WizardData>
+</VSTemplate>

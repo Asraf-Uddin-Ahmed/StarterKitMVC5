@@ -1,0 +1,28 @@
+﻿/* 
+    LOADER
+*/
+#overlay_with_loader {
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    /* For background loading iamge */
+    background-image: url('/Images/loading.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.overlay_only {
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}

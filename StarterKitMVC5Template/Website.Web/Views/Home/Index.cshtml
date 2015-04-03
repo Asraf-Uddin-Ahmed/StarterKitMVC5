@@ -1,0 +1,30 @@
+﻿@using Ratul.Mvc.Bootstrap
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Welcome Home</h1>
+</div>
+
+@Html.BootstrapValidationMessage($safeprojectname$.Codes.UserSession.ActionResponseMessage)
+
+<div>
+    <a href="/Account/Login">Login</a> <br />
+    <a href="/Account/Register">Register</a> <br />
+    <a href="/Account/ConfirmEmail">ConfirmEmail</a> <br />
+    <a href="/Account/ForgotPassword">ForgotPassword</a> <br />
+    <a href="/Account/ForgotPasswordConfirmation">ForgotPasswordConfirmation</a> <br />
+    <a href="/Account/ChangePassword?code=putUserVerificationCode">ChangePassword</a> <br />
+    <a href="/Account/ChangePasswordConfirmation">ChangePasswordConfirmation</a> <br />
+    <a href="/Account/Logout">Logout</a> <br />
+</div>
+
+
+@section headerScripts {
+    @Styles.Render("~/Content/css/custom")
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/custom")
+}

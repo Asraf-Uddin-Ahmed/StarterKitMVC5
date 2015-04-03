@@ -1,0 +1,50 @@
+﻿@model $safeprojectname$.Models.Account.ShowUserModel
+@{
+    ViewBag.Title = "Show User";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>User Name</th>
+                <th>Email Address</th>
+                <th>Type Of User</th>
+                <th>Status</th>
+                <th>Wrong Password Attempt</th>
+                <th>Last Login</th>
+                <th>Decrypted Password</th>
+                <th>ID</th>
+                <th>Creation Time</th>
+            </tr>
+        </thead>
+        @foreach (Website.Foundation.Aggregates.IUser user in Model.ListUser)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.UserName</td>
+                <td>@user.EmailAddress</td>
+                <td>@user.TypeOfUser.ToString()</td>
+                <td>@user.Status.ToString()</td>
+                <td>@user.WrongPasswordAttempt</td>
+                <td>@user.LastLogin</td>
+                <td>@user.DecryptedPassword</td>
+                <td>@user.ID</td>
+                <td>@user.CreationTime</td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+@section headerScripts {
+    <style>
+        table, th, td {
+            border: outset;
+        }
+    </style>
+}

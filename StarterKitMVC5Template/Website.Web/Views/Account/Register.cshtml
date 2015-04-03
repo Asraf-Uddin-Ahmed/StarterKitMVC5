@@ -1,0 +1,54 @@
+﻿@using Ratul.Mvc.Bootstrap
+@model $safeprojectname$.Models.Account.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@Html.BootstrapValidationMessage($safeprojectname$.Codes.UserSession.ActionResponseMessage)
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Create a new account.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required, custom[email]]" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control validate[required, minSize[6]]" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control validate[condRequired[Password], equals[Password]]" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register" />
+        </div>
+    </div>
+}
+
+@section headerScripts {
+    @Styles.Render("~/Content/css/validator")
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/validator")
+
+    <script type="text/javascript">
+        $(function () {
+            $("form").validationEngine({ promptPosition: "centerRight", scroll: false });
+        });
+    </script>
+}
