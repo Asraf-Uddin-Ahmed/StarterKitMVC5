@@ -25,33 +25,31 @@
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="AppSettings.config">AppSettings.config</ProjectItem>
       <Folder Name="Codes" TargetFolderName="Codes">
-        <Folder Name="Helper" TargetFolderName="Helper">
-          <ProjectItem ReplaceParameters="true" TargetFileName="IUrlMakerHelper.cs">IUrlMakerHelper.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="UrlMakerHelper.cs">UrlMakerHelper.cs</ProjectItem>
+        <Folder Name="Core" TargetFolderName="Core">
+          <Folder Name="Services" TargetFolderName="Services">
+            <ProjectItem ReplaceParameters="true" TargetFileName="IUrlMakerService.cs">IUrlMakerService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="IValidationMessageService.cs">IValidationMessageService.cs</ProjectItem>
+          </Folder>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="NinjectWebModule.cs">NinjectWebModule.cs</ProjectItem>
-        <Folder Name="Service" TargetFolderName="Service">
-          <ProjectItem ReplaceParameters="true" TargetFileName="EmailService.cs">EmailService.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="IEmailService.cs">IEmailService.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="IMembershipService.cs">IMembershipService.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="IValidationMessageService.cs">IValidationMessageService.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="MembershipService.cs">MembershipService.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="ValidationMessageService.cs">ValidationMessageService.cs</ProjectItem>
-        </Folder>
-        <Folder Name="Template" TargetFolderName="Template">
-          <ProjectItem ReplaceParameters="false" TargetFileName="EmailConfirmUser.tt">EmailConfirmUser.tt</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="EmailConfirmUser.cs">EmailConfirmUser.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="EmailConfirmUserExtended.cs">EmailConfirmUserExtended.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="false" TargetFileName="EmailForgotPassword.tt">EmailForgotPassword.tt</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="EmailForgotPassword.cs">EmailForgotPassword.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="EmailForgotPasswordExtended.cs">EmailForgotPasswordExtended.cs</ProjectItem>
+        <Folder Name="Persistence" TargetFolderName="Persistence">
+          <Folder Name="Services" TargetFolderName="Services">
+            <ProjectItem ReplaceParameters="true" TargetFileName="UrlMakerService.cs">UrlMakerService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ValidationMessageService.cs">ValidationMessageService.cs</ProjectItem>
+          </Folder>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="UserSession.cs">UserSession.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="ConnectionString.config">ConnectionString.config</ProjectItem>
       <Folder Name="Content" TargetFolderName="Content">
+        <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-theme.css">bootstrap-theme.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-theme.css.map">bootstrap-theme.css.map</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-theme.min.css">bootstrap-theme.min.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-theme.min.css.map">bootstrap-theme.min.css.map</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.css">bootstrap.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.css.map">bootstrap.css.map</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.min.css">bootstrap.min.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.min.css.map">bootstrap.min.css.map</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Custom.css">Custom.css</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Site.css">Site.css</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="validationEngine.jquery.css">validationEngine.jquery.css</ProjectItem>
@@ -63,6 +61,13 @@
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="CustomErrors.config">CustomErrors.config</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
+      <Folder Name="fonts" TargetFolderName="fonts">
+        <ProjectItem ReplaceParameters="false" TargetFileName="glyphicons-halflings-regular.eot">glyphicons-halflings-regular.eot</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="glyphicons-halflings-regular.svg">glyphicons-halflings-regular.svg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="glyphicons-halflings-regular.ttf">glyphicons-halflings-regular.ttf</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="glyphicons-halflings-regular.woff">glyphicons-halflings-regular.woff</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="glyphicons-halflings-regular.woff2">glyphicons-halflings-regular.woff2</ProjectItem>
+      </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="Global.asax">Global.asax</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Global.asax.cs">Global.asax.cs</ProjectItem>
       <Folder Name="Images" TargetFolderName="Images">
@@ -130,9 +135,20 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery-2.1.1.js">jquery-2.1.1.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery-2.1.1.min.js">jquery-2.1.1.min.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery-2.1.1.min.map">jquery-2.1.1.min.map</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-2.2.3.intellisense.js">jquery-2.2.3.intellisense.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-2.2.3.js">jquery-2.2.3.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-2.2.3.min.js">jquery-2.2.3.min.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-2.2.3.min.map">jquery-2.2.3.min.map</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validate-vsdoc.js">jquery.validate-vsdoc.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validate.js">jquery.validate.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validate.min.js">jquery.validate.min.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validate.unobtrusive.js">jquery.validate.unobtrusive.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validate.unobtrusive.min.js">jquery.validate.unobtrusive.min.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validationEngine.js">jquery.validationEngine.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="modernizr-2.6.2.js">modernizr-2.6.2.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="modernizr-2.8.3.js">modernizr-2.8.3.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="respond.js">respond.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="respond.matchmedia.addListener.js">respond.matchmedia.addListener.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="respond.matchmedia.addListener.min.js">respond.matchmedia.addListener.min.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="respond.min.js">respond.min.js</ProjectItem>
       </Folder>
       <Folder Name="Service References" TargetFolderName="Service References" />
@@ -169,50 +185,4 @@
       <ProjectItem ReplaceParameters="true" TargetFileName="Web.Release.config">Web.Release.config</ProjectItem>
     </Project>
   </TemplateContent>
-  <WizardExtension>
-    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
-    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
-  </WizardExtension>
-  <WizardData>
-    <packages repository="extension" repositoryId="StarterKitMVC5Installer - 1">
-      <package id="Antlr" version="3.4.1.9004" targetFramework="net45" />
-      <package id="bootstrap" version="3.0.0" targetFramework="net45" />
-      <package id="EntityFramework" version="6.1.1" targetFramework="net45" />
-      <package id="jQuery" version="1.10.2" targetFramework="net45" />
-      <package id="jQuery.Validation" version="1.11.1" targetFramework="net45" />
-      <package id="log4net" version="2.0.3" targetFramework="net45" />
-      <package id="Microsoft.AspNet.Identity.Core" version="2.1.0" targetFramework="net45" />
-      <package id="Microsoft.AspNet.Identity.EntityFramework" version="2.1.0" targetFramework="net45" />
-      <package id="Microsoft.AspNet.Identity.Owin" version="2.1.0" targetFramework="net45" />
-      <package id="Microsoft.AspNet.Mvc" version="5.2.2" targetFramework="net45" />
-      <package id="Microsoft.AspNet.Razor" version="3.2.2" targetFramework="net45" />
-      <package id="Microsoft.AspNet.Web.Optimization" version="1.1.3" targetFramework="net45" />
-      <package id="Microsoft.AspNet.WebPages" version="3.2.2" targetFramework="net45" />
-      <package id="Microsoft.jQuery.Unobtrusive.Validation" version="3.2.2" targetFramework="net45" />
-      <package id="Microsoft.Owin" version="3.0.0" targetFramework="net45" />
-      <package id="Microsoft.Owin.Host.SystemWeb" version="3.0.0" targetFramework="net45" />
-      <package id="Microsoft.Owin.Security" version="3.0.0" targetFramework="net45" />
-      <package id="Microsoft.Owin.Security.Cookies" version="3.0.0" targetFramework="net45" />
-      <package id="Microsoft.Owin.Security.Facebook" version="3.0.0" targetFramework="net45" />
-      <package id="Microsoft.Owin.Security.Google" version="3.0.0" targetFramework="net45" />
-      <package id="Microsoft.Owin.Security.MicrosoftAccount" version="3.0.0" targetFramework="net45" />
-      <package id="Microsoft.Owin.Security.OAuth" version="3.0.0" targetFramework="net45" />
-      <package id="Microsoft.Owin.Security.Twitter" version="3.0.0" targetFramework="net45" />
-      <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" targetFramework="net45" />
-      <package id="Modernizr" version="2.6.2" targetFramework="net45" />
-      <package id="Newtonsoft.Json" version="6.0.4" targetFramework="net45" />
-      <package id="Ninject" version="3.2.2.0" targetFramework="net45" />
-      <package id="Ninject.Extensions.Logging" version="3.2.2.0" targetFramework="net45" />
-      <package id="Ninject.Extensions.Logging.Log4net" version="3.2.2.0" targetFramework="net45" />
-      <package id="Ninject.MVC5" version="3.2.1.0" targetFramework="net45" />
-      <package id="Ninject.Web.Common" version="3.2.3.0" targetFramework="net45" />
-      <package id="Ninject.Web.Common.WebHost" version="3.2.0.0" targetFramework="net45" />
-      <package id="Owin" version="1.0" targetFramework="net45" />
-      <package id="Ratul.Mvc" version="1.0.3" targetFramework="net45" />
-      <package id="Ratul.Utility" version="1.0.0" targetFramework="net45" />
-      <package id="Respond" version="1.2.0" targetFramework="net45" />
-      <package id="WebActivatorEx" version="2.0.6" targetFramework="net45" />
-      <package id="WebGrease" version="1.5.2" targetFramework="net45" />
-    </packages>
-  </WizardData>
 </VSTemplate>

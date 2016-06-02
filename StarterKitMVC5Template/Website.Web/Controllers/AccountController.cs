@@ -10,14 +10,14 @@ using Microsoft.Owin.Security;
 using $safeprojectname$.Models;
 using $safeprojectname$.Models.Account;
 using $safeprojectname$.Codes;
-using Website.Foundation.Enums;
+using Website.Foundation.Core.Enums;
 using Ratul.Mvc;
 using Ninject.Extensions.Logging;
-using Website.Foundation.Container;
-using Website.Foundation.Aggregates;
-using $safeprojectname$.Codes.Service;
-using Website.Foundation.Services;
+using Website.Foundation.Core.Container;
+using Website.Foundation.Core.Aggregates;
+using Website.Foundation.Core.Services;
 using Ratul.Mvc.Authorization;
+using $safeprojectname$.Codes.Core.Services;
 
 namespace $safeprojectname$.Controllers
 {
@@ -27,15 +27,18 @@ namespace $safeprojectname$.Controllers
         private IMembershipService _membershipService;
         private IUserService _userService;
         private IValidationMessageService _validationMessageService;
+        private IPasswordVerificationService _passwordVerificationService;
         public AccountController(ILogger logger,
             IMembershipService membershipService,
             IUserService userService,
+            IPasswordVerificationService passwordVerificationService,
             IValidationMessageService validationMessageService)
             : base(logger)
         {
             _logger = logger;
             _membershipService = membershipService;
             _userService = userService;
+            _passwordVerificationService = passwordVerificationService;
             _validationMessageService = validationMessageService;
         }
 
@@ -58,7 +61,7 @@ namespace $safeprojectname$.Controllers
             ViewBag.ReturnUrl = returnUrl;
             if (!ModelState.IsValid)
             {
-                _validationMessageService.StoreActionResponseMessageError(ModelState.Values);
+                _validationMessageService.StoreActionResponseMessageError(ModelState);
                 return View(model);
             }
             try
@@ -66,7 +69,10 @@ namespace $safeprojectname$.Controllers
                 LoginStatus loginStatus = _membershipService.ProcessLogin(model.UserName, model.Password);
                 model.StoreActionResponseMessageByLoginStatus(loginStatus);
                 if (loginStatus == LoginStatus.Successful)
+                {
+                    this.StoreUserInSession(_userService.GetUserByUserName(model.UserName));
                     return this.RedirectToLocal(returnUrl);
+                }
             }
             catch (Exception ex)
             {
@@ -93,12 +99,12 @@ namespace $safeprojectname$.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _validationMessageService.StoreActionResponseMessageError(ModelState.Values);
+                _validationMessageService.StoreActionResponseMessageError(ModelState);
                 return View(model);
             }
             try
             {
-                IUser user = model.CreateUser();
+                User user = model.CreateUser();
                 model.SendCofirmEmailIfRequired(user);
                 _validationMessageService.StoreActionResponseMessageSuccess("Successfully Registered. Please check your email.");
                 return RedirectToAction("Login");
@@ -151,7 +157,7 @@ namespace $safeprojectname$.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _validationMessageService.StoreActionResponseMessageError(ModelState.Values);
+                _validationMessageService.StoreActionResponseMessageError(ModelState);
                 return View(model);
             }
             try
@@ -189,7 +195,12 @@ namespace $safeprojectname$.Controllers
             {
                 VerificationStatus status = _membershipService.VerifyForPasswordChange(code);
                 if (status == VerificationStatus.Success)
+                {
+                    User user = _userService.GetUserByPasswordVerificationCode(code);
+                    this.StoreUserInSession(user);
+                    _passwordVerificationService.RemoveByUserID(user.ID);
                     return View();
+                }
             }
             catch (Exception ex)
             {
@@ -208,7 +219,7 @@ namespace $safeprojectname$.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _validationMessageService.StoreActionResponseMessageError(ModelState.Values);
+                _validationMessageService.StoreActionResponseMessageError(ModelState);
                 return View(model);
             }
             try
@@ -256,6 +267,10 @@ namespace $safeprojectname$.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
+        }
+        private void StoreUserInSession(User user)
+        {
+            UserSession.CurrentUser = new UserIdentity(user.ID, user.TypeOfUser.ToString(), user.Name);
         }
         #endregion
     }

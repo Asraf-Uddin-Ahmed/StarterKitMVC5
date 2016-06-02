@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using Ninject.Modules;
 using System.Web;
 using System.Configuration;
-using $safeprojectname$.Aggregates;
-using $safeprojectname$.Repositories;
-using $safeprojectname$.Helpers;
-using $safeprojectname$.Factory;
-using $safeprojectname$.Services;
+using $safeprojectname$.Persistence;
+using $safeprojectname$.Core.Factories;
+using $safeprojectname$.Core.Services;
+using $safeprojectname$.Persistence.Services;
+using $safeprojectname$.Core;
+using $safeprojectname$.Core.Repositories;
+using $safeprojectname$.Persistence.Repositories;
+using $safeprojectname$.Persistence.Factories;
 
 namespace $safeprojectname$
 {
@@ -15,30 +18,30 @@ namespace $safeprojectname$
     {
         public override void Load()
         {
-            Bind<ITableContext>().To<TableContext>();
+            Bind<TableContext>().ToSelf();
 
-            // ENTITY
-            Bind<IPasswordVerification>().To<PasswordVerification>();
-            Bind<IUser>().To<User>();
-            Bind<IUserVerification>().To<UserVerification>();
-            Bind<ISettings>().To<Settings>();
-
-            // REPOSITORY
-            Bind<IPasswordVerificationRepository>().To<PasswordVerificationRepository>();
+            /*
+             * REPOSITORY
+             * */
             Bind<IUserRepository>().To<UserRepository>();
             Bind<IUserVerificationRepository>().To<UserVerificationRepository>();
+            Bind<IPasswordVerificationRepository>().To<PasswordVerificationRepository>();
             Bind<ISettingsRepository>().To<SettingsRepository>();
 
-            // FACTORY
+            /*
+             * FACTORY
+             * */
             Bind<IUserFactory>().To<UserFactory>();
+            Bind<IUserVerificationFactory>().To<UserVerificationFactory>();
+            Bind<IPasswordVerificationFactory>().To<PasswordVerificationFactory>();
 
-            // INTERNAL
-            Bind<IRepositorySearchHelper>().To<RepositorySearchHelper>();
-
-            // HELPER
-
-            // SERVICE
+            /*
+             * SERVICE
+             * */
             Bind<IUserService>().To<UserService>();
+            Bind<IEmailService>().To<EmailService>();
+            Bind<IPasswordVerificationService>().To<PasswordVerificationService>();
+            Bind<IMembershipService>().To<MembershipService>();
 
         }
     }

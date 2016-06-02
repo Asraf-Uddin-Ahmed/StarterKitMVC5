@@ -7,8 +7,8 @@ using System.Web;
 using System.Web.Hosting;
 using System.Configuration;
 using Ratul.Utility;
-using $safeprojectname$.Codes.Service;
-using $safeprojectname$.Codes.Helper;
+using $safeprojectname$.Codes.Persistence.Services;
+using $safeprojectname$.Codes.Core.Services;
 
 namespace $safeprojectname$.Codes
 {
@@ -16,16 +16,16 @@ namespace $safeprojectname$.Codes
     {
         public override void Load()
         {
-            // OTHER
-            Bind<IRegexUtility>().To<RegexUtility>();
+            /*
+             * MISCELLANEOUS
+             * */
+            Bind<RegexUtility>().ToSelf();
 
-            // SERVICE
-            Bind<IMembershipService>().To<MembershipService>();
+            /*
+             * SERVICE
+             * */
             Bind<IValidationMessageService>().To<ValidationMessageService>();
-            Bind<IEmailService>().To<EmailService>();
-            
-            // HELPER
-            Bind<IUrlMakerHelper>().To<UrlMakerHelper>();
+            Bind<IUrlMakerService>().To<UrlMakerService>();
             
         }
     }

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Website.Foundation.Aggregates;
-using Website.Foundation.Services;
+using Website.Foundation.Core.Aggregates;
+using Website.Foundation.Core.Services;
 using $safeprojectname$.App_Start;
 
 namespace $safeprojectname$.Models.Account
@@ -12,8 +12,8 @@ namespace $safeprojectname$.Models.Account
     {
         private IUserService _userService;
 
-        private List<IUser> _listUser;
-        public List<IUser> ListUser
+        private List<User> _listUser;
+        public List<User> ListUser
         {
             get
             {

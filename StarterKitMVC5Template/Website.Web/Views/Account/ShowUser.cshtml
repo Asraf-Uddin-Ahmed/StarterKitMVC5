@@ -22,7 +22,7 @@
                 <th>Creation Time</th>
             </tr>
         </thead>
-        @foreach (Website.Foundation.Aggregates.IUser user in Model.ListUser)
+        @foreach (Website.Foundation.Core.Aggregates.User user in Model.ListUser)
         {
             <tr>
                 <td>@user.Name</td>

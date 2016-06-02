@@ -30,25 +30,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject.Extensions.Logging">
-      <HintPath>..\packages\Ninject.Extensions.Logging.3.2.2.0\lib\net45-full\Ninject.Extensions.Logging.dll</HintPath>
+    <Reference Include="Ninject.Extensions.Logging, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Logging.3.2.3.0\lib\net45-full\Ninject.Extensions.Logging.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Ratul.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Ratul.Utility.1.0.0\lib\Ratul.Utility.dll</HintPath>
+      <HintPath>..\packages\Ratul.Utility.1.0.3\lib\Ratul.Utility.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -60,29 +63,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aggregates\Entity.cs" />
-    <Compile Include="Aggregates\IEntity.cs" />
-    <Compile Include="Aggregates\IPasswordVerification.cs" />
-    <Compile Include="Aggregates\ISettings.cs" />
-    <Compile Include="Aggregates\IUser.cs" />
-    <Compile Include="Aggregates\IUserVerification.cs" />
-    <Compile Include="Aggregates\Settings.cs" />
-    <Compile Include="Aggregates\PasswordVerification.cs" />
-    <Compile Include="Aggregates\UserVerification.cs" />
-    <Compile Include="Aggregates\User.cs" />
-    <Compile Include="Container\UserCreationData.cs" />
-    <Compile Include="Container\UserSearch.cs" />
-    <Compile Include="Enums\LoginStatus.cs" />
-    <Compile Include="Enums\SettingsName.cs" />
-    <Compile Include="Enums\SettingsType.cs" />
-    <Compile Include="Enums\VerificationStatus.cs" />
-    <Compile Include="Enums\UserStatus.cs" />
-    <Compile Include="Enums\UserType.cs" />
-    <Compile Include="Factory\IUserFactory.cs" />
-    <Compile Include="Factory\UserFactory.cs" />
-    <Compile Include="Helpers\IRepositorySearchHelper.cs" />
-    <Compile Include="Helpers\RepositorySearchHelper.cs" />
-    <Compile Include="ITableContext.cs" />
+    <Compile Include="Core\Aggregates\Entity.cs" />
+    <Compile Include="Core\Aggregates\Settings.cs" />
+    <Compile Include="Core\Aggregates\PasswordVerification.cs" />
+    <Compile Include="Core\Aggregates\UserVerification.cs" />
+    <Compile Include="Core\Aggregates\User.cs" />
+    <Compile Include="Core\Container\SortBy.cs" />
+    <Compile Include="Core\Factories\IPasswordVerificationFactory.cs" />
+    <Compile Include="Core\Factories\IUserVerificationFactory.cs" />
+    <Compile Include="Core\SearchData\UserSearch.cs" />
+    <Compile Include="Core\Enums\LoginStatus.cs" />
+    <Compile Include="Core\Enums\SettingsName.cs" />
+    <Compile Include="Core\Enums\SettingsType.cs" />
+    <Compile Include="Core\Enums\VerificationStatus.cs" />
+    <Compile Include="Core\Enums\UserStatus.cs" />
+    <Compile Include="Core\Enums\UserType.cs" />
+    <Compile Include="Core\Factories\IUserFactory.cs" />
+    <Compile Include="Core\Repositories\IPasswordVerificationRepository.cs" />
+    <Compile Include="Core\Repositories\IRepository.cs" />
+    <Compile Include="Core\Repositories\IRepositorySearch.cs" />
+    <Compile Include="Core\Repositories\ISettingsRepository.cs" />
+    <Compile Include="Core\Repositories\IUserRepository.cs" />
+    <Compile Include="Core\Repositories\IUserVerificationRepository.cs" />
+    <Compile Include="Core\SearchData\EntitySearch.cs" />
+    <Compile Include="Core\Services\IEmailService.cs" />
+    <Compile Include="Core\Services\IMembershipService.cs" />
+    <Compile Include="Core\Services\IPasswordVerificationService.cs" />
+    <Compile Include="Persistence\Factories\PasswordVerificationFactory.cs" />
+    <Compile Include="Persistence\Factories\UserFactory.cs" />
     <Compile Include="Migrations\201503210843158_InitialCreate.cs" />
     <Compile Include="Migrations\201503210843158_InitialCreate.Designer.cs">
       <DependentUpon>201503210843158_InitialCreate.cs</DependentUpon>
@@ -93,24 +101,44 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NinjectFoundationModule.cs" />
+    <Compile Include="Persistence\Factories\UserVerificationFactory.cs" />
+    <Compile Include="Persistence\Repositories\RepositorySearch.cs" />
+    <Compile Include="Persistence\Services\EmailService.cs" />
+    <Compile Include="Persistence\Services\MembershipService.cs" />
+    <Compile Include="Persistence\Services\PasswordVerificationService.cs" />
+    <Compile Include="Persistence\Services\UserService.cs" />
+    <Compile Include="Persistence\Template\EmailConfirmUser.cs">
+      <DependentUpon>EmailConfirmUser.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Persistence\Template\EmailConfirmUserExtended.cs" />
+    <Compile Include="Persistence\Template\EmailForgotPassword.cs">
+      <DependentUpon>EmailForgotPassword.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Persistence\Template\EmailForgotPasswordExtended.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IBaseEfRepository.cs" />
-    <Compile Include="Repositories\BaseEfRepository.cs" />
-    <Compile Include="Repositories\IPasswordVerificationRepository.cs" />
-    <Compile Include="Repositories\ISettingsRepository.cs" />
-    <Compile Include="Repositories\IUserRepository.cs" />
-    <Compile Include="Repositories\IUserVerificationRepository.cs" />
-    <Compile Include="Repositories\SettingsRepository.cs" />
-    <Compile Include="Repositories\PasswordVerificationRepository.cs" />
-    <Compile Include="Repositories\UserVerificationRepository.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Services\IUserService.cs" />
-    <Compile Include="Services\UserService.cs" />
-    <Compile Include="TableContext.cs" />
+    <Compile Include="Persistence\Repositories\Repository.cs" />
+    <Compile Include="Persistence\Repositories\SettingsRepository.cs" />
+    <Compile Include="Persistence\Repositories\PasswordVerificationRepository.cs" />
+    <Compile Include="Persistence\Repositories\UserVerificationRepository.cs" />
+    <Compile Include="Persistence\Repositories\UserRepository.cs" />
+    <Compile Include="Core\Services\IUserService.cs" />
+    <Compile Include="Persistence\TableContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <Content Include="Persistence\Template\EmailConfirmUser.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EmailConfirmUser.cs</LastGenOutput>
+    </Content>
+    <Content Include="Persistence\Template\EmailForgotPassword.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EmailForgotPassword.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -122,6 +150,9 @@
     <EmbeddedResource Include="Migrations\201503221659567_PasswordVerification.resx">
       <DependentUpon>201503221659567_PasswordVerification.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

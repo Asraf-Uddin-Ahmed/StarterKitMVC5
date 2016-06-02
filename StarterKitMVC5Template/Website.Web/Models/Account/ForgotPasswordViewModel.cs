@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using Website.Foundation.Aggregates;
-using Website.Foundation.Services;
+using Website.Foundation.Core.Aggregates;
+using Website.Foundation.Core.Services;
 using $safeprojectname$.App_Start;
-using $safeprojectname$.Codes.Helper;
-using $safeprojectname$.Codes.Service;
+using $safeprojectname$.Codes.Core.Services;
 
 namespace $safeprojectname$.Models.Account
 {
@@ -22,11 +21,11 @@ namespace $safeprojectname$.Models.Account
         {
             IMembershipService membershipService = NinjectWebCommon.GetConcreteInstance<IMembershipService>();
             IUserService userService = NinjectWebCommon.GetConcreteInstance<IUserService>();
-            IUrlMakerHelper urlMakerHelper = NinjectWebCommon.GetConcreteInstance<IUrlMakerHelper>();
+            IUrlMakerService urlMakerHelper = NinjectWebCommon.GetConcreteInstance<IUrlMakerService>();
             IEmailService emailService = NinjectWebCommon.GetConcreteInstance<IEmailService>();
 
-            IUser user = userService.GetUserByEmail(this.Email);
-            IPasswordVerification passwordVerification = membershipService.ProcessForgotPassword(user);
+            User user = userService.GetUserByEmail(this.Email);
+            PasswordVerification passwordVerification = membershipService.ProcessForgotPassword(user);
             string url = urlMakerHelper.GetUrlForgotPassword(passwordVerification.VerificationCode);
             emailService.SendForgotPassword(user, url);
         }

@@ -9,13 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Website.Foundation.Aggregates;
-using Website.Foundation.Container;
-using Website.Foundation.Enums;
-using Website.Foundation.Repositories;
+using Website.Foundation.Core.Aggregates;
+using Website.Foundation.Core.Container;
+using Website.Foundation.Core.Enums;
+using Website.Foundation.Core.Repositories;
 using $safeprojectname$.App_Start;
 using $safeprojectname$.Codes;
-using $safeprojectname$.Codes.Service;
 
 namespace $safeprojectname$.Controllers
 {
@@ -31,7 +30,6 @@ namespace $safeprojectname$.Controllers
 
         public ActionResult Index()
         {
-            IMembershipService ms = NinjectWebCommon.GetConcreteInstance<IMembershipService>();
             return View();
         }
 

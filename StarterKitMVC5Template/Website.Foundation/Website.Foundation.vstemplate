@@ -15,40 +15,50 @@
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="Website.Foundation.csproj" File="Website.Foundation.csproj" ReplaceParameters="true">
-      <Folder Name="Aggregates" TargetFolderName="Aggregates">
-        <ProjectItem ReplaceParameters="true" TargetFileName="Entity.cs">Entity.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="IEntity.cs">IEntity.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="IPasswordVerification.cs">IPasswordVerification.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="ISettings.cs">ISettings.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="IUser.cs">IUser.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="IUserVerification.cs">IUserVerification.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="PasswordVerification.cs">PasswordVerification.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="Settings.cs">Settings.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="User.cs">User.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="UserVerification.cs">UserVerification.cs</ProjectItem>
-      </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="App.config">App.config</ProjectItem>
-      <Folder Name="Container" TargetFolderName="Container">
-        <ProjectItem ReplaceParameters="true" TargetFileName="UserCreationData.cs">UserCreationData.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="UserSearch.cs">UserSearch.cs</ProjectItem>
+      <Folder Name="Core" TargetFolderName="Core">
+        <Folder Name="Aggregates" TargetFolderName="Aggregates">
+          <ProjectItem ReplaceParameters="true" TargetFileName="Entity.cs">Entity.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="PasswordVerification.cs">PasswordVerification.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Settings.cs">Settings.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="User.cs">User.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserVerification.cs">UserVerification.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Container" TargetFolderName="Container">
+          <ProjectItem ReplaceParameters="true" TargetFileName="SortBy.cs">SortBy.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Enums" TargetFolderName="Enums">
+          <ProjectItem ReplaceParameters="true" TargetFileName="LoginStatus.cs">LoginStatus.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="SettingsName.cs">SettingsName.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="SettingsType.cs">SettingsType.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserStatus.cs">UserStatus.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserType.cs">UserType.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="VerificationStatus.cs">VerificationStatus.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Factories" TargetFolderName="Factories">
+          <ProjectItem ReplaceParameters="true" TargetFileName="IPasswordVerificationFactory.cs">IPasswordVerificationFactory.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IUserFactory.cs">IUserFactory.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IUserVerificationFactory.cs">IUserVerificationFactory.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Repositories" TargetFolderName="Repositories">
+          <ProjectItem ReplaceParameters="true" TargetFileName="IPasswordVerificationRepository.cs">IPasswordVerificationRepository.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IRepository.cs">IRepository.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IRepositorySearch.cs">IRepositorySearch.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ISettingsRepository.cs">ISettingsRepository.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IUserRepository.cs">IUserRepository.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IUserVerificationRepository.cs">IUserVerificationRepository.cs</ProjectItem>
+        </Folder>
+        <Folder Name="SearchData" TargetFolderName="SearchData">
+          <ProjectItem ReplaceParameters="true" TargetFileName="EntitySearch.cs">EntitySearch.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserSearch.cs">UserSearch.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Services" TargetFolderName="Services">
+          <ProjectItem ReplaceParameters="true" TargetFileName="IEmailService.cs">IEmailService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IMembershipService.cs">IMembershipService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IPasswordVerificationService.cs">IPasswordVerificationService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IUserService.cs">IUserService.cs</ProjectItem>
+        </Folder>
       </Folder>
-      <Folder Name="Enums" TargetFolderName="Enums">
-        <ProjectItem ReplaceParameters="true" TargetFileName="LoginStatus.cs">LoginStatus.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="SettingsName.cs">SettingsName.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="SettingsType.cs">SettingsType.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="UserStatus.cs">UserStatus.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="UserType.cs">UserType.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="VerificationStatus.cs">VerificationStatus.cs</ProjectItem>
-      </Folder>
-      <Folder Name="Factory" TargetFolderName="Factory">
-        <ProjectItem ReplaceParameters="true" TargetFileName="IUserFactory.cs">IUserFactory.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="UserFactory.cs">UserFactory.cs</ProjectItem>
-      </Folder>
-      <Folder Name="Helpers" TargetFolderName="Helpers">
-        <ProjectItem ReplaceParameters="true" TargetFileName="IRepositorySearchHelper.cs">IRepositorySearchHelper.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="RepositorySearchHelper.cs">RepositorySearchHelper.cs</ProjectItem>
-      </Folder>
-      <ProjectItem ReplaceParameters="true" TargetFileName="ITableContext.cs">ITableContext.cs</ProjectItem>
       <Folder Name="Migrations" TargetFolderName="Migrations">
         <ProjectItem ReplaceParameters="true" TargetFileName="201503210843158_InitialCreate.cs">201503210843158_InitialCreate.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="201503210843158_InitialCreate.Designer.cs">201503210843158_InitialCreate.Designer.cs</ProjectItem>
@@ -60,40 +70,40 @@
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="NinjectFoundationModule.cs">NinjectFoundationModule.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
+      <Folder Name="Persistence" TargetFolderName="Persistence">
+        <Folder Name="Factories" TargetFolderName="Factories">
+          <ProjectItem ReplaceParameters="true" TargetFileName="PasswordVerificationFactory.cs">PasswordVerificationFactory.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserFactory.cs">UserFactory.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserVerificationFactory.cs">UserVerificationFactory.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Repositories" TargetFolderName="Repositories">
+          <ProjectItem ReplaceParameters="true" TargetFileName="PasswordVerificationRepository.cs">PasswordVerificationRepository.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Repository.cs">Repository.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="RepositorySearch.cs">RepositorySearch.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="SettingsRepository.cs">SettingsRepository.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserRepository.cs">UserRepository.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserVerificationRepository.cs">UserVerificationRepository.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Services" TargetFolderName="Services">
+          <ProjectItem ReplaceParameters="true" TargetFileName="EmailService.cs">EmailService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MembershipService.cs">MembershipService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="PasswordVerificationService.cs">PasswordVerificationService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserService.cs">UserService.cs</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="TableContext.cs">TableContext.cs</ProjectItem>
+        <Folder Name="Template" TargetFolderName="Template">
+          <ProjectItem ReplaceParameters="false" TargetFileName="EmailConfirmUser.tt">EmailConfirmUser.tt</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="EmailConfirmUser.cs">EmailConfirmUser.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="EmailConfirmUserExtended.cs">EmailConfirmUserExtended.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="EmailForgotPassword.tt">EmailForgotPassword.tt</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="EmailForgotPassword.cs">EmailForgotPassword.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="EmailForgotPasswordExtended.cs">EmailForgotPasswordExtended.cs</ProjectItem>
+        </Folder>
+      </Folder>
       <Folder Name="Properties" TargetFolderName="Properties">
         <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
       </Folder>
-      <Folder Name="Repositories" TargetFolderName="Repositories">
-        <ProjectItem ReplaceParameters="true" TargetFileName="BaseEfRepository.cs">BaseEfRepository.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="IBaseEfRepository.cs">IBaseEfRepository.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="IPasswordVerificationRepository.cs">IPasswordVerificationRepository.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="ISettingsRepository.cs">ISettingsRepository.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="IUserRepository.cs">IUserRepository.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="IUserVerificationRepository.cs">IUserVerificationRepository.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="PasswordVerificationRepository.cs">PasswordVerificationRepository.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="SettingsRepository.cs">SettingsRepository.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="UserRepository.cs">UserRepository.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="UserVerificationRepository.cs">UserVerificationRepository.cs</ProjectItem>
-      </Folder>
       <Folder Name="Service References" TargetFolderName="Service References" />
-      <Folder Name="Services" TargetFolderName="Services">
-        <ProjectItem ReplaceParameters="true" TargetFileName="IUserService.cs">IUserService.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="UserService.cs">UserService.cs</ProjectItem>
-      </Folder>
-      <ProjectItem ReplaceParameters="true" TargetFileName="TableContext.cs">TableContext.cs</ProjectItem>
     </Project>
   </TemplateContent>
-  <WizardExtension>
-    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
-    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
-  </WizardExtension>
-  <WizardData>
-    <packages repository="extension" repositoryId="StarterKitMVC5Installer - 1">
-      <package id="EntityFramework" version="6.1.2" targetFramework="net45" />
-      <package id="Newtonsoft.Json" version="6.0.8" targetFramework="net45" />
-      <package id="Ninject" version="3.2.2.0" targetFramework="net45" />
-      <package id="Ninject.Extensions.Logging" version="3.2.2.0" targetFramework="net45" />
-      <package id="Ratul.Utility" version="1.0.0" targetFramework="net45" />
-    </packages>
-  </WizardData>
 </VSTemplate>

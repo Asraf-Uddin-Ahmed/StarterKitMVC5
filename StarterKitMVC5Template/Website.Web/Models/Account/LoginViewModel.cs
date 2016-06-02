@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using Website.Foundation.Enums;
+using Website.Foundation.Core.Enums;
 using $safeprojectname$.App_Start;
-using $safeprojectname$.Codes.Service;
+using $safeprojectname$.Codes.Core.Services;
 
 namespace $safeprojectname$.Models.Account
 {

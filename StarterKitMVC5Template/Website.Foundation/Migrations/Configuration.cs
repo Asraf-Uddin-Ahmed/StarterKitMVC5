@@ -5,10 +5,11 @@ namespace $safeprojectname$.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using $safeprojectname$.Aggregates;
-    using $safeprojectname$.Enums;
+    using $safeprojectname$.Core.Aggregates;
+    using $safeprojectname$.Core.Enums;
+    using $safeprojectname$.Persistence;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<$safeprojectname$.TableContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<TableContext>
     {
         public Configuration()
         {
@@ -16,7 +17,7 @@ namespace $safeprojectname$.Migrations
             ContextKey = "$safeprojectname$.TableContext";
         }
 
-        protected override void Seed($safeprojectname$.TableContext context)
+        protected override void Seed(TableContext context)
         {
             //List<Settings> listSettings = new List<Settings>
             //{
