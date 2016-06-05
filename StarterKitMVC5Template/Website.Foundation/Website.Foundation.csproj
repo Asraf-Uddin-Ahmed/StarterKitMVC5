@@ -71,6 +71,7 @@
     <Compile Include="Core\Container\SortBy.cs" />
     <Compile Include="Core\Factories\IPasswordVerificationFactory.cs" />
     <Compile Include="Core\Factories\IUserVerificationFactory.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\SearchData\UserSearch.cs" />
     <Compile Include="Core\Enums\LoginStatus.cs" />
     <Compile Include="Core\Enums\SettingsName.cs" />
@@ -86,7 +87,10 @@
     <Compile Include="Core\Repositories\IUserRepository.cs" />
     <Compile Include="Core\Repositories\IUserVerificationRepository.cs" />
     <Compile Include="Core\SearchData\EntitySearch.cs" />
-    <Compile Include="Core\Services\IEmailService.cs" />
+    <Compile Include="Core\Services\Email\IConfirmUserMessageBuilder.cs" />
+    <Compile Include="Core\Services\Email\IEmailService.cs" />
+    <Compile Include="Core\Services\Email\IForgotPasswordMessageBuilder.cs" />
+    <Compile Include="Core\Services\Email\IMessageBuilder.cs" />
     <Compile Include="Core\Services\IMembershipService.cs" />
     <Compile Include="Core\Services\IPasswordVerificationService.cs" />
     <Compile Include="Persistence\Factories\PasswordVerificationFactory.cs" />
@@ -100,25 +104,28 @@
       <DependentUpon>201503221659567_PasswordVerification.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="NinjectFoundationModule.cs" />
     <Compile Include="Persistence\Factories\UserVerificationFactory.cs" />
     <Compile Include="Persistence\Repositories\RepositorySearch.cs" />
-    <Compile Include="Persistence\Services\EmailService.cs" />
+    <Compile Include="Persistence\Services\Email\EmailService.cs" />
+    <Compile Include="Persistence\Services\Email\ConfirmUserMessageBuilder.cs" />
+    <Compile Include="Persistence\Services\Email\ForgotPasswordMessageBuilder.cs" />
+    <Compile Include="Persistence\Services\Email\MessageBuilder.cs" />
     <Compile Include="Persistence\Services\MembershipService.cs" />
     <Compile Include="Persistence\Services\PasswordVerificationService.cs" />
     <Compile Include="Persistence\Services\UserService.cs" />
-    <Compile Include="Persistence\Template\EmailConfirmUser.cs">
-      <DependentUpon>EmailConfirmUser.tt</DependentUpon>
+    <Compile Include="Persistence\Template\Email\ConfirmUser.cs">
+      <DependentUpon>ConfirmUser.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Persistence\Template\EmailConfirmUserExtended.cs" />
-    <Compile Include="Persistence\Template\EmailForgotPassword.cs">
-      <DependentUpon>EmailForgotPassword.tt</DependentUpon>
+    <Compile Include="Persistence\Template\Email\ConfirmUserExtended.cs" />
+    <Compile Include="Persistence\Template\Email\ForgotPassword.cs">
+      <DependentUpon>ForgotPassword.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Persistence\Template\EmailForgotPasswordExtended.cs" />
+    <Compile Include="Persistence\Template\Email\ForgotPasswordExtended.cs" />
+    <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Persistence\Repositories\Repository.cs" />
     <Compile Include="Persistence\Repositories\SettingsRepository.cs" />
@@ -131,13 +138,13 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <Content Include="Persistence\Template\EmailConfirmUser.tt">
+    <Content Include="Persistence\Template\Email\ConfirmUser.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>EmailConfirmUser.cs</LastGenOutput>
+      <LastGenOutput>ConfirmUser.cs</LastGenOutput>
     </Content>
-    <Content Include="Persistence\Template\EmailForgotPassword.tt">
+    <Content Include="Persistence\Template\Email\ForgotPassword.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>EmailForgotPassword.cs</LastGenOutput>
+      <LastGenOutput>ForgotPassword.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +161,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -5,8 +5,10 @@ using System.Linq;
 using System.Web;
 using Website.Foundation.Core.Aggregates;
 using Website.Foundation.Core.Services;
+using Website.Foundation.Core.Services.Email;
 using $safeprojectname$.App_Start;
 using $safeprojectname$.Codes.Core.Services;
+using $safeprojectname$.Codes.Core.Services.UriMaker;
 
 namespace $safeprojectname$.Models.Account
 {
@@ -21,13 +23,17 @@ namespace $safeprojectname$.Models.Account
         {
             IMembershipService membershipService = NinjectWebCommon.GetConcreteInstance<IMembershipService>();
             IUserService userService = NinjectWebCommon.GetConcreteInstance<IUserService>();
-            IUrlMakerService urlMakerHelper = NinjectWebCommon.GetConcreteInstance<IUrlMakerService>();
+            IUriMakerService uriMakerService = NinjectWebCommon.GetConcreteInstance<IUriMakerService>();
+            IForgotPasswordUriBuilder forgotPasswordUriBuilder = NinjectWebCommon.GetConcreteInstance<IForgotPasswordUriBuilder>();
             IEmailService emailService = NinjectWebCommon.GetConcreteInstance<IEmailService>();
+            IForgotPasswordMessageBuilder forgotPasswordMessageBuilder = NinjectWebCommon.GetConcreteInstance<IForgotPasswordMessageBuilder>();
 
             User user = userService.GetUserByEmail(this.Email);
             PasswordVerification passwordVerification = membershipService.ProcessForgotPassword(user);
-            string url = urlMakerHelper.GetUrlForgotPassword(passwordVerification.VerificationCode);
-            emailService.SendForgotPassword(user, url);
+            forgotPasswordUriBuilder.Build(passwordVerification.VerificationCode);
+            string url = uriMakerService.GetFullUri(forgotPasswordUriBuilder);
+            forgotPasswordMessageBuilder.Build(user, url);
+            emailService.SendText(forgotPasswordMessageBuilder);
         }
     }
 }

@@ -19,14 +19,17 @@ namespace $safeprojectname$.Persistence.Services
     {
         private ILogger _logger;
         private IUserRepository _userRepository;
+        private IUnitOfWork _unitOfWork;
         private IPasswordVerificationRepository _passwordVerificationRepository;
         [Inject]
         public UserService(ILogger logger,
-            IUserRepository userRepository, 
+            IUserRepository userRepository,
+            IUnitOfWork unitOfWork,
             IPasswordVerificationRepository passwordVerificationRepository)
         {
             _logger = logger;
             _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
             _passwordVerificationRepository = passwordVerificationRepository;
         }
 
@@ -122,9 +125,8 @@ namespace $safeprojectname$.Persistence.Services
         {
             try
             {
-                // use '_userRepository.Commit()' function after 'remove' if you do not use 'isPersist' value 'true'.
-                // See 'UpdateUserInformation' for detail.
-                _userRepository.Remove(userID, true);
+                _userRepository.Remove(userID);
+                _unitOfWork.Commit();
                 return true;
             }
             catch (Exception ex)
@@ -142,7 +144,7 @@ namespace $safeprojectname$.Persistence.Services
                 // You can also give the 'isPersist' value 'true' for instant save.
                 // See 'DeleteUser' for detail.
                 _userRepository.Update(user);
-                _userRepository.Commit();
+                _unitOfWork.Commit();
                 return true;
             }
             catch (Exception ex)

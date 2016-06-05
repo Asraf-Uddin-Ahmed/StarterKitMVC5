@@ -40,6 +40,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="IUserFactory.cs">IUserFactory.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="IUserVerificationFactory.cs">IUserVerificationFactory.cs</ProjectItem>
         </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="IUnitOfWork.cs">IUnitOfWork.cs</ProjectItem>
         <Folder Name="Repositories" TargetFolderName="Repositories">
           <ProjectItem ReplaceParameters="true" TargetFileName="IPasswordVerificationRepository.cs">IPasswordVerificationRepository.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="IRepository.cs">IRepository.cs</ProjectItem>
@@ -53,7 +54,12 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="UserSearch.cs">UserSearch.cs</ProjectItem>
         </Folder>
         <Folder Name="Services" TargetFolderName="Services">
-          <ProjectItem ReplaceParameters="true" TargetFileName="IEmailService.cs">IEmailService.cs</ProjectItem>
+          <Folder Name="Email" TargetFolderName="Email">
+            <ProjectItem ReplaceParameters="true" TargetFileName="IConfirmUserMessageBuilder.cs">IConfirmUserMessageBuilder.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="IEmailService.cs">IEmailService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="IForgotPasswordMessageBuilder.cs">IForgotPasswordMessageBuilder.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="IMessageBuilder.cs">IMessageBuilder.cs</ProjectItem>
+          </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="IMembershipService.cs">IMembershipService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="IPasswordVerificationService.cs">IPasswordVerificationService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="IUserService.cs">IUserService.cs</ProjectItem>
@@ -68,7 +74,6 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="201503221659567_PasswordVerification.resx">201503221659567_PasswordVerification.resx</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Configuration.cs">Configuration.cs</ProjectItem>
       </Folder>
-      <ProjectItem ReplaceParameters="true" TargetFileName="NinjectFoundationModule.cs">NinjectFoundationModule.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
       <Folder Name="Persistence" TargetFolderName="Persistence">
         <Folder Name="Factories" TargetFolderName="Factories">
@@ -85,20 +90,28 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="UserVerificationRepository.cs">UserVerificationRepository.cs</ProjectItem>
         </Folder>
         <Folder Name="Services" TargetFolderName="Services">
-          <ProjectItem ReplaceParameters="true" TargetFileName="EmailService.cs">EmailService.cs</ProjectItem>
+          <Folder Name="Email" TargetFolderName="Email">
+            <ProjectItem ReplaceParameters="true" TargetFileName="ConfirmUserMessageBuilder.cs">ConfirmUserMessageBuilder.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="EmailService.cs">EmailService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordMessageBuilder.cs">ForgotPasswordMessageBuilder.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="MessageBuilder.cs">MessageBuilder.cs</ProjectItem>
+          </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="MembershipService.cs">MembershipService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="PasswordVerificationService.cs">PasswordVerificationService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="UserService.cs">UserService.cs</ProjectItem>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="TableContext.cs">TableContext.cs</ProjectItem>
         <Folder Name="Template" TargetFolderName="Template">
-          <ProjectItem ReplaceParameters="false" TargetFileName="EmailConfirmUser.tt">EmailConfirmUser.tt</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="EmailConfirmUser.cs">EmailConfirmUser.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="EmailConfirmUserExtended.cs">EmailConfirmUserExtended.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="false" TargetFileName="EmailForgotPassword.tt">EmailForgotPassword.tt</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="EmailForgotPassword.cs">EmailForgotPassword.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="EmailForgotPasswordExtended.cs">EmailForgotPasswordExtended.cs</ProjectItem>
+          <Folder Name="Email" TargetFolderName="Email">
+            <ProjectItem ReplaceParameters="false" TargetFileName="ConfirmUser.tt">ConfirmUser.tt</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ConfirmUser.cs">ConfirmUser.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ConfirmUserExtended.cs">ConfirmUserExtended.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ForgotPassword.tt">ForgotPassword.tt</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPassword.cs">ForgotPassword.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordExtended.cs">ForgotPasswordExtended.cs</ProjectItem>
+          </Folder>
         </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="UnitOfWork.cs">UnitOfWork.cs</ProjectItem>
       </Folder>
       <Folder Name="Properties" TargetFolderName="Properties">
         <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>

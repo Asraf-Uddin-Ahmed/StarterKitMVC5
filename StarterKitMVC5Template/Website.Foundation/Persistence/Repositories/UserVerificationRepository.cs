@@ -31,14 +31,14 @@ namespace $safeprojectname$.Persistence.Repositories
             return isExist;
         }
 
-        public void RemoveByVerificationCode(string verificationCode, bool isPersist = false)
+        public void RemoveByVerificationCode(string verificationCode)
         {
             UserVerification userVerification = GetByVerificationCode(verificationCode);
-            base.Remove(userVerification, isPersist);
+            base.Remove(userVerification);
         }
-        public void RemoveByUserID(Guid userID, bool isPersist = false)
+        public void RemoveByUserID(Guid userID)
         {
-            base.RemoveRange(_context.UserVerifications.Where(c => c.UserID == userID), isPersist);
+            base.RemoveRange(_context.UserVerifications.Where(c => c.UserID == userID));
         }
     }
 }

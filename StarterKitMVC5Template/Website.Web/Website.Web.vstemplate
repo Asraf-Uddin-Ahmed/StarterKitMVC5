@@ -27,14 +27,23 @@
       <Folder Name="Codes" TargetFolderName="Codes">
         <Folder Name="Core" TargetFolderName="Core">
           <Folder Name="Services" TargetFolderName="Services">
-            <ProjectItem ReplaceParameters="true" TargetFileName="IUrlMakerService.cs">IUrlMakerService.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="IValidationMessageService.cs">IValidationMessageService.cs</ProjectItem>
+            <Folder Name="UriMaker" TargetFolderName="UriMaker">
+              <ProjectItem ReplaceParameters="true" TargetFileName="IConfirmUserUriBuilder.cs">IConfirmUserUriBuilder.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="IForgotPasswordUriBuilder.cs">IForgotPasswordUriBuilder.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="IUriBuilder.cs">IUriBuilder.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="IUriMakerService.cs">IUriMakerService.cs</ProjectItem>
+            </Folder>
           </Folder>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="NinjectWebModule.cs">NinjectWebModule.cs</ProjectItem>
         <Folder Name="Persistence" TargetFolderName="Persistence">
           <Folder Name="Services" TargetFolderName="Services">
-            <ProjectItem ReplaceParameters="true" TargetFileName="UrlMakerService.cs">UrlMakerService.cs</ProjectItem>
+            <Folder Name="UriMaker" TargetFolderName="UriMaker">
+              <ProjectItem ReplaceParameters="true" TargetFileName="ConfirmUserUriBuilder.cs">ConfirmUserUriBuilder.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordUriBuilder.cs">ForgotPasswordUriBuilder.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="UriMakerService.cs">UriMakerService.cs</ProjectItem>
+            </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="ValidationMessageService.cs">ValidationMessageService.cs</ProjectItem>
           </Folder>
         </Folder>

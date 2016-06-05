@@ -8,9 +8,12 @@ using Website.Foundation.Core.Container;
 using Website.Foundation.Core.Enums;
 using Website.Foundation.Core.Factories;
 using Website.Foundation.Core.Services;
+using Website.Foundation.Core.Services.Email;
+using Website.Foundation.Persistence.Services.Email;
 using $safeprojectname$.App_Start;
 using $safeprojectname$.Codes;
 using $safeprojectname$.Codes.Core.Services;
+using $safeprojectname$.Codes.Core.Services.UriMaker;
 
 namespace $safeprojectname$.Models.Account
 {
@@ -49,10 +52,15 @@ namespace $safeprojectname$.Models.Account
         {
             if(!user.UserVerifications.Any())
                 return;
-            IUrlMakerService urlMakerHelper = NinjectWebCommon.GetConcreteInstance<IUrlMakerService>();
+            IUriMakerService uriMakerService = NinjectWebCommon.GetConcreteInstance<IUriMakerService>();
+            IConfirmUserUriBuilder confirmUserUriBuilder = NinjectWebCommon.GetConcreteInstance<IConfirmUserUriBuilder>();
             IEmailService emailService = NinjectWebCommon.GetConcreteInstance<IEmailService>();
-            string url = urlMakerHelper.GetUrlConfirmUser(user.UserVerifications.First().VerificationCode);
-            emailService.SendConfirmUser(user, url);
+            IConfirmUserMessageBuilder forgotPasswordMessageBuilder = NinjectWebCommon.GetConcreteInstance<IConfirmUserMessageBuilder>();
+
+            confirmUserUriBuilder.Build(user.UserVerifications.First().VerificationCode);
+            string url = uriMakerService.GetFullUri(confirmUserUriBuilder);
+            forgotPasswordMessageBuilder.Build(user, url);
+            emailService.SendText(forgotPasswordMessageBuilder);
         }
     }
 }

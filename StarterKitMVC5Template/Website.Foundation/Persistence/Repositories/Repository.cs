@@ -25,39 +25,33 @@ namespace $safeprojectname$.Persistence.Repositories
         }
 
 
-        public void Add(TEntity entity, bool isPersist = false)
+        public void Add(TEntity entity)
         {
             dbSet.Add(entity);
-            this.Commit(isPersist);
         }
-        public void AddRange(IEnumerable<TEntity> entities, bool isPersist = false)
+        public void AddRange(IEnumerable<TEntity> entities)
         {
             dbSet.AddRange(entities);
-            this.Commit(isPersist);
         }
 
 
-        public void Update(TEntity entity, bool isPersist = false)
+        public void Update(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
-            this.Commit(isPersist);
         }
 
 
-        public void Remove(TEntity entity, bool isPersist = false)
+        public void Remove(TEntity entity)
         {
             dbSet.Remove(entity);
-            this.Commit(isPersist);
         }
-        public void Remove(Guid ID, bool isPersist = false)
+        public void Remove(Guid ID)
         {
             TEntity currentItem = this.Get(ID);
-            this.Remove(currentItem, isPersist);
         }
-        public void RemoveRange(IEnumerable<TEntity> entities, bool isPersist = false)
+        public void RemoveRange(IEnumerable<TEntity> entities)
         {
             dbSet.RemoveRange(entities);
-            this.Commit(isPersist);
         }
 
 
@@ -82,21 +76,6 @@ namespace $safeprojectname$.Persistence.Repositories
         {
             return dbSet.Count();
         }
-
-
-        public void Commit()
-        {
-            this.Commit(true);
-        }
-
-
-
-        private void Commit(bool isPersist)
-        {
-            if(isPersist)
-            {
-                _context.SaveChanges();
-            }
-        }
+        
     }
 }
