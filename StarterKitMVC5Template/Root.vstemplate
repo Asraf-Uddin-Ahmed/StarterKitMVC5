@@ -14,6 +14,9 @@ xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
       <ProjectTemplateLink ProjectName="$safeprojectname$.Foundation">
         Website.Foundation\Website.Foundation.vstemplate
       </ProjectTemplateLink>
+	  <ProjectTemplateLink ProjectName="$safeprojectname$.WebApi">
+        Website.WebApi\Website.WebApi.vstemplate
+      </ProjectTemplateLink>
     </ProjectCollection>
   </TemplateContent>
   <!--<WizardExtension>

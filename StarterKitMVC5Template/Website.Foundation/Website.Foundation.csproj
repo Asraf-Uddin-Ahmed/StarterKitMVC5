@@ -38,6 +38,34 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -47,6 +75,10 @@
     </Reference>
     <Reference Include="Ninject.Extensions.Logging, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.Extensions.Logging.3.2.3.0\lib\net45-full\Ninject.Extensions.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ratul.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -63,6 +95,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Aggregates\ApplicationUser.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Core\Aggregates\Entity.cs" />
     <Compile Include="Core\Aggregates\Settings.cs" />
     <Compile Include="Core\Aggregates\PasswordVerification.cs" />
@@ -71,6 +106,13 @@
     <Compile Include="Core\Container\SortBy.cs" />
     <Compile Include="Core\Factories\IPasswordVerificationFactory.cs" />
     <Compile Include="Core\Factories\IUserVerificationFactory.cs" />
+    <Compile Include="Core\Identity\ApplicationRoleManager.cs" />
+    <Compile Include="Core\Identity\ApplicationUserManager.cs" />
+    <Compile Include="Core\Identity\EmailServiceProvider.cs" />
+    <Compile Include="Core\Identity\ExtendedClaimsProvider.cs" />
+    <Compile Include="Core\Identity\CustomPasswordValidator.cs" />
+    <Compile Include="Core\Identity\CustomUserValidator.cs" />
+    <Compile Include="Core\Identity\RolesFromClaims.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\SearchData\UserSearch.cs" />
     <Compile Include="Core\Enums\LoginStatus.cs" />
@@ -87,12 +129,17 @@
     <Compile Include="Core\Repositories\IUserRepository.cs" />
     <Compile Include="Core\Repositories\IUserVerificationRepository.cs" />
     <Compile Include="Core\SearchData\EntitySearch.cs" />
+    <Compile Include="Core\Services\Email\IIdentityMessageBuilder.cs" />
     <Compile Include="Core\Services\Email\IConfirmUserMessageBuilder.cs" />
     <Compile Include="Core\Services\Email\IEmailService.cs" />
     <Compile Include="Core\Services\Email\IForgotPasswordMessageBuilder.cs" />
     <Compile Include="Core\Services\Email\IMessageBuilder.cs" />
     <Compile Include="Core\Services\IMembershipService.cs" />
     <Compile Include="Core\Services\IPasswordVerificationService.cs" />
+    <Compile Include="Migrations\201606061203055_IdentityUser.cs" />
+    <Compile Include="Migrations\201606061203055_IdentityUser.Designer.cs">
+      <DependentUpon>201606061203055_IdentityUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\Factories\PasswordVerificationFactory.cs" />
     <Compile Include="Persistence\Factories\UserFactory.cs" />
     <Compile Include="Migrations\201503210843158_InitialCreate.cs" />
@@ -106,6 +153,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\Factories\UserVerificationFactory.cs" />
     <Compile Include="Persistence\Repositories\RepositorySearch.cs" />
+    <Compile Include="Persistence\Services\Email\IdentityMessageBuilder.cs" />
     <Compile Include="Persistence\Services\Email\EmailService.cs" />
     <Compile Include="Persistence\Services\Email\ConfirmUserMessageBuilder.cs" />
     <Compile Include="Persistence\Services\Email\ForgotPasswordMessageBuilder.cs" />
@@ -133,7 +181,7 @@
     <Compile Include="Persistence\Repositories\UserVerificationRepository.cs" />
     <Compile Include="Persistence\Repositories\UserRepository.cs" />
     <Compile Include="Core\Services\IUserService.cs" />
-    <Compile Include="Persistence\TableContext.cs" />
+    <Compile Include="Persistence\ApplicationDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -156,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503221659567_PasswordVerification.resx">
       <DependentUpon>201503221659567_PasswordVerification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606061203055_IdentityUser.resx">
+      <DependentUpon>201606061203055_IdentityUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

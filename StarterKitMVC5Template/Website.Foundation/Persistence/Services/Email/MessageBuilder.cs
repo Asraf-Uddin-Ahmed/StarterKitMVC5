@@ -12,10 +12,10 @@ namespace $safeprojectname$.Persistence.Services.Email
 {
     public abstract class MessageBuilder : IMessageBuilder
     {
-        private ISettingsRepository _settingsService;
-        public MessageBuilder(ISettingsRepository settingsService)
+        private ISettingsRepository _settingsRepository;
+        public MessageBuilder(ISettingsRepository settingsRepository)
         {
-            _settingsService = settingsService;
+            _settingsRepository = settingsRepository;
         }
 
         public MessageSettings GetText()
@@ -41,8 +41,8 @@ namespace $safeprojectname$.Persistence.Services.Email
         protected abstract List<NameWithEmail> GetReplyToList();
         protected NameWithEmail GetSystemNameWithEmail()
         {
-            string systemEmail = _settingsService.GetValueByName(SettingsName.SystemEmailAddress);
-            string systemName = _settingsService.GetValueByName(SettingsName.SystemEmailName);
+            string systemEmail = _settingsRepository.GetValueByName(SettingsName.SystemEmailAddress);
+            string systemName = _settingsRepository.GetValueByName(SettingsName.SystemEmailName);
             NameWithEmail systemNameWithEmail = new NameWithEmail(systemName, systemEmail);
             return systemNameWithEmail;
         }

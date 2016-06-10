@@ -17,9 +17,9 @@ namespace $safeprojectname$.Persistence.Repositories
 {
     public class UserRepository : RepositorySearch<User, UserSearch>, IUserRepository
     {
-        private TableContext _context;
+        private ApplicationDbContext _context;
         [Inject]
-        public UserRepository(TableContext context)
+        public UserRepository(ApplicationDbContext context)
             : base(context)
         {
             _context = context;
@@ -27,22 +27,22 @@ namespace $safeprojectname$.Persistence.Repositories
 
         public bool IsUserNameExist(string userName)
         {
-            bool isExist = _context.Users.Any(col => col.UserName == userName);
+            bool isExist = _context.ExtendedUsers.Any(col => col.UserName == userName);
             return isExist;
         }
         public bool IsEmailExist(string email)
         {
-            bool isExist = _context.Users.Any(col => col.EmailAddress == email);
+            bool isExist = _context.ExtendedUsers.Any(col => col.EmailAddress == email);
             return isExist;
         }
         public User GetByUserName(string userName)
         {
-            User user = _context.Users.FirstOrDefault(col => col.UserName == userName);
+            User user = _context.ExtendedUsers.FirstOrDefault(col => col.UserName == userName);
             return user;
         }
         public User GetByEmail(string email)
         {
-            User user = _context.Users.FirstOrDefault(col => col.EmailAddress == email);
+            User user = _context.ExtendedUsers.FirstOrDefault(col => col.EmailAddress == email);
             return user;
         }
 

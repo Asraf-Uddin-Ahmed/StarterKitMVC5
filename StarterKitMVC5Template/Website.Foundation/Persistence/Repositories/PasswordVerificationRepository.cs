@@ -13,9 +13,9 @@ namespace $safeprojectname$.Persistence.Repositories
 {
     public class PasswordVerificationRepository : Repository<PasswordVerification>, IPasswordVerificationRepository
     {
-        private TableContext _context;
+        private ApplicationDbContext _context;
         [Inject]
-        public PasswordVerificationRepository(TableContext context)
+        public PasswordVerificationRepository(ApplicationDbContext context)
             : base(context)
         {
             _context = context;

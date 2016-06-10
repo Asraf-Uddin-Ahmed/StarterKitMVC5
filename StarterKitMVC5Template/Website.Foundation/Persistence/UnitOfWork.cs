@@ -11,9 +11,9 @@ namespace $safeprojectname$.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private TableContext _context;
+        private ApplicationDbContext _context;
         [Inject]
-        public UnitOfWork(TableContext context)
+        public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
         }

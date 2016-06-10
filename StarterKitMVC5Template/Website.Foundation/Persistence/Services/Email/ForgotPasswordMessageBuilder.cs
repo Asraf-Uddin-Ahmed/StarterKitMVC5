@@ -50,8 +50,8 @@ namespace $safeprojectname$.Persistence.Services.Email
 
 
         [Inject]
-        public ForgotPasswordMessageBuilder(ISettingsRepository settingsService)
-            : base(settingsService)
+        public ForgotPasswordMessageBuilder(ISettingsRepository settingsRepository)
+            : base(settingsRepository)
         { }
 
         public void Build(User registeredUser, string url)

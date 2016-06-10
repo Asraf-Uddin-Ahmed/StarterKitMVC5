@@ -12,9 +12,9 @@ namespace $safeprojectname$.Persistence.Repositories
 {
     public class SettingsRepository : Repository<Settings>, ISettingsRepository
     {
-        private TableContext _context;
+        private ApplicationDbContext _context;
         [Inject]
-        public SettingsRepository(TableContext context)
+        public SettingsRepository(ApplicationDbContext context)
             : base(context)
         {
             _context = context;

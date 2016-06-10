@@ -50,8 +50,8 @@ namespace $safeprojectname$.Persistence.Services.Email
 
 
         [Inject]
-        public ConfirmUserMessageBuilder(ISettingsRepository settingsService)
-            : base(settingsService)
+        public ConfirmUserMessageBuilder(ISettingsRepository settingsRepository)
+            : base(settingsRepository)
         { }
 
         public void Build(User newUser, string url)

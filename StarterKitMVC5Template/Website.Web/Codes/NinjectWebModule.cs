@@ -10,7 +10,7 @@ namespace $safeprojectname$.Codes
         public override void Load()
         {
             Bind<RegexUtility>().ToSelf();
-            Bind<TableContext>().ToSelf().InRequestScope();
+            Bind<ApplicationDbContext>().ToSelf().InRequestScope();
         }
     }
 }

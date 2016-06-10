@@ -12,7 +12,7 @@ namespace $safeprojectname$.Core.Aggregates
     {
         [Required]
         public Guid UserID { get; set; }
-        public virtual User User { get; set; }
+        public User User { get; set; }
 
         [Required]
         public string VerificationCode { get; set; }
