@@ -10,3 +10,7 @@ C:\Users\ratul\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Ratul\Sta
 C:\Users\ratul\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Ratul\Starter Kit MVC5 Installer\1.42\ProjectTemplates\\StarterKitMVC5Template.zip
 C:\Users\ratul\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Ratul\Starter Kit MVC5 Installer\1.42\packages\\Antlr.3.5.0.2.nupkg
 C:\Users\ratul\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Ratul\Starter Kit MVC5 Installer\1.42\packages\\EntityFramework.6.1.3.nupkg
+C:\Users\ratul\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Ratul\Starter Kit MVC5 Installer\1.43\\extension.vsixmanifest
+C:\Users\ratul\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Ratul\Starter Kit MVC5 Installer\1.43\ProjectTemplates\\StarterKitMVC5Template.zip
+C:\Users\ratul\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Ratul\Starter Kit MVC5 Installer\1.43\packages\\Antlr.3.5.0.2.nupkg
+C:\Users\ratul\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Ratul\Starter Kit MVC5 Installer\1.43\packages\\EntityFramework.6.1.3.nupkg
