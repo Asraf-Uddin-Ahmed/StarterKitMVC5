@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using $safeprojectname$.Core.Aggregates;
-using $safeprojectname$.Core.Container;
 using $safeprojectname$.Core.SearchData;
 namespace $safeprojectname$.Core.Repositories
 {

@@ -25,9 +25,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="User.cs">User.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="UserVerification.cs">UserVerification.cs</ProjectItem>
         </Folder>
-        <Folder Name="Container" TargetFolderName="Container">
-          <ProjectItem ReplaceParameters="true" TargetFileName="SortBy.cs">SortBy.cs</ProjectItem>
-        </Folder>
         <Folder Name="Enums" TargetFolderName="Enums">
           <ProjectItem ReplaceParameters="true" TargetFileName="LoginStatus.cs">LoginStatus.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="SettingsName.cs">SettingsName.cs</ProjectItem>
@@ -61,6 +58,8 @@
         </Folder>
         <Folder Name="SearchData" TargetFolderName="SearchData">
           <ProjectItem ReplaceParameters="true" TargetFileName="EntitySearch.cs">EntitySearch.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="OrderBy.cs">OrderBy.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Pagination.cs">Pagination.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="UserSearch.cs">UserSearch.cs</ProjectItem>
         </Folder>
         <Folder Name="Services" TargetFolderName="Services">

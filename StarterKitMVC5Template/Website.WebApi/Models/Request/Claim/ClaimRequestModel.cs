@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace $safeprojectname$.Models
+namespace $safeprojectname$.Models.Request.Claim
 {
-    public class ClaimBindingModel
+    public class ClaimRequestModel : RequestModel
     {
         [Required]
         [Display(Name = "Claim Type")]

@@ -13,15 +13,16 @@ using Website.Foundation.Persistence;
 using Website.Foundation.Persistence.Repositories;
 using Microsoft.AspNet.Identity.Owin;
 using log4net;
+using System.Web.Http.Dispatcher;
 
-namespace $safeprojectname$.Codes
+namespace $safeprojectname$.Configuration
 {
     public static class NinjectConfig
     {
         public static Lazy<IKernel> CreateKernel = new Lazy<IKernel>(() =>
         {
             var kernel = new StandardKernel();
-            
+
             kernel.Load(Assembly.GetExecutingAssembly());
             
             log4net.Config.XmlConfigurator.Configure();
@@ -37,7 +38,7 @@ namespace $safeprojectname$.Codes
             List<string> listAssembly = new List<string>()
             {
                 "Website.Foundation.*",
-                "$safeprojectname$.Codes.*"
+                "$safeprojectname$.*"
             };
             kernel.Bind(x =>
             {
@@ -51,6 +52,7 @@ namespace $safeprojectname$.Codes
             kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
             kernel.Bind<ApplicationUserManager>().ToMethod(ctx => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>()).InRequestScope();
             kernel.Bind<ApplicationRoleManager>().ToMethod(ctx => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationRoleManager>()).InRequestScope();
+            kernel.Bind<IHttpControllerActivator>().To<ContextCapturingControllerActivator>().InRequestScope();
         }
         
     }

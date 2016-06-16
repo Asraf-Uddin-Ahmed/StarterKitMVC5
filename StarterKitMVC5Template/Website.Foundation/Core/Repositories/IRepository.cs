@@ -4,11 +4,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using $safeprojectname$.Core.Container;
+using $safeprojectname$.Core.Aggregates;
+using $safeprojectname$.Core.SearchData;
 
 namespace $safeprojectname$.Core.Repositories
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : Entity
     {
         void Add(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);
@@ -21,7 +22,7 @@ namespace $safeprojectname$.Core.Repositories
 
         TEntity Get(Guid ID);
         IEnumerable<TEntity> GetAll();
-        IEnumerable<TEntity> GetBy(int index, int size, SortBy<TEntity> sortBy);
+        IEnumerable<TEntity> GetBy(Pagination pagination, OrderBy<TEntity> sortBy);
 
         int GetTotal();
     }

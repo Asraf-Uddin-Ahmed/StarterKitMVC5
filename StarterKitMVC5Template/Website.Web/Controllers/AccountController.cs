@@ -13,7 +13,6 @@ using $safeprojectname$.Codes;
 using Website.Foundation.Core.Enums;
 using Ratul.Mvc;
 using Ninject.Extensions.Logging;
-using Website.Foundation.Core.Container;
 using Website.Foundation.Core.Aggregates;
 using Website.Foundation.Core.Services;
 using Ratul.Mvc.Authorization;

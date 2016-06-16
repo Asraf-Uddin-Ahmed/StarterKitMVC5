@@ -8,27 +8,36 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Website.Foundation.Core.Identity;
+using $safeprojectname$.Codes.Core.Factories;
 using $safeprojectname$.Models;
+using $safeprojectname$.Models.Request.Role;
 
-namespace $safeprojectname$.Controllers
+namespace $safeprojectname$.Controllers.Identity
 {
     [Authorize(Roles = "Admin")]
     [RoutePrefix("api/roles")]
-    public class RolesController : BaseApiController
+    public class RolesController : IdentityApiController
     {
-        public RolesController(ApplicationUserManager applicationUserManager, ApplicationRoleManager applicationRoleManager)
-            :base(applicationUserManager, applicationRoleManager)
+        private IIdentityRoleResponseFactory _identityRoleResponseFactory;
+        private ApplicationUserManager _applicationUserManager;
+        private ApplicationRoleManager _applicationRoleManager;
+        public RolesController(IIdentityRoleResponseFactory identityRoleResponseFactory, 
+            ApplicationUserManager applicationUserManager, 
+            ApplicationRoleManager applicationRoleManager)
         {
+            _identityRoleResponseFactory = identityRoleResponseFactory;
+            _applicationUserManager = applicationUserManager;
+            _applicationRoleManager = applicationRoleManager;
         }
 
         [Route("{id:guid}", Name = "GetRoleById")]
         public async Task<IHttpActionResult> GetRole(string Id)
         {
-            var role = await this.AppRoleManager.FindByIdAsync(Id);
+            var role = await _applicationRoleManager.FindByIdAsync(Id);
 
             if (role != null)
             {
-                return Ok(TheModelFactory.Create(role));
+                return Ok(_identityRoleResponseFactory.Create(role));
             }
 
             return NotFound();
@@ -38,13 +47,12 @@ namespace $safeprojectname$.Controllers
         [Route("", Name = "GetAllRoles")]
         public IHttpActionResult GetAllRoles()
         {
-            var roles = this.AppRoleManager.Roles;
-
-            return Ok(roles);
+            var roles = _applicationRoleManager.Roles;
+            return Ok(_identityRoleResponseFactory.Create(roles));
         }
 
         [Route("create")]
-        public async Task<IHttpActionResult> Create(CreateRoleBindingModel model)
+        public async Task<IHttpActionResult> Create(CreateRoleRequestModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -53,7 +61,7 @@ namespace $safeprojectname$.Controllers
 
             var role = new IdentityRole { Name = model.Name };
 
-            var result = await this.AppRoleManager.CreateAsync(role);
+            var result = await _applicationRoleManager.CreateAsync(role);
 
             if (!result.Succeeded)
             {
@@ -62,7 +70,7 @@ namespace $safeprojectname$.Controllers
 
             Uri locationHeader = new Uri(Url.Link("GetRoleById", new { id = role.Id }));
 
-            return Created(locationHeader, TheModelFactory.Create(role));
+            return Created(locationHeader, _identityRoleResponseFactory.Create(role));
 
         }
 
@@ -70,11 +78,11 @@ namespace $safeprojectname$.Controllers
         public async Task<IHttpActionResult> DeleteRole(string Id)
         {
 
-            var role = await this.AppRoleManager.FindByIdAsync(Id);
+            var role = await _applicationRoleManager.FindByIdAsync(Id);
 
             if (role != null)
             {
-                IdentityResult result = await this.AppRoleManager.DeleteAsync(role);
+                IdentityResult result = await _applicationRoleManager.DeleteAsync(role);
 
                 if (!result.Succeeded)
                 {
@@ -89,9 +97,9 @@ namespace $safeprojectname$.Controllers
         }
 
         [Route("ManageUsersInRole")]
-        public async Task<IHttpActionResult> ManageUsersInRole(UsersInRoleModel model)
+        public async Task<IHttpActionResult> ManageUsersInRole(UsersInRoleRequestModel model)
         {
-            var role = await this.AppRoleManager.FindByIdAsync(model.Id);
+            var role = await _applicationRoleManager.FindByIdAsync(model.Id);
 
             if (role == null)
             {
@@ -101,7 +109,7 @@ namespace $safeprojectname$.Controllers
 
             foreach (string user in model.EnrolledUsers)
             {
-                var appUser = await this.AppUserManager.FindByIdAsync(user);
+                var appUser = await _applicationUserManager.FindByIdAsync(user);
 
                 if (appUser == null)
                 {
@@ -109,9 +117,9 @@ namespace $safeprojectname$.Controllers
                     continue;
                 }
 
-                if (!this.AppUserManager.IsInRole(user, role.Name))
+                if (!_applicationUserManager.IsInRole(user, role.Name))
                 {
-                    IdentityResult result = await this.AppUserManager.AddToRoleAsync(user, role.Name);
+                    IdentityResult result = await _applicationUserManager.AddToRoleAsync(user, role.Name);
 
                     if (!result.Succeeded)
                     {
@@ -123,7 +131,7 @@ namespace $safeprojectname$.Controllers
 
             foreach (string user in model.RemovedUsers)
             {
-                var appUser = await this.AppUserManager.FindByIdAsync(user);
+                var appUser = await _applicationUserManager.FindByIdAsync(user);
 
                 if (appUser == null)
                 {
@@ -131,7 +139,7 @@ namespace $safeprojectname$.Controllers
                     continue;
                 }
 
-                IdentityResult result = await this.AppUserManager.RemoveFromRoleAsync(user, role.Name);
+                IdentityResult result = await _applicationUserManager.RemoveFromRoleAsync(user, role.Name);
 
                 if (!result.Succeeded)
                 {

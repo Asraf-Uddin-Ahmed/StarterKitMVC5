@@ -18,29 +18,73 @@
       <ProjectItem ReplaceParameters="true" TargetFileName="AppSettings.config">AppSettings.config</ProjectItem>
       <Folder Name="Codes" TargetFolderName="Codes">
         <Folder Name="Core" TargetFolderName="Core">
+          <Folder Name="Factories" TargetFolderName="Factories">
+            <ProjectItem ReplaceParameters="true" TargetFileName="IApplicationUserResponseFactory.cs">IApplicationUserResponseFactory.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="IIdentityRoleResponseFactory.cs">IIdentityRoleResponseFactory.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="IUserResponseFactory.cs">IUserResponseFactory.cs</ProjectItem>
+          </Folder>
           <Folder Name="Identity" TargetFolderName="Identity">
             <ProjectItem ReplaceParameters="true" TargetFileName="ClaimsAuthorizationAttribute.cs">ClaimsAuthorizationAttribute.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomJwtFormat.cs">CustomJwtFormat.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomOAuthProvider.cs">CustomOAuthProvider.cs</ProjectItem>
           </Folder>
         </Folder>
+        <Folder Name="Persistence" TargetFolderName="Persistence">
+          <Folder Name="Factories" TargetFolderName="Factories">
+            <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationUserResponseFactory.cs">ApplicationUserResponseFactory.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="IdentityRoleResponseFactory.cs">IdentityRoleResponseFactory.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ResponseFactory.cs">ResponseFactory.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserResponseFactory.cs">UserResponseFactory.cs</ProjectItem>
+          </Folder>
+        </Folder>
+      </Folder>
+      <Folder Name="Configuration" TargetFolderName="Configuration">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ContextCapturingControllerActivator.cs">ContextCapturingControllerActivator.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="CustomCorsPolicyAttribute.cs">CustomCorsPolicyAttribute.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="NinjectConfig.cs">NinjectConfig.cs</ProjectItem>
-        <Folder Name="Persistence" TargetFolderName="Persistence" />
+        <ProjectItem ReplaceParameters="true" TargetFileName="UnhandledExceptionLogger.cs">UnhandledExceptionLogger.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="ConnectionString.config">ConnectionString.config</ProjectItem>
       <Folder Name="Controllers" TargetFolderName="Controllers">
-        <ProjectItem ReplaceParameters="true" TargetFileName="AccountsController.cs">AccountsController.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="BaseApiController.cs">BaseApiController.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="ClaimsController.cs">ClaimsController.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="OrdersController.cs">OrdersController.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="RolesController.cs">RolesController.cs</ProjectItem>
+        <Folder Name="Identity" TargetFolderName="Identity">
+          <ProjectItem ReplaceParameters="true" TargetFileName="AccountsController.cs">AccountsController.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ClaimsController.cs">ClaimsController.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IdentityApiController.cs">IdentityApiController.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="RolesController.cs">RolesController.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Resource" TargetFolderName="Resource">
+          <ProjectItem ReplaceParameters="true" TargetFileName="HomeController.cs">HomeController.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="TestController.cs">TestController.cs</ProjectItem>
+        </Folder>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="log4net.config">log4net.config</ProjectItem>
       <Folder Name="Models" TargetFolderName="Models">
-        <ProjectItem ReplaceParameters="true" TargetFileName="AccountBindingModels.cs">AccountBindingModels.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="ClaimBindingModel.cs">ClaimBindingModel.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="ModelFactory.cs">ModelFactory.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="RoleBindingModels.cs">RoleBindingModels.cs</ProjectItem>
+        <Folder Name="Common" TargetFolderName="Common">
+          <ProjectItem ReplaceParameters="true" TargetFileName="SortBy.cs">SortBy.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Request" TargetFolderName="Request">
+          <Folder Name="Account" TargetFolderName="Account">
+            <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordRequestModel.cs">ChangePasswordRequestModel.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="CreateUserRequestModel.cs">CreateUserRequestModel.cs</ProjectItem>
+          </Folder>
+          <Folder Name="Claim" TargetFolderName="Claim">
+            <ProjectItem ReplaceParameters="true" TargetFileName="ClaimRequestModel.cs">ClaimRequestModel.cs</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="RequestModel.cs">RequestModel.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="RequestSearchModel.cs">RequestSearchModel.cs</ProjectItem>
+          <Folder Name="Role" TargetFolderName="Role">
+            <ProjectItem ReplaceParameters="true" TargetFileName="CreateRoleRequestModel.cs">CreateRoleRequestModel.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UsersInRoleRequestModel.cs">UsersInRoleRequestModel.cs</ProjectItem>
+          </Folder>
+        </Folder>
+        <Folder Name="Response" TargetFolderName="Response">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationUserResponseModel.cs">ApplicationUserResponseModel.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IdentityRoleResponseModel.cs">IdentityRoleResponseModel.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ResponseCollectionModel.cs">ResponseCollectionModel.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ResponseModel.cs">ResponseModel.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserResponseModel.cs">UserResponseModel.cs</ProjectItem>
+        </Folder>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
       <Folder Name="Properties" TargetFolderName="Properties">

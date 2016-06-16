@@ -9,8 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using $safeprojectname$.Core;
 using $safeprojectname$.Core.Aggregates;
-using $safeprojectname$.Core.Container;
 using $safeprojectname$.Core.Repositories;
+using $safeprojectname$.Core.SearchData;
 using $safeprojectname$.Core.Services;
 
 namespace $safeprojectname$.Persistence.Services
@@ -104,20 +104,17 @@ namespace $safeprojectname$.Persistence.Services
         }
 
 
-        public ICollection<User> GetUserBy(int index, int size, SortBy<User> sortBy)
+        public ICollection<User> GetUserBy(Pagination pagination, OrderBy<User> sortBy)
         {
-            if (index < 0 || size < 0)
-                throw new ArgumentException("Invalid index and size");
-
             try
             {
-                List<User> result = _userRepository.GetBy(index, size, sortBy).Cast<User>().ToList<User>();
+                List<User> result = _userRepository.GetBy(pagination, sortBy).Cast<User>().ToList<User>();
                 return result;
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "Failed to Get Users with values: index={0}, size={1}, sort={2}",
-                    index, size, JsonConvert.SerializeObject(sortBy));
+                _logger.Error(ex, "Failed to Get Users with values: pagination={0}, sort={1}",
+                    JsonConvert.SerializeObject(pagination), JsonConvert.SerializeObject(sortBy));
                 return null;
             }
         }
@@ -172,6 +169,11 @@ namespace $safeprojectname$.Persistence.Services
         {
             PasswordVerification passwordVerification = _passwordVerificationRepository.GetByVerificationCode(verificationCode);
             return passwordVerification == null ? null : this.GetUser(passwordVerification.UserID);
+        }
+
+        public int GetTotal()
+        {
+            return _userRepository.GetTotal();
         }
     }
 }

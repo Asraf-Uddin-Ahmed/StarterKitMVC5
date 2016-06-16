@@ -8,7 +8,6 @@ using Ratul.Utility;
 using System.IO;
 using $safeprojectname$.Core.Repositories;
 using $safeprojectname$.Core.Aggregates;
-using $safeprojectname$.Core.Container;
 using System.Linq.Expressions;
 using $safeprojectname$.Core.Services;
 using $safeprojectname$.Core.SearchData;

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using $safeprojectname$.Core.Aggregates;
-using $safeprojectname$.Core.Container;
 using $safeprojectname$.Core.SearchData;
 
 namespace $safeprojectname$.Core.Repositories
@@ -13,8 +12,8 @@ namespace $safeprojectname$.Core.Repositories
         where TEntity : Entity
         where TSearch : EntitySearch
     {
-        IEnumerable<TEntity> GetByAnd(TSearch searchItem, int index, int size, SortBy<TEntity> sortBy);
-        IEnumerable<TEntity> GetByOr(TSearch searchItem, int index, int size, SortBy<TEntity> sortBy);
+        IEnumerable<TEntity> GetByAnd(TSearch searchItem, Pagination pagination, OrderBy<TEntity> sortBy);
+        IEnumerable<TEntity> GetByOr(TSearch searchItem, Pagination pagination, OrderBy<TEntity> sortBy);
         int GetTotalAnd(TSearch searchItem);
         int GetTotalOr(TSearch searchItem);
     }

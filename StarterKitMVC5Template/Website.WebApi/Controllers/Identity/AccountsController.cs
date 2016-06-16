@@ -11,38 +11,47 @@ using Website.Foundation.Core.Aggregates;
 using Website.Foundation.Core.Identity;
 using Website.Foundation.Core.Services;
 using Website.Foundation.Core.Services.Email;
+using $safeprojectname$.Codes.Core.Factories;
 using $safeprojectname$.Models;
+using $safeprojectname$.Models.Request.Account;
+using $safeprojectname$.Models.Request.Claim;
 
-namespace $safeprojectname$.Controllers
+namespace $safeprojectname$.Controllers.Identity
 {
     [RoutePrefix("api/accounts")]
-    public class AccountsController : BaseApiController
+    public class AccountsController : IdentityApiController
     {
         private ILogger _logger;
-        public AccountsController(ILogger logger, 
+        private IApplicationUserResponseFactory _applicationUserResponseFactory;
+        private ApplicationUserManager _applicationUserManager;
+        private ApplicationRoleManager _applicationRoleManager;
+        public AccountsController(ILogger logger,
+            IApplicationUserResponseFactory applicationUserResponseFactory,
             ApplicationUserManager applicationUserManager, 
             ApplicationRoleManager applicationRoleManager)
-            :base(applicationUserManager, applicationRoleManager)
         {
             _logger = logger;
+            _applicationUserResponseFactory = applicationUserResponseFactory;
+            _applicationUserManager = applicationUserManager;
+            _applicationRoleManager = applicationRoleManager;
         }
 
         [Authorize(Roles = "Admin")]
         [Route("users")]
         public IHttpActionResult GetUsers()
         {
-            return Ok(this.AppUserManager.Users.ToList().Select(u => this.TheModelFactory.Create(u)));
+            return Ok(_applicationUserResponseFactory.Create(_applicationUserManager.Users));
         }
 
         [Authorize(Roles = "Admin")]
         [Route("user/{id:guid}", Name = "GetUserById")]
         public async Task<IHttpActionResult> GetUser(string Id)
         {
-            var user = await this.AppUserManager.FindByIdAsync(Id);
+            var user = await _applicationUserManager.FindByIdAsync(Id);
 
             if (user != null)
             {
-                return Ok(this.TheModelFactory.Create(user));
+                return Ok(_applicationUserResponseFactory.Create(user));
             }
 
             return NotFound();
@@ -53,11 +62,11 @@ namespace $safeprojectname$.Controllers
         [Route("user/{username}")]
         public async Task<IHttpActionResult> GetUserByName(string username)
         {
-            var user = await this.AppUserManager.FindByNameAsync(username);
+            var user = await _applicationUserManager.FindByNameAsync(username);
 
             if (user != null)
             {
-                return Ok(this.TheModelFactory.Create(user));
+                return Ok(_applicationUserResponseFactory.Create(user));
             }
 
             return NotFound();
@@ -66,7 +75,7 @@ namespace $safeprojectname$.Controllers
 
         [AllowAnonymous]
         [Route("create")]
-        public async Task<IHttpActionResult> CreateUser(CreateUserBindingModel createUserModel)
+        public async Task<IHttpActionResult> CreateUser(CreateUserRequestModel createUserModel)
         {
             if (!ModelState.IsValid)
             {
@@ -79,19 +88,19 @@ namespace $safeprojectname$.Controllers
                 Email = createUserModel.Email
             };
 
-            IdentityResult addUserResult = await this.AppUserManager.CreateAsync(user, createUserModel.Password);
+            IdentityResult addUserResult = await _applicationUserManager.CreateAsync(user, createUserModel.Password);
 
             if (!addUserResult.Succeeded)
             {
                 return GetErrorResult(addUserResult);
             }
 
-            string code = await this.AppUserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            string code = await _applicationUserManager.GenerateEmailConfirmationTokenAsync(user.Id);
             var callbackUrl = new Uri(Url.Link("ConfirmEmailRoute", new { userId = user.Id, code = code }));
-            await this.AppUserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            await _applicationUserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
             Uri locationHeader = new Uri(Url.Link("GetUserById", new { id = user.Id }));
-            return Created(locationHeader, TheModelFactory.Create(user));
+            return Created(locationHeader, _applicationUserResponseFactory.Create(user));
         }
 
         [AllowAnonymous]
@@ -105,7 +114,7 @@ namespace $safeprojectname$.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await this.AppUserManager.ConfirmEmailAsync(userId, code);
+            IdentityResult result = await _applicationUserManager.ConfirmEmailAsync(userId, code);
 
             if (result.Succeeded)
             {
@@ -119,14 +128,14 @@ namespace $safeprojectname$.Controllers
 
         [Authorize]
         [Route("ChangePassword")]
-        public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
+        public async Task<IHttpActionResult> ChangePassword(ChangePasswordRequestModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await this.AppUserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            IdentityResult result = await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
 
             if (!result.Succeeded)
             {
@@ -143,11 +152,11 @@ namespace $safeprojectname$.Controllers
 
             //Only SuperAdmin or Admin can delete users (Later when implement roles)
 
-            var appUser = await this.AppUserManager.FindByIdAsync(id);
+            var appUser = await _applicationUserManager.FindByIdAsync(id);
 
             if (appUser != null)
             {
-                IdentityResult result = await this.AppUserManager.DeleteAsync(appUser);
+                IdentityResult result = await _applicationUserManager.DeleteAsync(appUser);
 
                 if (!result.Succeeded)
                 {
@@ -168,16 +177,16 @@ namespace $safeprojectname$.Controllers
         public async Task<IHttpActionResult> AssignRolesToUser([FromUri] string id, [FromBody] string[] rolesToAssign)
         {
 
-            var appUser = await this.AppUserManager.FindByIdAsync(id);
+            var appUser = await _applicationUserManager.FindByIdAsync(id);
 
             if (appUser == null)
             {
                 return NotFound();
             }
 
-            var currentRoles = await this.AppUserManager.GetRolesAsync(appUser.Id);
+            var currentRoles = await _applicationUserManager.GetRolesAsync(appUser.Id);
 
-            var rolesNotExists = rolesToAssign.Except(this.AppRoleManager.Roles.Select(x => x.Name)).ToArray();
+            var rolesNotExists = rolesToAssign.Except(_applicationRoleManager.Roles.Select(x => x.Name)).ToArray();
 
             if (rolesNotExists.Count() > 0)
             {
@@ -186,7 +195,7 @@ namespace $safeprojectname$.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult removeResult = await this.AppUserManager.RemoveFromRolesAsync(appUser.Id, currentRoles.ToArray());
+            IdentityResult removeResult = await _applicationUserManager.RemoveFromRolesAsync(appUser.Id, currentRoles.ToArray());
 
             if (!removeResult.Succeeded)
             {
@@ -194,7 +203,7 @@ namespace $safeprojectname$.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult addResult = await this.AppUserManager.AddToRolesAsync(appUser.Id, rolesToAssign);
+            IdentityResult addResult = await _applicationUserManager.AddToRolesAsync(appUser.Id, rolesToAssign);
 
             if (!addResult.Succeeded)
             {
@@ -208,7 +217,7 @@ namespace $safeprojectname$.Controllers
         [Authorize(Roles = "Admin")]
         [Route("user/{id:guid}/assignclaims")]
         [HttpPut]
-        public async Task<IHttpActionResult> AssignClaimsToUser([FromUri] string id, [FromBody] List<ClaimBindingModel> claimsToAssign)
+        public async Task<IHttpActionResult> AssignClaimsToUser([FromUri] string id, [FromBody] List<ClaimRequestModel> claimsToAssign)
         {
 
             if (!ModelState.IsValid)
@@ -216,22 +225,22 @@ namespace $safeprojectname$.Controllers
                 return BadRequest(ModelState);
             }
 
-            var appUser = await this.AppUserManager.FindByIdAsync(id);
+            var appUser = await _applicationUserManager.FindByIdAsync(id);
 
             if (appUser == null)
             {
                 return NotFound();
             }
 
-            foreach (ClaimBindingModel claimModel in claimsToAssign)
+            foreach (ClaimRequestModel claimModel in claimsToAssign)
             {
                 if (appUser.Claims.Any(c => c.ClaimType == claimModel.Type))
                 {
 
-                    await this.AppUserManager.RemoveClaimAsync(id, ExtendedClaimsProvider.CreateClaim(claimModel.Type, claimModel.Value));
+                    await _applicationUserManager.RemoveClaimAsync(id, ExtendedClaimsProvider.CreateClaim(claimModel.Type, claimModel.Value));
                 }
 
-                await this.AppUserManager.AddClaimAsync(id, ExtendedClaimsProvider.CreateClaim(claimModel.Type, claimModel.Value));
+                await _applicationUserManager.AddClaimAsync(id, ExtendedClaimsProvider.CreateClaim(claimModel.Type, claimModel.Value));
             }
 
             return Ok();
@@ -240,7 +249,7 @@ namespace $safeprojectname$.Controllers
         [Authorize(Roles = "Admin")]
         [Route("user/{id:guid}/removeclaims")]
         [HttpPut]
-        public async Task<IHttpActionResult> RemoveClaimsFromUser([FromUri] string id, [FromBody] List<ClaimBindingModel> claimsToRemove)
+        public async Task<IHttpActionResult> RemoveClaimsFromUser([FromUri] string id, [FromBody] List<ClaimRequestModel> claimsToRemove)
         {
 
             if (!ModelState.IsValid)
@@ -248,18 +257,18 @@ namespace $safeprojectname$.Controllers
                 return BadRequest(ModelState);
             }
 
-            var appUser = await this.AppUserManager.FindByIdAsync(id);
+            var appUser = await _applicationUserManager.FindByIdAsync(id);
 
             if (appUser == null)
             {
                 return NotFound();
             }
 
-            foreach (ClaimBindingModel claimModel in claimsToRemove)
+            foreach (ClaimRequestModel claimModel in claimsToRemove)
             {
                 if (appUser.Claims.Any(c => c.ClaimType == claimModel.Type))
                 {
-                    await this.AppUserManager.RemoveClaimAsync(id, ExtendedClaimsProvider.CreateClaim(claimModel.Type, claimModel.Value));
+                    await _applicationUserManager.RemoveClaimAsync(id, ExtendedClaimsProvider.CreateClaim(claimModel.Type, claimModel.Value));
                 }
             }
 

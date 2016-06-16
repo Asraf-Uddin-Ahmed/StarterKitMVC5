@@ -7,13 +7,12 @@ using System.Security.Claims;
 using System.Web.Http;
 using Website.Foundation.Core.Identity;
 
-namespace $safeprojectname$.Controllers
+namespace $safeprojectname$.Controllers.Identity
 {
     [RoutePrefix("api/claims")]
     public class ClaimsController : BaseApiController
     {
-        public ClaimsController(ApplicationUserManager applicationUserManager, ApplicationRoleManager applicationRoleManager)
-            :base(applicationUserManager, applicationRoleManager)
+        public ClaimsController()
         {
         }
 

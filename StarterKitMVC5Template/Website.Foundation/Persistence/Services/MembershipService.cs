@@ -9,7 +9,6 @@ using System.Web;
 using $safeprojectname$;
 using $safeprojectname$.Core;
 using $safeprojectname$.Core.Aggregates;
-using $safeprojectname$.Core.Container;
 using $safeprojectname$.Core.Enums;
 using $safeprojectname$.Core.Factories;
 using $safeprojectname$.Core.Repositories;

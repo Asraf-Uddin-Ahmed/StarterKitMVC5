@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace $safeprojectname$.Models
+namespace $safeprojectname$.Models.Request.Role
 {
-    public class CreateRoleBindingModel
+    public class CreateRoleRequestModel : RequestModel
     {
         [Required]
         [StringLength(256, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
@@ -15,11 +15,5 @@ namespace $safeprojectname$.Models
 
     }
 
-    public class UsersInRoleModel
-    {
-
-        public string Id { get; set; }
-        public List<string> EnrolledUsers { get; set; }
-        public List<string> RemovedUsers { get; set; }
-    }
+    
 }

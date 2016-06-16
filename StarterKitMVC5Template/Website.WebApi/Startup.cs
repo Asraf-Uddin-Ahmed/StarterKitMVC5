@@ -22,6 +22,8 @@ using Ninject.Web.WebApi.OwinHost;
 using System.Reflection;
 using Website.Foundation.Core.Services.Email;
 using Website.Foundation.Persistence.Services.Email;
+using $safeprojectname$.Configuration;
+using System.Web.Http.ExceptionHandling;
 
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
 namespace $safeprojectname$
@@ -35,7 +37,7 @@ namespace $safeprojectname$
             HttpConfiguration httpConfig = new HttpConfiguration();
 
             ConfigureOAuthTokenGeneration(app);
-            
+
             ConfigureOAuthTokenConsumption(app);
 
             ConfigureWebApi(httpConfig);
@@ -93,8 +95,18 @@ namespace $safeprojectname$
         {
             config.MapHttpAttributeRoutes();
 
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            config.EnableCors();
+
+            config.Services.Add(typeof(IExceptionLogger), new UnhandledExceptionLogger());
         }
 
     }

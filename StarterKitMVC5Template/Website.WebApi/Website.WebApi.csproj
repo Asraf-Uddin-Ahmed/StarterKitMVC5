@@ -38,6 +38,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -166,6 +170,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
       <Private>True</Private>
@@ -200,25 +208,44 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Codes\Core\Factories\IApplicationUserResponseFactory.cs" />
+    <Compile Include="Codes\Core\Factories\IIdentityRoleResponseFactory.cs" />
+    <Compile Include="Codes\Persistence\Factories\ApplicationUserResponseFactory.cs" />
+    <Compile Include="Codes\Core\Factories\IUserResponseFactory.cs" />
+    <Compile Include="Codes\Persistence\Factories\UserResponseFactory.cs" />
+    <Compile Include="Codes\Persistence\Factories\IdentityRoleResponseFactory.cs" />
+    <Compile Include="Codes\Persistence\Factories\ResponseFactory.cs" />
+    <Compile Include="Configuration\ContextCapturingControllerActivator.cs" />
     <Compile Include="Codes\Core\Identity\ClaimsAuthorizationAttribute.cs" />
     <Compile Include="Codes\Core\Identity\CustomJwtFormat.cs" />
     <Compile Include="Codes\Core\Identity\CustomOAuthProvider.cs" />
-    <Compile Include="Codes\NinjectConfig.cs" />
-    <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Configuration\CustomCorsPolicyAttribute.cs" />
+    <Compile Include="Configuration\UnhandledExceptionLogger.cs" />
+    <Compile Include="Configuration\NinjectConfig.cs" />
+    <Compile Include="Controllers\Resource\HomeController.cs" />
+    <Compile Include="Controllers\Identity\AccountsController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
-    <Compile Include="Controllers\ClaimsController.cs" />
-    <Compile Include="Controllers\OrdersController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Models\AccountBindingModels.cs" />
-    <Compile Include="Models\ClaimBindingModel.cs" />
-    <Compile Include="Models\ModelFactory.cs" />
-    <Compile Include="Models\RoleBindingModels.cs" />
+    <Compile Include="Controllers\Identity\ClaimsController.cs" />
+    <Compile Include="Controllers\Identity\IdentityApiController.cs" />
+    <Compile Include="Controllers\Resource\TestController.cs" />
+    <Compile Include="Controllers\Identity\RolesController.cs" />
+    <Compile Include="Models\Common\SortBy.cs" />
+    <Compile Include="Models\Request\RequestModel.cs" />
+    <Compile Include="Models\Request\RequestSearchModel.cs" />
+    <Compile Include="Models\Response\ApplicationUserResponseModel.cs" />
+    <Compile Include="Models\Response\IdentityRoleResponseModel.cs" />
+    <Compile Include="Models\Response\ResponseCollectionModel.cs" />
+    <Compile Include="Models\Response\ResponseModel.cs" />
+    <Compile Include="Models\Request\Account\ChangePasswordRequestModel.cs" />
+    <Compile Include="Models\Request\Account\CreateUserRequestModel.cs" />
+    <Compile Include="Models\Request\Claim\ClaimRequestModel.cs" />
+    <Compile Include="Models\Request\Role\CreateRoleRequestModel.cs" />
+    <Compile Include="Models\Request\Role\UsersInRoleRequestModel.cs" />
+    <Compile Include="Models\Response\UserResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Codes\Persistence\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Website.Foundation\Website.Foundation.csproj">
       <Project>{73069f52-24e1-4003-bb07-e7384c2821ad}</Project>
