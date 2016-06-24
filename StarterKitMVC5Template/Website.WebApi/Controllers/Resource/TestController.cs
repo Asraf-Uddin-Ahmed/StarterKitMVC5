@@ -7,9 +7,11 @@ using System.Web.Http;
 using Website.Foundation.Core.Aggregates;
 using Website.Foundation.Core.SearchData;
 using Website.Foundation.Core.Services;
+using Website.Identity.Constants.Claims;
+using Website.Identity.Constants.Roles;
 using $safeprojectname$.Codes.Core.Factories;
-using $safeprojectname$.Codes.Core.Identity;
 using $safeprojectname$.Configuration;
+using $safeprojectname$.Configuration.Identity;
 using $safeprojectname$.Models.Request;
 
 namespace $safeprojectname$.Controllers.Resource
@@ -26,7 +28,7 @@ namespace $safeprojectname$.Controllers.Resource
             _userResponseFactory = userResponseFactory;
         }
 
-        [Authorize(Roles = "IncidentResolvers")]
+        [Authorize(Roles = CustomRoles.INCIDENT_RESOLVERS)]
         [HttpPut]
         [Route("{orderId}")]
         public IHttpActionResult Put([FromUri]string orderId)
@@ -34,7 +36,7 @@ namespace $safeprojectname$.Controllers.Resource
             return Ok();
         }
 
-        [ClaimsAuthorization(ClaimType = "FTE", ClaimValue = "1")]
+        [ClaimsAuthorization(ClaimType = PhoneNumberConfirmed.CLAIM_TYPE, ClaimValue = PhoneNumberConfirmed.CLAIM_VALUE.TRUE)]
         [Route("")]
         public IHttpActionResult Get()
         {

@@ -8,13 +8,16 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Website.Foundation.Core.Aggregates;
-using Website.Foundation.Core.Identity;
 using Website.Foundation.Core.Services;
 using Website.Foundation.Core.Services.Email;
+using Website.Identity.Managers;
+using Website.Identity.Aggregates;
+using Website.Identity.Providers;
 using $safeprojectname$.Codes.Core.Factories;
 using $safeprojectname$.Models;
 using $safeprojectname$.Models.Request.Account;
 using $safeprojectname$.Models.Request.Claim;
+using Website.Identity.Constants.Roles;
 
 namespace $safeprojectname$.Controllers.Identity
 {
@@ -36,14 +39,14 @@ namespace $safeprojectname$.Controllers.Identity
             _applicationRoleManager = applicationRoleManager;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = ApplicationRoles.ADMIN)]
         [Route("users")]
         public IHttpActionResult GetUsers()
         {
             return Ok(_applicationUserResponseFactory.Create(_applicationUserManager.Users));
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = ApplicationRoles.ADMIN)]
         [Route("user/{id:guid}", Name = "GetUserById")]
         public async Task<IHttpActionResult> GetUser(string Id)
         {
@@ -58,7 +61,7 @@ namespace $safeprojectname$.Controllers.Identity
 
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = ApplicationRoles.ADMIN)]
         [Route("user/{username}")]
         public async Task<IHttpActionResult> GetUserByName(string username)
         {
@@ -145,7 +148,7 @@ namespace $safeprojectname$.Controllers.Identity
             return Ok();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = ApplicationRoles.ADMIN)]
         [Route("user/{id:guid}")]
         public async Task<IHttpActionResult> DeleteUser(string id)
         {
@@ -171,7 +174,7 @@ namespace $safeprojectname$.Controllers.Identity
 
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = ApplicationRoles.ADMIN)]
         [Route("user/{id:guid}/roles")]
         [HttpPut]
         public async Task<IHttpActionResult> AssignRolesToUser([FromUri] string id, [FromBody] string[] rolesToAssign)
@@ -214,7 +217,7 @@ namespace $safeprojectname$.Controllers.Identity
             return Ok();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = ApplicationRoles.ADMIN)]
         [Route("user/{id:guid}/assignclaims")]
         [HttpPut]
         public async Task<IHttpActionResult> AssignClaimsToUser([FromUri] string id, [FromBody] List<ClaimRequestModel> claimsToAssign)
@@ -246,7 +249,7 @@ namespace $safeprojectname$.Controllers.Identity
             return Ok();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = ApplicationRoles.ADMIN)]
         [Route("user/{id:guid}/removeclaims")]
         [HttpPut]
         public async Task<IHttpActionResult> RemoveClaimsFromUser([FromUri] string id, [FromBody] List<ClaimRequestModel> claimsToRemove)

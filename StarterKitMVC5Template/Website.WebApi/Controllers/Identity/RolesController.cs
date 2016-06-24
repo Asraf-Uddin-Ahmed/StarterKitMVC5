@@ -7,14 +7,15 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Website.Foundation.Core.Identity;
+using Website.Identity.Constants.Roles;
+using Website.Identity.Managers;
 using $safeprojectname$.Codes.Core.Factories;
 using $safeprojectname$.Models;
 using $safeprojectname$.Models.Request.Role;
 
 namespace $safeprojectname$.Controllers.Identity
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = ApplicationRoles.ADMIN)]
     [RoutePrefix("api/roles")]
     public class RolesController : IdentityApiController
     {

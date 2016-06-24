@@ -18,7 +18,6 @@
       <ProjectItem ReplaceParameters="true" TargetFileName="App.config">App.config</ProjectItem>
       <Folder Name="Core" TargetFolderName="Core">
         <Folder Name="Aggregates" TargetFolderName="Aggregates">
-          <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationUser.cs">ApplicationUser.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Entity.cs">Entity.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="PasswordVerification.cs">PasswordVerification.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Settings.cs">Settings.cs</ProjectItem>
@@ -37,15 +36,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="IPasswordVerificationFactory.cs">IPasswordVerificationFactory.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="IUserFactory.cs">IUserFactory.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="IUserVerificationFactory.cs">IUserVerificationFactory.cs</ProjectItem>
-        </Folder>
-        <Folder Name="Identity" TargetFolderName="Identity">
-          <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationRoleManager.cs">ApplicationRoleManager.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationUserManager.cs">ApplicationUserManager.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="CustomPasswordValidator.cs">CustomPasswordValidator.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="CustomUserValidator.cs">CustomUserValidator.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="EmailServiceProvider.cs">EmailServiceProvider.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="ExtendedClaimsProvider.cs">ExtendedClaimsProvider.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="RolesFromClaims.cs">RolesFromClaims.cs</ProjectItem>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="IUnitOfWork.cs">IUnitOfWork.cs</ProjectItem>
         <Folder Name="Repositories" TargetFolderName="Repositories">
@@ -67,7 +57,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="IConfirmUserMessageBuilder.cs">IConfirmUserMessageBuilder.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="IEmailService.cs">IEmailService.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="IForgotPasswordMessageBuilder.cs">IForgotPasswordMessageBuilder.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="IIdentityMessageBuilder.cs">IIdentityMessageBuilder.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="IMessageBuilder.cs">IMessageBuilder.cs</ProjectItem>
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="IMembershipService.cs">IMembershipService.cs</ProjectItem>
@@ -82,9 +71,6 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="201503221659567_PasswordVerification.cs">201503221659567_PasswordVerification.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="201503221659567_PasswordVerification.Designer.cs">201503221659567_PasswordVerification.Designer.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="201503221659567_PasswordVerification.resx">201503221659567_PasswordVerification.resx</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="201606061203055_IdentityUser.cs">201606061203055_IdentityUser.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="201606061203055_IdentityUser.Designer.cs">201606061203055_IdentityUser.Designer.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="201606061203055_IdentityUser.resx">201606061203055_IdentityUser.resx</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Configuration.cs">Configuration.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
@@ -108,7 +94,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="ConfirmUserMessageBuilder.cs">ConfirmUserMessageBuilder.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="EmailService.cs">EmailService.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordMessageBuilder.cs">ForgotPasswordMessageBuilder.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="IdentityMessageBuilder.cs">IdentityMessageBuilder.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MessageBuilder.cs">MessageBuilder.cs</ProjectItem>
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="MembershipService.cs">MembershipService.cs</ProjectItem>

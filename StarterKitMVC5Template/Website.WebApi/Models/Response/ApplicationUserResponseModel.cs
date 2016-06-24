@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http.Routing;
 using Website.Foundation.Core.Aggregates;
-using Website.Foundation.Core.Identity;
 
 namespace $safeprojectname$.Models.Response
 {

@@ -7,13 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
-using Website.Foundation.Core.Identity;
 using Website.Foundation.Core.Repositories;
 using Website.Foundation.Persistence;
 using Website.Foundation.Persistence.Repositories;
 using Microsoft.AspNet.Identity.Owin;
 using log4net;
 using System.Web.Http.Dispatcher;
+using Website.Identity.Managers;
+using Website.Identity.Repositories;
+using Website.Identity;
 
 namespace $safeprojectname$.Configuration
 {
@@ -50,9 +52,11 @@ namespace $safeprojectname$.Configuration
         private static void RegisterServices(KernelBase kernel)
         {
             kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
+            kernel.Bind<AuthDbContext>().ToSelf().InRequestScope();
             kernel.Bind<ApplicationUserManager>().ToMethod(ctx => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>()).InRequestScope();
             kernel.Bind<ApplicationRoleManager>().ToMethod(ctx => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationRoleManager>()).InRequestScope();
             kernel.Bind<IHttpControllerActivator>().To<ContextCapturingControllerActivator>().InRequestScope();
+            kernel.Bind<IAuthRepository>().To<AuthRepository>();
         }
         
     }

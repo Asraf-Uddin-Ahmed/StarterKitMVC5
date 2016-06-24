@@ -23,11 +23,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="IIdentityRoleResponseFactory.cs">IIdentityRoleResponseFactory.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="IUserResponseFactory.cs">IUserResponseFactory.cs</ProjectItem>
           </Folder>
-          <Folder Name="Identity" TargetFolderName="Identity">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ClaimsAuthorizationAttribute.cs">ClaimsAuthorizationAttribute.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomJwtFormat.cs">CustomJwtFormat.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomOAuthProvider.cs">CustomOAuthProvider.cs</ProjectItem>
-          </Folder>
         </Folder>
         <Folder Name="Persistence" TargetFolderName="Persistence">
           <Folder Name="Factories" TargetFolderName="Factories">
@@ -41,6 +36,10 @@
       <Folder Name="Configuration" TargetFolderName="Configuration">
         <ProjectItem ReplaceParameters="true" TargetFileName="ContextCapturingControllerActivator.cs">ContextCapturingControllerActivator.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="CustomCorsPolicyAttribute.cs">CustomCorsPolicyAttribute.cs</ProjectItem>
+        <Folder Name="Identity" TargetFolderName="Identity">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ClaimsAuthorizationAttribute.cs">ClaimsAuthorizationAttribute.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="CustomJwtFormat.cs">CustomJwtFormat.cs</ProjectItem>
+        </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="NinjectConfig.cs">NinjectConfig.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="UnhandledExceptionLogger.cs">UnhandledExceptionLogger.cs</ProjectItem>
       </Folder>
@@ -51,6 +50,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="AccountsController.cs">AccountsController.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ClaimsController.cs">ClaimsController.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="IdentityApiController.cs">IdentityApiController.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="RefreshTokensController.cs">RefreshTokensController.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="RolesController.cs">RolesController.cs</ProjectItem>
         </Folder>
         <Folder Name="Resource" TargetFolderName="Resource">
@@ -58,6 +58,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="TestController.cs">TestController.cs</ProjectItem>
         </Folder>
       </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Index.html">Index.html</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="log4net.config">log4net.config</ProjectItem>
       <Folder Name="Models" TargetFolderName="Models">
         <Folder Name="Common" TargetFolderName="Common">

@@ -9,7 +9,7 @@ using $safeprojectname$.Core.Aggregates;
 
 namespace $safeprojectname$.Persistence
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<User> ExtendedUsers { get; set; }
         public DbSet<UserVerification> UserVerifications { get; set; }
@@ -19,7 +19,7 @@ namespace $safeprojectname$.Persistence
 
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection")
         {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;

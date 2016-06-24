@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Website.Foundation.Core.Aggregates;
+using Website.Identity.Aggregates;
 using $safeprojectname$.Models.Response;
 
 namespace $safeprojectname$.Codes.Core.Factories

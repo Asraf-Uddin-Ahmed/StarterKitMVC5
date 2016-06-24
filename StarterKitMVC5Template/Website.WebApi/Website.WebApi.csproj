@@ -191,6 +191,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Index.html" />
     <Content Include="packages.config" />
     <Content Include="AppSettings.config" />
     <Content Include="ConnectionString.config" />
@@ -216,12 +217,12 @@
     <Compile Include="Codes\Persistence\Factories\IdentityRoleResponseFactory.cs" />
     <Compile Include="Codes\Persistence\Factories\ResponseFactory.cs" />
     <Compile Include="Configuration\ContextCapturingControllerActivator.cs" />
-    <Compile Include="Codes\Core\Identity\ClaimsAuthorizationAttribute.cs" />
-    <Compile Include="Codes\Core\Identity\CustomJwtFormat.cs" />
-    <Compile Include="Codes\Core\Identity\CustomOAuthProvider.cs" />
+    <Compile Include="Configuration\Identity\ClaimsAuthorizationAttribute.cs" />
+    <Compile Include="Configuration\Identity\CustomJwtFormat.cs" />
     <Compile Include="Configuration\CustomCorsPolicyAttribute.cs" />
     <Compile Include="Configuration\UnhandledExceptionLogger.cs" />
     <Compile Include="Configuration\NinjectConfig.cs" />
+    <Compile Include="Controllers\Identity\RefreshTokensController.cs" />
     <Compile Include="Controllers\Resource\HomeController.cs" />
     <Compile Include="Controllers\Identity\AccountsController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
@@ -250,6 +251,10 @@
     <ProjectReference Include="..\Website.Foundation\Website.Foundation.csproj">
       <Project>{73069f52-24e1-4003-bb07-e7384c2821ad}</Project>
       <Name>Website.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Website.Identity\Website.Identity.csproj">
+      <Project>{aebf7163-40ee-45a2-ba02-ffae098fd366}</Project>
+      <Name>Website.Identity</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

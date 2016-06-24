@@ -5,7 +5,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using Website.Foundation.Core.Aggregates;
-using Website.Foundation.Core.Identity;
+using Website.Identity.Managers;
+using Website.Identity.Aggregates;
 using $safeprojectname$.Codes.Core.Factories;
 using $safeprojectname$.Models.Response;
 

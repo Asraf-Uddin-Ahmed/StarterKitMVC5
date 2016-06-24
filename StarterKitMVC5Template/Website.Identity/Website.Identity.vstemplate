@@ -1,0 +1,83 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>$safeprojectname$.Identity</Name>
+    <Description>Authentication template by using Owin and Identity</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>$safeprojectname$.Identity</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="Website.Identity.csproj" File="Website.Identity.csproj" ReplaceParameters="true">
+      <Folder Name="Aggregates" TargetFolderName="Aggregates">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationUser.cs">ApplicationUser.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Client.cs">Client.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="RefreshToken.cs">RefreshToken.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="App.config">App.config</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="AuthDbContext.cs">AuthDbContext.cs</ProjectItem>
+      <Folder Name="Constants" TargetFolderName="Constants">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationTypes.cs">ApplicationTypes.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AuthenticationPropertyKeys.cs">AuthenticationPropertyKeys.cs</ProjectItem>
+        <Folder Name="Claims" TargetFolderName="Claims">
+          <ProjectItem ReplaceParameters="true" TargetFileName="PhoneNumberConfirmed.cs">PhoneNumberConfirmed.cs</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ErrorKeys.cs">ErrorKeys.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="OwinContextKeys.cs">OwinContextKeys.cs</ProjectItem>
+        <Folder Name="Roles" TargetFolderName="Roles">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationRoles.cs">ApplicationRoles.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="CustomRoles.cs">CustomRoles.cs</ProjectItem>
+        </Folder>
+      </Folder>
+      <Folder Name="Helpers" TargetFolderName="Helpers">
+        <ProjectItem ReplaceParameters="true" TargetFileName="HashGenerator.cs">HashGenerator.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Managers" TargetFolderName="Managers">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationRoleManager.cs">ApplicationRoleManager.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationUserManager.cs">ApplicationUserManager.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Message" TargetFolderName="Message">
+        <ProjectItem ReplaceParameters="true" TargetFileName="IdentityMessageBuilder.cs">IdentityMessageBuilder.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="IIdentityMessageBuilder.cs">IIdentityMessageBuilder.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Migrations" TargetFolderName="Migrations">
+        <ProjectItem ReplaceParameters="true" TargetFileName="201606181109428_Initial.cs">201606181109428_Initial.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="201606181109428_Initial.Designer.cs">201606181109428_Initial.Designer.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="201606181109428_Initial.resx">201606181109428_Initial.resx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="201606210423542_ClientAndRefreshToken.cs">201606210423542_ClientAndRefreshToken.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="201606210423542_ClientAndRefreshToken.Designer.cs">201606210423542_ClientAndRefreshToken.Designer.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="201606210423542_ClientAndRefreshToken.resx">201606210423542_ClientAndRefreshToken.resx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Configuration.cs">Configuration.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Models" TargetFolderName="Models">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ExternalLoginModels.cs">ExternalLoginModels.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="UserModel.cs">UserModel.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Providers" TargetFolderName="Providers">
+        <ProjectItem ReplaceParameters="true" TargetFileName="CustomOAuthProvider.cs">CustomOAuthProvider.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="CustomRefreshTokenProvider.cs">CustomRefreshTokenProvider.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="EmailServiceProvider.cs">EmailServiceProvider.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ExtendedClaimsProvider.cs">ExtendedClaimsProvider.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="RolesFromClaims.cs">RolesFromClaims.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Repositories" TargetFolderName="Repositories">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AuthRepository.cs">AuthRepository.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="IAuthRepository.cs">IAuthRepository.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Validators" TargetFolderName="Validators">
+        <ProjectItem ReplaceParameters="true" TargetFileName="CustomPasswordValidator.cs">CustomPasswordValidator.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="CustomUserValidator.cs">CustomUserValidator.cs</ProjectItem>
+      </Folder>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

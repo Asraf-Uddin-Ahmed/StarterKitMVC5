@@ -13,8 +13,6 @@ using Microsoft.Owin.Security.DataHandler.Encoder;
 using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security;
 using Website.Foundation.Persistence;
-using $safeprojectname$.Codes.Core.Identity;
-using Website.Foundation.Core.Identity;
 using $safeprojectname$.Codes;
 using Ninject;
 using Ninject.Web.Common.OwinHost;
@@ -24,6 +22,10 @@ using Website.Foundation.Core.Services.Email;
 using Website.Foundation.Persistence.Services.Email;
 using $safeprojectname$.Configuration;
 using System.Web.Http.ExceptionHandling;
+using Website.Identity.Managers;
+using Website.Identity;
+using Website.Identity.Providers;
+using $safeprojectname$.Configuration.Identity;
 
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
 namespace $safeprojectname$
@@ -55,18 +57,19 @@ namespace $safeprojectname$
         {
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(AuthDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
 
             // Plugin the OAuth bearer JSON Web Token tokens generation and Consumption will be here
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
-                //For Dev enviroment only (on production should be AllowInsecureHttp = false)
-                AllowInsecureHttp = true,
+                AllowInsecureHttp = bool.Parse(ConfigurationManager.AppSettings["as:AllowInsecureHttp"]),
                 TokenEndpointPath = new PathString("/oauth/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 Provider = new CustomOAuthProvider(),
-                AccessTokenFormat = new CustomJwtFormat(_issuer)
+                AccessTokenFormat = new CustomJwtFormat(_issuer),
+                RefreshTokenProvider = new CustomRefreshTokenProvider()
             };
 
             // OAuth 2.0 Bearer Access Token Generation
