@@ -18,6 +18,18 @@ using $safeprojectname$.Models;
 using $safeprojectname$.Models.Request.Account;
 using $safeprojectname$.Models.Request.Claim;
 using Website.Identity.Constants.Roles;
+using Microsoft.Owin.Security;
+using $safeprojectname$.Configuration.Identity;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Website.Identity.Repositories;
+using Microsoft.AspNet.Identity.Owin;
+using Website.Identity.Models;
+using Newtonsoft.Json.Linq;
+using Microsoft.Owin.Security.OAuth;
+using Website.Identity.Helpers;
+using Website.Identity.Constants;
+using System.Configuration;
 
 namespace $safeprojectname$.Controllers.Identity
 {
@@ -28,12 +40,19 @@ namespace $safeprojectname$.Controllers.Identity
         private IApplicationUserResponseFactory _applicationUserResponseFactory;
         private ApplicationUserManager _applicationUserManager;
         private ApplicationRoleManager _applicationRoleManager;
+        private IAuthRepository _authRepository;
+        private IAuthHelper _authHelper;
+
         public AccountsController(ILogger logger,
+            IAuthRepository authRepository,
+            IAuthHelper authHelper,
             IApplicationUserResponseFactory applicationUserResponseFactory,
             ApplicationUserManager applicationUserManager, 
             ApplicationRoleManager applicationRoleManager)
         {
             _logger = logger;
+            _authRepository = authRepository;
+            _authHelper = authHelper;
             _applicationUserResponseFactory = applicationUserResponseFactory;
             _applicationUserManager = applicationUserManager;
             _applicationRoleManager = applicationRoleManager;
@@ -277,5 +296,6 @@ namespace $safeprojectname$.Controllers.Identity
 
             return Ok();
         }
+
     }
 }

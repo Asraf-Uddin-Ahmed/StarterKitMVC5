@@ -11,13 +11,10 @@ namespace $safeprojectname$.Validators
 {
     public class CustomUserValidator : UserValidator<ApplicationUser>
     {
-
-        List<string> _allowedEmailDomains = new List<string> { "outlook.com", "hotmail.com", "gmail.com", "yahoo.com" };
-
         public CustomUserValidator(ApplicationUserManager appUserManager)
             : base(appUserManager)
         {
-            base.AllowOnlyAlphanumericUserNames = true;
+            base.AllowOnlyAlphanumericUserNames = false;
             base.RequireUniqueEmail = false;
         }
 
@@ -25,16 +22,17 @@ namespace $safeprojectname$.Validators
         {
             IdentityResult result = await base.ValidateAsync(user);
 
-            var emailDomain = user.Email.Split('@')[1];
+            //var emailDomain = user.Email.Split('@')[1];
 
-            if (!_allowedEmailDomains.Contains(emailDomain.ToLower()))
-            {
-                var errors = result.Errors.ToList();
+            //List<string> _allowedEmailDomains = new List<string> { "outlook.com", "hotmail.com", "gmail.com", "yahoo.com" };
+            //if (!_allowedEmailDomains.Contains(emailDomain.ToLower()))
+            //{
+            //    var errors = result.Errors.ToList();
 
-                errors.Add(String.Format("Email domain '{0}' is not allowed", emailDomain));
+            //    errors.Add(String.Format("Email domain '{0}' is not allowed", emailDomain));
 
-                result = new IdentityResult(errors);
-            }
+            //    result = new IdentityResult(errors);
+            //}
 
             return result;
         }

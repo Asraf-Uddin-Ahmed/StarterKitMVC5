@@ -37,6 +37,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="ContextCapturingControllerActivator.cs">ContextCapturingControllerActivator.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="CustomCorsPolicyAttribute.cs">CustomCorsPolicyAttribute.cs</ProjectItem>
         <Folder Name="Identity" TargetFolderName="Identity">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ChallengeResult.cs">ChallengeResult.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ClaimsAuthorizationAttribute.cs">ClaimsAuthorizationAttribute.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="CustomJwtFormat.cs">CustomJwtFormat.cs</ProjectItem>
         </Folder>
@@ -49,6 +50,7 @@
         <Folder Name="Identity" TargetFolderName="Identity">
           <ProjectItem ReplaceParameters="true" TargetFileName="AccountsController.cs">AccountsController.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ClaimsController.cs">ClaimsController.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ExternalAccountController.cs">ExternalAccountController.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="IdentityApiController.cs">IdentityApiController.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="RefreshTokensController.cs">RefreshTokensController.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="RolesController.cs">RolesController.cs</ProjectItem>

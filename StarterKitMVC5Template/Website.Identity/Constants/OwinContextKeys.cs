@@ -9,6 +9,5 @@ namespace $safeprojectname$.Constants
     internal static class OwinContextKeys
     {
         internal const string CLIENT_ALLOWED_ORIGIN = "as:clientAllowedOrigin";
-        internal const string CLIENT_REFRESH_TOKEN_LIFE_TIME = "as:clientRefreshTokenLifeTime";
     }
 }

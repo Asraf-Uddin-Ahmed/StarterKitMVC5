@@ -29,6 +29,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="PhoneNumberConfirmed.cs">PhoneNumberConfirmed.cs</ProjectItem>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="ErrorKeys.cs">ErrorKeys.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ExternalLoginProviderName.cs">ExternalLoginProviderName.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="OwinContextKeys.cs">OwinContextKeys.cs</ProjectItem>
         <Folder Name="Roles" TargetFolderName="Roles">
           <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationRoles.cs">ApplicationRoles.cs</ProjectItem>
@@ -36,7 +37,9 @@
         </Folder>
       </Folder>
       <Folder Name="Helpers" TargetFolderName="Helpers">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AuthHelper.cs">AuthHelper.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="HashGenerator.cs">HashGenerator.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="IAuthHelper.cs">IAuthHelper.cs</ProjectItem>
       </Folder>
       <Folder Name="Managers" TargetFolderName="Managers">
         <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationRoleManager.cs">ApplicationRoleManager.cs</ProjectItem>
@@ -56,18 +59,21 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="Configuration.cs">Configuration.cs</ProjectItem>
       </Folder>
       <Folder Name="Models" TargetFolderName="Models">
-        <ProjectItem ReplaceParameters="true" TargetFileName="ExternalLoginModels.cs">ExternalLoginModels.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="UserModel.cs">UserModel.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ExternalLocalAccessToken.cs">ExternalLocalAccessToken.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ParsedExternalAccessToken.cs">ParsedExternalAccessToken.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="RegisterExternalBindingModel.cs">RegisterExternalBindingModel.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
       <Folder Name="Properties" TargetFolderName="Properties">
         <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
       </Folder>
       <Folder Name="Providers" TargetFolderName="Providers">
-        <ProjectItem ReplaceParameters="true" TargetFileName="CustomOAuthProvider.cs">CustomOAuthProvider.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="CustomRefreshTokenProvider.cs">CustomRefreshTokenProvider.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationOAuthProvider.cs">ApplicationOAuthProvider.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationRefreshTokenProvider.cs">ApplicationRefreshTokenProvider.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="EmailServiceProvider.cs">EmailServiceProvider.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ExtendedClaimsProvider.cs">ExtendedClaimsProvider.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="FacebookAuthProvider.cs">FacebookAuthProvider.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="GoogleAuthProvider.cs">GoogleAuthProvider.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="RolesFromClaims.cs">RolesFromClaims.cs</ProjectItem>
       </Folder>
       <Folder Name="Repositories" TargetFolderName="Repositories">

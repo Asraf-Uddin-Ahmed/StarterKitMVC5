@@ -54,4 +54,3 @@ G:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\bin\Debug
 G:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\obj\Debug\StarterKitMVC5Installer.dll
 G:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\obj\Debug\StarterKitMVC5Installer.pdb
 G:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\obj\Debug\extension.vsixmanifest
-G:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\obj\Debug\StarterKitMVC5Installer.csprojResolveAssemblyReference.cache

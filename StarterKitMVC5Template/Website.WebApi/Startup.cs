@@ -26,6 +26,8 @@ using Website.Identity.Managers;
 using Website.Identity;
 using Website.Identity.Providers;
 using $safeprojectname$.Configuration.Identity;
+using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.Facebook;
 
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
 namespace $safeprojectname$
@@ -34,9 +36,16 @@ namespace $safeprojectname$
     {
         private readonly string _issuer = ConfigurationManager.AppSettings["as:Issuer"];
 
+        public static OAuthAuthorizationServerOptions OAuthServerOptions { get; private set; }
+        public static GoogleOAuth2AuthenticationOptions googleAuthOptions { get; private set; }
+        public static FacebookAuthenticationOptions facebookAuthOptions { get; private set; }
+
+
         public void Configuration(IAppBuilder app)
         {
             HttpConfiguration httpConfig = new HttpConfiguration();
+
+            ConfigureExternalLogin(app);
 
             ConfigureOAuthTokenGeneration(app);
 
@@ -62,14 +71,16 @@ namespace $safeprojectname$
             app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
 
             // Plugin the OAuth bearer JSON Web Token tokens generation and Consumption will be here
-            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
+            OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
-                AllowInsecureHttp = bool.Parse(ConfigurationManager.AppSettings["as:AllowInsecureHttp"]),
+#if DEBUG
+                AllowInsecureHttp = true,
+#endif
                 TokenEndpointPath = new PathString("/oauth/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
-                Provider = new CustomOAuthProvider(),
+                Provider = new ApplicationOAuthProvider(),
                 AccessTokenFormat = new CustomJwtFormat(_issuer),
-                RefreshTokenProvider = new CustomRefreshTokenProvider()
+                RefreshTokenProvider = new ApplicationRefreshTokenProvider()
             };
 
             // OAuth 2.0 Bearer Access Token Generation
@@ -112,5 +123,28 @@ namespace $safeprojectname$
             config.Services.Add(typeof(IExceptionLogger), new UnhandledExceptionLogger());
         }
 
+        private void ConfigureExternalLogin(IAppBuilder app)
+        {
+            //use a cookie to temporarily store information about a user logging in with a third party login provider
+            app.UseExternalSignInCookie(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalCookie);
+
+            //Configure Google External Login
+            googleAuthOptions = new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = ConfigurationManager.AppSettings["google:ClientID"],
+                ClientSecret = ConfigurationManager.AppSettings["google:ClientSecret"],
+                Provider = new GoogleAuthProvider()
+            };
+            app.UseGoogleAuthentication(googleAuthOptions);
+
+            //Configure Facebook External Login
+            facebookAuthOptions = new FacebookAuthenticationOptions()
+            {
+                AppId = ConfigurationManager.AppSettings["facebook:AppID"],
+                AppSecret = ConfigurationManager.AppSettings["facebook:AppSecret"],
+                Provider = new FacebookAuthProvider()
+            };
+            app.UseFacebookAuthentication(facebookAuthOptions);
+        }
     }
 }

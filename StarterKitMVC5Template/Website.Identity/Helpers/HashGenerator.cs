@@ -6,7 +6,7 @@ using System.Web;
 
 namespace $safeprojectname$.Helpers
 {
-    public class HashGenerator
+    internal class HashGenerator
     {
         public static string GetHash(string input)
         {

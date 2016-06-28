@@ -15,5 +15,9 @@ namespace $safeprojectname$.Repositories
         List<RefreshToken> GetAllRefreshTokens();
         Task<bool> RemoveRefreshToken(string refreshTokenId);
         Task<bool> RemoveRefreshToken(RefreshToken refreshToken);
+
+        Task<IdentityUser> FindAsync(UserLoginInfo loginInfo);
+        Task<IdentityResult> CreateAsync(ApplicationUser user);
+        Task<IdentityResult> AddLoginAsync(string userId, UserLoginInfo login);
     }
 }

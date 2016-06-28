@@ -18,10 +18,11 @@ namespace $safeprojectname$.Repositories
     public class AuthRepository : IAuthRepository
     {
         private AuthDbContext _authDbContext;
-
-        public AuthRepository(AuthDbContext authDbContext)
+        private ApplicationUserManager _applicationUserManager;
+        public AuthRepository(AuthDbContext authDbContext, ApplicationUserManager applicationUserManager)
         {
             _authDbContext = authDbContext;
+            _applicationUserManager = applicationUserManager;
         }
 
         
@@ -76,6 +77,26 @@ namespace $safeprojectname$.Repositories
         {
              return  _authDbContext.RefreshTokens.ToList();
         }
-        
+
+        public async Task<IdentityUser> FindAsync(UserLoginInfo loginInfo)
+        {
+            IdentityUser user = await _applicationUserManager.FindAsync(loginInfo);
+
+            return user;
+        }
+
+        public async Task<IdentityResult> CreateAsync(ApplicationUser user)
+        {
+            var result = await _applicationUserManager.CreateAsync(user);
+
+            return result;
+        }
+
+        public async Task<IdentityResult> AddLoginAsync(string userId, UserLoginInfo login)
+        {
+            var result = await _applicationUserManager.AddLoginAsync(userId, login);
+
+            return result;
+        }
     }
 }
