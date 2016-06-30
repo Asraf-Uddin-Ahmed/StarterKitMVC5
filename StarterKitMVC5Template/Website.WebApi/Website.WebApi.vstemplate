@@ -15,6 +15,11 @@
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="Website.WebApi.csproj" File="Website.WebApi.csproj" ReplaceParameters="true">
+      <Folder Name="App_Start" TargetFolderName="App_Start">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ExternalLoginConfig.cs">ExternalLoginConfig.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="OAuthTokenConfig.cs">OAuthTokenConfig.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="WebApiConfig.cs">WebApiConfig.cs</ProjectItem>
+      </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="AppSettings.config">AppSettings.config</ProjectItem>
       <Folder Name="Codes" TargetFolderName="Codes">
         <Folder Name="Core" TargetFolderName="Core">
@@ -43,6 +48,7 @@
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="NinjectConfig.cs">NinjectConfig.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="UnhandledExceptionLogger.cs">UnhandledExceptionLogger.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="XHttpMethodOverrideHandler.cs">XHttpMethodOverrideHandler.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="ConnectionString.config">ConnectionString.config</ProjectItem>
       <Folder Name="Controllers" TargetFolderName="Controllers">

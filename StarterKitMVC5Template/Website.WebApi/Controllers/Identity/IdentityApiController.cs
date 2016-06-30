@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Ninject.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace $safeprojectname$.Controllers.Identity
 {
     public class IdentityApiController : BaseApiController
     {
+        public IdentityApiController(ILogger logger) : base(logger) { }
+
         protected IHttpActionResult GetErrorResult(IdentityResult result)
         {
             if (result == null)

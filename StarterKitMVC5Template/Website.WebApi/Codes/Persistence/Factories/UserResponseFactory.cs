@@ -18,15 +18,15 @@ namespace $safeprojectname$.Codes.Persistence.Factories
         public UserResponseFactory(HttpRequestMessage httpRequestMessage)
             :base(httpRequestMessage)
         {
-        }
-
-        public UserResponseModel Create(User user)
-        {
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<User, UserResponseModel>()
                     .ForMember(dest => dest.Url, opt => opt.UseValue<string>("#NoUrl"));//opt.MapFrom(src => UrlHelper.Link("#NoUrl", new { id = src.ID }))
             });
+        }
+
+        public UserResponseModel Create(User user)
+        {
             return Mapper.Map<UserResponseModel>(user);
         }
 

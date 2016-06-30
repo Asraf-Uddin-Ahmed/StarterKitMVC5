@@ -15,15 +15,15 @@ namespace $safeprojectname$.Codes.Persistence.Factories
         public IdentityRoleResponseFactory(HttpRequestMessage httpRequestMessage)
             :base(httpRequestMessage)
         {
-        }
-
-        public IdentityRoleResponseModel Create(IdentityRole identityRole)
-        {
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<IdentityRole, IdentityRoleResponseModel>()
                     .ForMember(dest => dest.Url, opt => opt.MapFrom(src => UrlHelper.Link("GetRoleById", new { id = src.Id })));
             });
+        }
+
+        public IdentityRoleResponseModel Create(IdentityRole identityRole)
+        {
             return Mapper.Map<IdentityRoleResponseModel>(identityRole);
         }
 

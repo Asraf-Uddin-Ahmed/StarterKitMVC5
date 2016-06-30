@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ninject.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,7 +17,8 @@ namespace $safeprojectname$.Controllers.Identity
 
         private IAuthRepository _authRepository;
 
-        public RefreshTokensController(IAuthRepository authRepository)
+        public RefreshTokensController(ILogger logger, IAuthRepository authRepository) 
+            : base(logger)
         {
             _authRepository = authRepository;
         }

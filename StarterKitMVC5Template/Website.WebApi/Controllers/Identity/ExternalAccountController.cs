@@ -45,6 +45,7 @@ namespace $safeprojectname$.Controllers.Identity
             IAuthRepository authRepository,
             IAuthHelper authHelper,
             ApplicationUserManager applicationUserManager)
+            : base(logger)
         {
             _logger = logger;
             _authRepository = authRepository;
@@ -287,7 +288,7 @@ namespace $safeprojectname$.Controllers.Identity
                     parsedToken.user_id = jObj["data"]["user_id"];
                     parsedToken.app_id = jObj["data"]["app_id"];
 
-                    if (!string.Equals(Startup.facebookAuthOptions.AppId, parsedToken.app_id, StringComparison.OrdinalIgnoreCase))
+                    if (!string.Equals(Startup.FacebookAuthOptions.AppId, parsedToken.app_id, StringComparison.OrdinalIgnoreCase))
                     {
                         return null;
                     }
@@ -297,7 +298,7 @@ namespace $safeprojectname$.Controllers.Identity
                     parsedToken.user_id = jObj["user_id"];
                     parsedToken.app_id = jObj["audience"];
 
-                    if (!string.Equals(Startup.googleAuthOptions.ClientId, parsedToken.app_id, StringComparison.OrdinalIgnoreCase))
+                    if (!string.Equals(Startup.GoogleAuthOptions.ClientId, parsedToken.app_id, StringComparison.OrdinalIgnoreCase))
                     {
                         return null;
                     }

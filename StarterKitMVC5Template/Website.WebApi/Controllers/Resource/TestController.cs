@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ninject.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -22,7 +23,10 @@ namespace $safeprojectname$.Controllers.Resource
     {
         private IUserService _userSevice;
         private IUserResponseFactory _userResponseFactory;
-        public TestController(IUserService userSevice, IUserResponseFactory userResponseFactory)
+        public TestController(ILogger logger, 
+            IUserService userSevice, 
+            IUserResponseFactory userResponseFactory)
+            :base(logger)
         {
             _userSevice = userSevice;
             _userResponseFactory = userResponseFactory;
