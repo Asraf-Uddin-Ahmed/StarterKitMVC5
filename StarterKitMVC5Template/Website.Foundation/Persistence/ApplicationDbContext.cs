@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using $safeprojectname$.Core.Aggregates;
+using $safeprojectname$.Persistence.EntityConfigurations;
 
 namespace $safeprojectname$.Persistence
 {
@@ -29,5 +30,13 @@ namespace $safeprojectname$.Persistence
             return new ApplicationDbContext();
         }
 
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new PasswordVerificationConfiguration());
+            modelBuilder.Configurations.Add(new UserConfiguration());
+            modelBuilder.Configurations.Add(new UserVerificationConfiguration());
+        }
     }
 }

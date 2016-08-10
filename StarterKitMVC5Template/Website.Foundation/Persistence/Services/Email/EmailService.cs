@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using $safeprojectname$.Core;
 using $safeprojectname$.Core.Aggregates;
 using $safeprojectname$.Core.Enums;
 using $safeprojectname$.Core.Repositories;
@@ -14,12 +15,12 @@ namespace $safeprojectname$.Persistence.Services.Email
     public class EmailService : IEmailService
     {
         private EmailSender _emailSender;
-        private ISettingsRepository _settingsRepository;
-        
-        
-        public EmailService(ISettingsRepository settingsRepository)
+        private IUnitOfWork _unitOfWork;
+
+
+        public EmailService(IUnitOfWork unitOfWork)
         {
-            _settingsRepository = settingsRepository;
+            _unitOfWork = unitOfWork;
             this.InitializeEmailSender();
         }
 
@@ -58,11 +59,11 @@ namespace $safeprojectname$.Persistence.Services.Email
         private void InitializeEmailSender()
         {
             EmailSettings emailSettings = new EmailSettings();
-            emailSettings.Host = _settingsRepository.GetValueByName(SettingsName.EmailHost);
-            emailSettings.UserName = _settingsRepository.GetValueByName(SettingsName.EmailUserName);
-            emailSettings.Password = _settingsRepository.GetValueByName(SettingsName.EmailPassword);
-            emailSettings.Port = int.Parse(_settingsRepository.GetValueByName(SettingsName.EmailPort));
-            emailSettings.EnableSsl = bool.Parse(_settingsRepository.GetValueByName(SettingsName.EmailEnableSSL));
+            emailSettings.Host = _unitOfWork.Settings.GetValueByName(SettingsName.EmailHost);
+            emailSettings.UserName = _unitOfWork.Settings.GetValueByName(SettingsName.EmailUserName);
+            emailSettings.Password = _unitOfWork.Settings.GetValueByName(SettingsName.EmailPassword);
+            emailSettings.Port = int.Parse(_unitOfWork.Settings.GetValueByName(SettingsName.EmailPort));
+            emailSettings.EnableSsl = bool.Parse(_unitOfWork.Settings.GetValueByName(SettingsName.EmailEnableSSL));
             _emailSender = new EmailSender(emailSettings);
         }
 

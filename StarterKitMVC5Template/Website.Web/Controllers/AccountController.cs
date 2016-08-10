@@ -1,22 +1,15 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using $safeprojectname$.Models;
-using $safeprojectname$.Models.Account;
-using $safeprojectname$.Codes;
-using Website.Foundation.Core.Enums;
+﻿using Ninject.Extensions.Logging;
 using Ratul.Mvc;
-using Ninject.Extensions.Logging;
-using Website.Foundation.Core.Aggregates;
-using Website.Foundation.Core.Services;
 using Ratul.Mvc.Authorization;
+using System;
+using System.Net.Mail;
+using System.Web.Mvc;
+using Website.Foundation.Core.Aggregates;
+using Website.Foundation.Core.Enums;
+using Website.Foundation.Core.Services;
+using $safeprojectname$.Codes;
 using $safeprojectname$.Codes.Core.Services;
+using $safeprojectname$.Models.Account;
 
 namespace $safeprojectname$.Controllers
 {
@@ -101,9 +94,10 @@ namespace $safeprojectname$.Controllers
                 _validationMessageService.StoreActionResponseMessageError(ModelState);
                 return View(model);
             }
+            User user = null;
             try
             {
-                User user = model.CreateUser();
+                user = model.CreateUser();
                 model.SendCofirmEmailIfRequired(user);
                 _validationMessageService.StoreActionResponseMessageSuccess("Successfully Registered. Please check your email.");
                 return RedirectToAction("Login");
@@ -111,6 +105,11 @@ namespace $safeprojectname$.Controllers
             catch (ArgumentException)
             {
                 _validationMessageService.StoreActionResponseMessageError("Invalid Email");
+            }
+            catch (SmtpException)
+            {
+                _userService.DeleteUser(user.ID);
+                _validationMessageService.StoreActionResponseMessageError("Failed to send confirmation email. Please try again.");
             }
             catch (Exception ex)
             {

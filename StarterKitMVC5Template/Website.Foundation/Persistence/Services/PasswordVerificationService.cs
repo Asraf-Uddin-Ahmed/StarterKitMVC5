@@ -15,20 +15,17 @@ namespace $safeprojectname$.Persistence.Services
     {
         private ILogger _logger;
         private IUnitOfWork _unitOfWork;
-        private IPasswordVerificationRepository _passwordVerificationRepository;
         [Inject]
         public PasswordVerificationService(ILogger logger,
-            IUnitOfWork unitOfWork,
-            IPasswordVerificationRepository passwordVerificationRepository)
+            IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
-            _passwordVerificationRepository = passwordVerificationRepository;
         }
 
         public void RemoveByUserID(Guid userID)
         {
-            _passwordVerificationRepository.RemoveByUserID(userID);
+            _unitOfWork.PasswordVerifications.RemoveByUserID(userID);
             _unitOfWork.Commit();
         }
     }

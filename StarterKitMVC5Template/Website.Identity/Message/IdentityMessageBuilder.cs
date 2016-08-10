@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Website.Foundation.Core;
 using Website.Foundation.Core.Aggregates;
 using Website.Foundation.Core.Repositories;
 using Website.Foundation.Core.Services.Email;
@@ -66,8 +67,8 @@ namespace $safeprojectname$.Message
         }
 
 
-        public IdentityMessageBuilder(ISettingsRepository settingsRepository)
-            : base(settingsRepository)
+        public IdentityMessageBuilder(IUnitOfWork unitOfWork)
+            : base(unitOfWork)
         { }
 
         public void Build(ApplicationUser user, string subject, string body)

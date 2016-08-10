@@ -18,26 +18,20 @@ namespace $safeprojectname$.Persistence.Services
     public class UserService : IUserService
     {
         private ILogger _logger;
-        private IUserRepository _userRepository;
         private IUnitOfWork _unitOfWork;
-        private IPasswordVerificationRepository _passwordVerificationRepository;
         [Inject]
         public UserService(ILogger logger,
-            IUserRepository userRepository,
-            IUnitOfWork unitOfWork,
-            IPasswordVerificationRepository passwordVerificationRepository)
+            IUnitOfWork unitOfWork)
         {
             _logger = logger;
-            _userRepository = userRepository;
             _unitOfWork = unitOfWork;
-            _passwordVerificationRepository = passwordVerificationRepository;
         }
 
         public bool IsEmailAddressAlreadyInUse(string email)
         {
             try
             {
-                bool isExist = _userRepository.IsEmailExist(email);
+                bool isExist = _unitOfWork.Users.IsEmailExist(email);
                 return isExist;
             }
             catch (Exception ex)
@@ -51,7 +45,7 @@ namespace $safeprojectname$.Persistence.Services
         {
             try
             {
-                bool isExist = _userRepository.IsUserNameExist(userName);
+                bool isExist = _unitOfWork.Users.IsUserNameExist(userName);
                 return isExist;
             }
             catch (Exception ex)
@@ -68,7 +62,7 @@ namespace $safeprojectname$.Persistence.Services
 
             try
             {
-                return _userRepository.GetByUserName(userName);
+                return _unitOfWork.Users.GetByUserName(userName);
             }
             catch (Exception ex)
             {
@@ -81,7 +75,7 @@ namespace $safeprojectname$.Persistence.Services
         {
             try
             {
-                return _userRepository.GetByEmail(email);
+                return _unitOfWork.Users.GetByEmail(email);
             }
             catch (Exception ex)
             {
@@ -94,7 +88,7 @@ namespace $safeprojectname$.Persistence.Services
         {
             try
             {
-                return _userRepository.Get(userID);
+                return _unitOfWork.Users.Get(userID);
             }
             catch (Exception ex)
             {
@@ -108,7 +102,7 @@ namespace $safeprojectname$.Persistence.Services
         {
             try
             {
-                List<User> result = _userRepository.GetBy(pagination, sortBy).Cast<User>().ToList<User>();
+                List<User> result = _unitOfWork.Users.GetBy(pagination, sortBy).Cast<User>().ToList<User>();
                 return result;
             }
             catch (Exception ex)
@@ -122,7 +116,7 @@ namespace $safeprojectname$.Persistence.Services
         {
             try
             {
-                _userRepository.Remove(userID);
+                _unitOfWork.Users.Remove(userID);
                 _unitOfWork.Commit();
                 return true;
             }
@@ -140,7 +134,7 @@ namespace $safeprojectname$.Persistence.Services
             {
                 // You can also give the 'isPersist' value 'true' for instant save.
                 // See 'DeleteUser' for detail.
-                _userRepository.Update(user);
+                _unitOfWork.Users.Update(user);
                 _unitOfWork.Commit();
                 return true;
             }
@@ -155,7 +149,7 @@ namespace $safeprojectname$.Persistence.Services
         {
             try
             {
-                List<User> result = _userRepository.GetAll().ToList<User>();
+                List<User> result = _unitOfWork.Users.GetAll().ToList<User>();
                 return result;
             }
             catch (Exception ex)
@@ -167,13 +161,13 @@ namespace $safeprojectname$.Persistence.Services
 
         public User GetUserByPasswordVerificationCode(string verificationCode)
         {
-            PasswordVerification passwordVerification = _passwordVerificationRepository.GetByVerificationCode(verificationCode);
+            PasswordVerification passwordVerification = _unitOfWork.PasswordVerifications.GetByVerificationCode(verificationCode);
             return passwordVerification == null ? null : this.GetUser(passwordVerification.UserID);
         }
 
         public int GetTotal()
         {
-            return _userRepository.GetTotal();
+            return _unitOfWork.Users.GetTotal();
         }
     }
 }

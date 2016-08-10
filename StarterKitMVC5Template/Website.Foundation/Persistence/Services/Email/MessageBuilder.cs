@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using $safeprojectname$.Core;
 using $safeprojectname$.Core.Enums;
 using $safeprojectname$.Core.Repositories;
 using $safeprojectname$.Core.Services.Email;
@@ -12,10 +13,10 @@ namespace $safeprojectname$.Persistence.Services.Email
 {
     public abstract class MessageBuilder : IMessageBuilder
     {
-        private ISettingsRepository _settingsRepository;
-        public MessageBuilder(ISettingsRepository settingsRepository)
+        private IUnitOfWork _unitOfWork;
+        public MessageBuilder(IUnitOfWork unitOfWork)
         {
-            _settingsRepository = settingsRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public MessageSettings GetText()
@@ -41,8 +42,8 @@ namespace $safeprojectname$.Persistence.Services.Email
         protected abstract List<NameWithEmail> GetReplyToList();
         protected NameWithEmail GetSystemNameWithEmail()
         {
-            string systemEmail = _settingsRepository.GetValueByName(SettingsName.SystemEmailAddress);
-            string systemName = _settingsRepository.GetValueByName(SettingsName.SystemEmailName);
+            string systemEmail = _unitOfWork.Settings.GetValueByName(SettingsName.SystemEmailAddress);
+            string systemName = _unitOfWork.Settings.GetValueByName(SettingsName.SystemEmailName);
             NameWithEmail systemNameWithEmail = new NameWithEmail(systemName, systemEmail);
             return systemNameWithEmail;
         }

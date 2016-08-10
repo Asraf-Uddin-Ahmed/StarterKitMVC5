@@ -1,4 +1,5 @@
 ﻿using Ratul.Mvc;
+using Ratul.Mvc.Authorization;
 using Ratul.Mvc.Bootstrap;
 using System;
 using System.Collections.Generic;

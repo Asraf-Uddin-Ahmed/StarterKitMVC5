@@ -71,11 +71,19 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="201503221659567_PasswordVerification.cs">201503221659567_PasswordVerification.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="201503221659567_PasswordVerification.Designer.cs">201503221659567_PasswordVerification.Designer.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="201503221659567_PasswordVerification.resx">201503221659567_PasswordVerification.resx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="201608080613016_EnhanceUserTable.cs">201608080613016_EnhanceUserTable.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="201608080613016_EnhanceUserTable.Designer.cs">201608080613016_EnhanceUserTable.Designer.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="201608080613016_EnhanceUserTable.resx">201608080613016_EnhanceUserTable.resx</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Configuration.cs">Configuration.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
       <Folder Name="Persistence" TargetFolderName="Persistence">
         <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationDbContext.cs">ApplicationDbContext.cs</ProjectItem>
+        <Folder Name="EntityConfigurations" TargetFolderName="EntityConfigurations">
+          <ProjectItem ReplaceParameters="true" TargetFileName="PasswordVerificationConfiguration.cs">PasswordVerificationConfiguration.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserConfiguration.cs">UserConfiguration.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserVerificationConfiguration.cs">UserVerificationConfiguration.cs</ProjectItem>
+        </Folder>
         <Folder Name="Factories" TargetFolderName="Factories">
           <ProjectItem ReplaceParameters="true" TargetFileName="PasswordVerificationFactory.cs">PasswordVerificationFactory.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="UserFactory.cs">UserFactory.cs</ProjectItem>

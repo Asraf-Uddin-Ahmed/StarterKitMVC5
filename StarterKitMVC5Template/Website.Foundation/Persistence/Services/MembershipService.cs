@@ -19,38 +19,26 @@ namespace $safeprojectname$.Persistence.Services
     public class MembershipService : IMembershipService
     {
         private ILogger _logger;
-        private IPasswordVerificationRepository _passwordVerificationRepository;
-        private IUserRepository _userRepository;
         private IUserService _userService;
-        private IUserVerificationRepository _userVerificationRepository;
         private RegexUtility _regexUtility;
         private IUserVerificationFactory _userVerificationFactory;
         private IPasswordVerificationFactory _passwordVerificationFactory;
         private IUnitOfWork _unitOfWork;
-        private ISettingsRepository _settingsRepository;
         [Inject]
         public MembershipService(ILogger logger,
-            IPasswordVerificationRepository passwordVerificationRepository,
             IUserFactory userFactory,
-            IUserRepository userRepository,
             IUserService userService,
-            IUserVerificationRepository userVerificationRepository,
             RegexUtility regexUtility,
             IUserVerificationFactory userVerificationFactory,
             IPasswordVerificationFactory passwordVerificationFactory,
-            IUnitOfWork unitOfWork,
-            ISettingsRepository settingsRepository)
+            IUnitOfWork unitOfWork)
         {
             _logger = logger;
-            _passwordVerificationRepository = passwordVerificationRepository;
-            _userRepository = userRepository;
             _userService = userService;
-            _userVerificationRepository = userVerificationRepository;
             _regexUtility = regexUtility;
             _userVerificationFactory = userVerificationFactory;
             _passwordVerificationFactory = passwordVerificationFactory;
             _unitOfWork = unitOfWork;
-            _settingsRepository = settingsRepository;
         }
 
         public User CreateUser(User user)
@@ -74,7 +62,7 @@ namespace $safeprojectname$.Persistence.Services
                     user.UserVerifications = new List<UserVerification>();
                     user.UserVerifications.Add(userVerification);
                 }
-                _userRepository.Add(user);
+                _unitOfWork.Users.Add(user);
                 _unitOfWork.Commit();
                 return user;
             }
@@ -131,7 +119,7 @@ namespace $safeprojectname$.Persistence.Services
 
             try
             {
-                UserVerification verification = _userVerificationRepository.GetByVerificationCode(verificationCode);
+                UserVerification verification = _unitOfWork.UserVerifications.GetByVerificationCode(verificationCode);
                 if (verification == null)
                     return VerificationStatus.VerificationCodeDoesNotExist;
 
@@ -140,7 +128,7 @@ namespace $safeprojectname$.Persistence.Services
                 {
                     user.Status = UserStatus.Active;
                     _userService.UpdateUserInformation(user);
-                    _userVerificationRepository.RemoveByUserID(user.ID);
+                    _unitOfWork.UserVerifications.RemoveByUserID(user.ID);
                     _unitOfWork.Commit();
                     return VerificationStatus.Success;
                 }
@@ -155,7 +143,7 @@ namespace $safeprojectname$.Persistence.Services
         {
             PasswordVerification verification = _passwordVerificationFactory.Create();
             verification.UserID = user.ID;
-            _passwordVerificationRepository.Add(verification);
+            _unitOfWork.PasswordVerifications.Add(verification);
             _unitOfWork.Commit();
             return verification;
         }
@@ -172,7 +160,7 @@ namespace $safeprojectname$.Persistence.Services
 
             try
             {
-                PasswordVerification verification = _passwordVerificationRepository.GetByVerificationCode(verificationCode);
+                PasswordVerification verification = _unitOfWork.PasswordVerifications.GetByVerificationCode(verificationCode);
                 if (verification == null)
                 {
                     return VerificationStatus.VerificationCodeDoesNotExist;
@@ -280,7 +268,7 @@ namespace $safeprojectname$.Persistence.Services
         {
             user.LastWrongPasswordAttempt = DateTime.UtcNow;
             user.WrongPasswordAttempt++;
-            int maxPasswordMistake = int.Parse(_settingsRepository.GetValueByName(SettingsName.MaxPasswordMistake));
+            int maxPasswordMistake = int.Parse(_unitOfWork.Settings.GetValueByName(SettingsName.MaxPasswordMistake));
             if (user.WrongPasswordAttempt > maxPasswordMistake)
                 user.Status = UserStatus.Blocked;
             _userService.UpdateUserInformation(user);

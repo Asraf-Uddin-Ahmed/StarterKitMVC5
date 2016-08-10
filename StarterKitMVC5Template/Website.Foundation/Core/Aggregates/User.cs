@@ -12,36 +12,26 @@ namespace $safeprojectname$.Core.Aggregates
 {
     public class User : Entity
     {
-        [Required]
         public string UserName { get; set; }
 
-        [Required]
-        [Column("Password")]
         public string EncryptedPassword { get; set; }
 
-        [Required]
         public string EmailAddress { get; set; }
         
-        [Required]
         public string Name { get; set; }
 
-        [Required]
         public UserType TypeOfUser { get; set; }
 
-        [Required]
         public UserStatus Status { get; set; }
         
         public DateTime? LastLogin { get; set; }
 
-        [Required]
         public int WrongPasswordAttempt { get; set; }
 
         public DateTime? LastWrongPasswordAttempt { get; set; }
 
-        [Required]
         public DateTime CreationTime { get; set; }
 
-        [Required]
         public DateTime UpdateTime { get; set; }
 
 

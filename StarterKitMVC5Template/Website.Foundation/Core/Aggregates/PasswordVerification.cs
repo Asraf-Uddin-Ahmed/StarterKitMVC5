@@ -10,14 +10,11 @@ namespace $safeprojectname$.Core.Aggregates
 {
     public class PasswordVerification : Entity
     {
-        [Required]
         public Guid UserID { get; set; }
         public User User { get; set; }
 
-        [Required]
         public string VerificationCode { get; set; }
 
-        [Required]
         public DateTime CreationTime { get; set; }
     }
 }

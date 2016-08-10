@@ -48,6 +48,7 @@ namespace $safeprojectname$.Persistence.Repositories
         public void Remove(Guid ID)
         {
             TEntity currentItem = this.Get(ID);
+            this.Remove(currentItem);
         }
         public void RemoveRange(IEnumerable<TEntity> entities)
         {

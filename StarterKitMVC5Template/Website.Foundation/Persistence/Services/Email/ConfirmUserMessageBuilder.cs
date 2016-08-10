@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using $safeprojectname$.Core;
 using $safeprojectname$.Core.Aggregates;
 using $safeprojectname$.Core.Repositories;
 using $safeprojectname$.Core.Services.Email;
@@ -50,8 +51,8 @@ namespace $safeprojectname$.Persistence.Services.Email
 
 
         [Inject]
-        public ConfirmUserMessageBuilder(ISettingsRepository settingsRepository)
-            : base(settingsRepository)
+        public ConfirmUserMessageBuilder(IUnitOfWork unitOfWork)
+            : base(unitOfWork)
         { }
 
         public void Build(User newUser, string url)
