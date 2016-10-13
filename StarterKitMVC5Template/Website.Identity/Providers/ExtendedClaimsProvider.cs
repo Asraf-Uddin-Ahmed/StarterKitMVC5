@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
-using $safeprojectname$.Aggregates;
+using Website.Foundation.Core.Aggregates.Identity;
 using $safeprojectname$.Constants.Claims;
 
 namespace $safeprojectname$.Providers

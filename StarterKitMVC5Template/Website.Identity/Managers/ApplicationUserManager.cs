@@ -1,36 +1,30 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Website.Foundation.Core;
+using Website.Foundation.Core.Services.Email;
+using Website.Foundation.Persistence;
+using Website.Foundation.Persistence.Services.Email;
+using Website.Foundation.Core.Aggregates.Identity;
+using $safeprojectname$.Message;
+using $safeprojectname$.Providers;
+using $safeprojectname$.Validators;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Website.Foundation.Core.Repositories;
-using Website.Foundation.Core.Services.Email;
-using Website.Foundation.Persistence;
-using Website.Foundation.Persistence.Repositories;
-using Website.Foundation.Persistence.Services.Email;
-using $safeprojectname$.Message;
-using $safeprojectname$.Aggregates;
-using $safeprojectname$.Providers;
-using $safeprojectname$.Validators;
-using Website.Foundation.Core;
 
 namespace $safeprojectname$.Managers
 {
-    public class ApplicationUserManager : UserManager<ApplicationUser>
+    public class ApplicationUserManager : UserManager<ApplicationUser, Guid>
     {
-        public ApplicationUserManager(IUserStore<ApplicationUser> store)
+        public ApplicationUserManager(IUserStore<ApplicationUser, Guid> store)
             : base(store)
         {
         }
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            AuthDbContext authDbContext = context.Get<AuthDbContext>();
             ApplicationDbContext appDbContext = context.Get<ApplicationDbContext>();
-            ApplicationUserManager appUserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(authDbContext));
+            ApplicationUserManager appUserManager = new ApplicationUserManager(new UserStore<ApplicationUser, CustomRole, Guid, CustomUserLogin, CustomUserRole, CustomUserClaim>(appDbContext));
 
             appUserManager.UserValidator = new CustomUserValidator(appUserManager);
             appUserManager.PasswordValidator = new CustomPasswordValidator();
@@ -51,7 +45,7 @@ namespace $safeprojectname$.Managers
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                appUserManager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"))
+                appUserManager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser, Guid>(dataProtectionProvider.Create("ASP.NET Identity"))
                 {
                     //Code for email confirmation and reset password life time
                     TokenLifespan = TimeSpan.FromHours(6)

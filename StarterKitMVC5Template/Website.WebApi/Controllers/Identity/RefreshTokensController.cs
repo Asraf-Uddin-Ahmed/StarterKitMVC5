@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Website.Identity.Constants.Roles;
 using Website.Identity.Repositories;
+using Website.Foundation.Core.Constant;
 
 namespace $safeprojectname$.Controllers.Identity
 {
@@ -17,7 +18,7 @@ namespace $safeprojectname$.Controllers.Identity
 
         private IAuthRepository _authRepository;
 
-        public RefreshTokensController(ILogger logger, IAuthRepository authRepository) 
+        public RefreshTokensController(ILogger logger, IAuthRepository authRepository)
             : base(logger)
         {
             _authRepository = authRepository;
@@ -38,6 +39,6 @@ namespace $safeprojectname$.Controllers.Identity
             return BadRequest("Token Id does not exist");
 
         }
-        
+
     }
 }

@@ -2,7 +2,7 @@
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using $safeprojectname$.Aggregates;
+using Website.Foundation.Core.Aggregates.Identity;
 using $safeprojectname$.Managers;
 namespace $safeprojectname$.Helpers
 {

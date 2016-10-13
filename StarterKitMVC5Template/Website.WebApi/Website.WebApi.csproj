@@ -50,6 +50,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -155,6 +159,10 @@
       <HintPath>..\packages\WebApi.PartialResponse.0.1.4.0\lib\net45\PartialResponse.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ratul.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ratul.Utility.1.0.3\lib\Ratul.Utility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.20622.1351, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.2.206221351\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
@@ -227,12 +235,13 @@
     <Compile Include="App_Start\ExternalLoginConfig.cs" />
     <Compile Include="App_Start\OAuthTokenConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Codes\Core\Factories\IApplicationUserResponseFactory.cs" />
-    <Compile Include="Codes\Core\Factories\IIdentityRoleResponseFactory.cs" />
-    <Compile Include="Codes\Persistence\Factories\ApplicationUserResponseFactory.cs" />
-    <Compile Include="Codes\Core\Factories\IUserResponseFactory.cs" />
-    <Compile Include="Codes\Persistence\Factories\UserResponseFactory.cs" />
-    <Compile Include="Codes\Persistence\Factories\IdentityRoleResponseFactory.cs" />
+    <Compile Include="Codes\Core\Constant\UriName.cs" />
+    <Compile Include="Codes\Core\Factories\Aggregates\IApplicationUserResponseFactory.cs" />
+    <Compile Include="Codes\Core\Factories\Aggregates\IIdentityRoleResponseFactory.cs" />
+    <Compile Include="Codes\Persistence\Factories\Aggregates\ApplicationUserResponseFactory.cs" />
+    <Compile Include="Codes\Persistence\Factories\Aggregates\IdentityRoleResponseFactory.cs" />
+    <Compile Include="Codes\Core\Factories\Aggregates\IUserResponseFactory.cs" />
+    <Compile Include="Codes\Persistence\Factories\Aggregates\UserResponseFactory.cs" />
     <Compile Include="Codes\Persistence\Factories\ResponseFactory.cs" />
     <Compile Include="Configuration\ContextCapturingControllerActivator.cs" />
     <Compile Include="Configuration\Identity\ChallengeResult.cs" />
@@ -242,20 +251,21 @@
     <Compile Include="Configuration\XHttpMethodOverrideHandler.cs" />
     <Compile Include="Configuration\UnhandledExceptionLogger.cs" />
     <Compile Include="Configuration\NinjectConfig.cs" />
+    <Compile Include="Controllers\Identity\ClaimsController.cs" />
     <Compile Include="Controllers\Identity\ExternalAccountController.cs" />
+    <Compile Include="Controllers\Identity\IdentityApiController.cs" />
     <Compile Include="Controllers\Identity\RefreshTokensController.cs" />
+    <Compile Include="Controllers\Identity\RolesController.cs" />
     <Compile Include="Controllers\Resource\HomeController.cs" />
     <Compile Include="Controllers\Identity\AccountsController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
-    <Compile Include="Controllers\Identity\ClaimsController.cs" />
-    <Compile Include="Controllers\Identity\IdentityApiController.cs" />
     <Compile Include="Controllers\Resource\TestController.cs" />
-    <Compile Include="Controllers\Identity\RolesController.cs" />
-    <Compile Include="Models\Common\SortBy.cs" />
+    <Compile Include="Models\Request\Account\ResetPasswordRequestModel.cs" />
+    <Compile Include="Models\SortBy.cs" />
     <Compile Include="Models\Request\RequestModel.cs" />
     <Compile Include="Models\Request\RequestSearchModel.cs" />
-    <Compile Include="Models\Response\ApplicationUserResponseModel.cs" />
-    <Compile Include="Models\Response\IdentityRoleResponseModel.cs" />
+    <Compile Include="Models\Response\Aggregates\ApplicationUserResponseModel.cs" />
+    <Compile Include="Models\Response\Aggregates\IdentityRoleResponseModel.cs" />
     <Compile Include="Models\Response\ResponseCollectionModel.cs" />
     <Compile Include="Models\Response\ResponseModel.cs" />
     <Compile Include="Models\Request\Account\ChangePasswordRequestModel.cs" />
@@ -263,7 +273,7 @@
     <Compile Include="Models\Request\Claim\ClaimRequestModel.cs" />
     <Compile Include="Models\Request\Role\CreateRoleRequestModel.cs" />
     <Compile Include="Models\Request\Role\UsersInRoleRequestModel.cs" />
-    <Compile Include="Models\Response\UserResponseModel.cs" />
+    <Compile Include="Models\Response\Aggregates\UserResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

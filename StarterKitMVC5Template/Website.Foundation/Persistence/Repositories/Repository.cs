@@ -29,7 +29,7 @@ namespace $safeprojectname$.Persistence.Repositories
         {
             dbSet.Add(entity);
         }
-        public void AddRange(IEnumerable<TEntity> entities)
+        public void AddRange(ICollection<TEntity> entities)
         {
             dbSet.AddRange(entities);
         }
@@ -50,7 +50,7 @@ namespace $safeprojectname$.Persistence.Repositories
             TEntity currentItem = this.Get(ID);
             this.Remove(currentItem);
         }
-        public void RemoveRange(IEnumerable<TEntity> entities)
+        public void RemoveRange(ICollection<TEntity> entities)
         {
             dbSet.RemoveRange(entities);
         }
@@ -60,15 +60,15 @@ namespace $safeprojectname$.Persistence.Repositories
         {
             return dbSet.Find(ID);
         }
-        public IEnumerable<TEntity> GetAll()
+        public ICollection<TEntity> GetAll()
         {
             return dbSet.ToList();
         }
-        public IEnumerable<TEntity> GetBy(Pagination pagination, OrderBy<TEntity> sortBy)
+        public ICollection<TEntity> GetBy(Pagination pagination, OrderBy<TEntity> orderBy)
         {
-            IEnumerable<TEntity> listEntity = dbSet
-                .OrderByDirection(sortBy.PredicateOrderBy, sortBy.IsAscending)
-                .Skip(pagination.DisplayStart).Take(pagination.DisplaySize);
+            ICollection<TEntity> listEntity = dbSet
+                .OrderByDirection(orderBy.PredicateOrderBy, orderBy.IsAscending)
+                .Skip(pagination.DisplayStart).Take(pagination.DisplaySize).ToList();
             return listEntity;
         }
         

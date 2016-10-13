@@ -4,14 +4,14 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 
-namespace $safeprojectname$.Helpers
+namespace $safeprojectname$.Persistence.Services
 {
-    internal class HashGenerator
+    public class HashGenerator
     {
         public static string GetHash(string input)
         {
             HashAlgorithm hashAlgorithm = new SHA256CryptoServiceProvider();
-       
+
             byte[] byteValue = System.Text.Encoding.UTF8.GetBytes(input);
 
             byte[] byteHash = hashAlgorithm.ComputeHash(byteValue);

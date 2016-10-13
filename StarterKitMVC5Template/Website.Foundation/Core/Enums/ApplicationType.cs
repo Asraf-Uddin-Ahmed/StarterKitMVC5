@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace $safeprojectname$.Constants
+namespace $safeprojectname$.Core.Enums
 {
-    public enum ApplicationTypes
+    public enum ApplicationType
     {
         JavaScript = 0,
         NativeConfidential = 1

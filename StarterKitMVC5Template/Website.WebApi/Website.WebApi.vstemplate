@@ -23,18 +23,25 @@
       <ProjectItem ReplaceParameters="true" TargetFileName="AppSettings.config">AppSettings.config</ProjectItem>
       <Folder Name="Codes" TargetFolderName="Codes">
         <Folder Name="Core" TargetFolderName="Core">
+          <Folder Name="Constant" TargetFolderName="Constant">
+            <ProjectItem ReplaceParameters="true" TargetFileName="UriName.cs">UriName.cs</ProjectItem>
+          </Folder>
           <Folder Name="Factories" TargetFolderName="Factories">
-            <ProjectItem ReplaceParameters="true" TargetFileName="IApplicationUserResponseFactory.cs">IApplicationUserResponseFactory.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="IIdentityRoleResponseFactory.cs">IIdentityRoleResponseFactory.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="IUserResponseFactory.cs">IUserResponseFactory.cs</ProjectItem>
+            <Folder Name="Aggregates" TargetFolderName="Aggregates">
+              <ProjectItem ReplaceParameters="true" TargetFileName="IApplicationUserResponseFactory.cs">IApplicationUserResponseFactory.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="IIdentityRoleResponseFactory.cs">IIdentityRoleResponseFactory.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="IUserResponseFactory.cs">IUserResponseFactory.cs</ProjectItem>
+            </Folder>
           </Folder>
         </Folder>
         <Folder Name="Persistence" TargetFolderName="Persistence">
           <Folder Name="Factories" TargetFolderName="Factories">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationUserResponseFactory.cs">ApplicationUserResponseFactory.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="IdentityRoleResponseFactory.cs">IdentityRoleResponseFactory.cs</ProjectItem>
+            <Folder Name="Aggregates" TargetFolderName="Aggregates">
+              <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationUserResponseFactory.cs">ApplicationUserResponseFactory.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="IdentityRoleResponseFactory.cs">IdentityRoleResponseFactory.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="UserResponseFactory.cs">UserResponseFactory.cs</ProjectItem>
+            </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="ResponseFactory.cs">ResponseFactory.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="UserResponseFactory.cs">UserResponseFactory.cs</ProjectItem>
           </Folder>
         </Folder>
       </Folder>
@@ -69,13 +76,11 @@
       <ProjectItem ReplaceParameters="true" TargetFileName="Index.html">Index.html</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="log4net.config">log4net.config</ProjectItem>
       <Folder Name="Models" TargetFolderName="Models">
-        <Folder Name="Common" TargetFolderName="Common">
-          <ProjectItem ReplaceParameters="true" TargetFileName="SortBy.cs">SortBy.cs</ProjectItem>
-        </Folder>
         <Folder Name="Request" TargetFolderName="Request">
           <Folder Name="Account" TargetFolderName="Account">
             <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordRequestModel.cs">ChangePasswordRequestModel.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CreateUserRequestModel.cs">CreateUserRequestModel.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordRequestModel.cs">ResetPasswordRequestModel.cs</ProjectItem>
           </Folder>
           <Folder Name="Claim" TargetFolderName="Claim">
             <ProjectItem ReplaceParameters="true" TargetFileName="ClaimRequestModel.cs">ClaimRequestModel.cs</ProjectItem>
@@ -88,12 +93,15 @@
           </Folder>
         </Folder>
         <Folder Name="Response" TargetFolderName="Response">
-          <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationUserResponseModel.cs">ApplicationUserResponseModel.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="IdentityRoleResponseModel.cs">IdentityRoleResponseModel.cs</ProjectItem>
+          <Folder Name="Aggregates" TargetFolderName="Aggregates">
+            <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationUserResponseModel.cs">ApplicationUserResponseModel.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="IdentityRoleResponseModel.cs">IdentityRoleResponseModel.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserResponseModel.cs">UserResponseModel.cs</ProjectItem>
+          </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="ResponseCollectionModel.cs">ResponseCollectionModel.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ResponseModel.cs">ResponseModel.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="UserResponseModel.cs">UserResponseModel.cs</ProjectItem>
         </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="SortBy.cs">SortBy.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
       <Folder Name="Properties" TargetFolderName="Properties">

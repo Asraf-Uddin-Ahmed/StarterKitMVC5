@@ -58,7 +58,6 @@ namespace $safeprojectname$.Configuration
         private static void RegisterServices(KernelBase kernel)
         {
             kernel.Bind<ApplicationDbContext>().ToSelf();
-            kernel.Bind<AuthDbContext>().ToSelf();
             kernel.Bind<ApplicationUserManager>().ToMethod(ctx => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>()).InRequestScope();
             kernel.Bind<ApplicationRoleManager>().ToMethod(ctx => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationRoleManager>()).InRequestScope();
             kernel.Bind<IHttpControllerActivator>().To<ContextCapturingControllerActivator>().InRequestScope();

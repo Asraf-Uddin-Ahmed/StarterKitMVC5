@@ -12,19 +12,19 @@ namespace $safeprojectname$.Validators
         public CustomPasswordValidator()
         {
             base.RequiredLength = 6;
-            base.RequireNonLetterOrDigit = true;
-            base.RequireDigit = true;
-            base.RequireLowercase = true;
-            base.RequireUppercase = true;
+            //base.RequireNonLetterOrDigit = true;
+            //base.RequireDigit = true;
+            //base.RequireLowercase = true;
+            //base.RequireUppercase = true;
         }
         public override async Task<IdentityResult> ValidateAsync(string password)
         {
             IdentityResult result = await base.ValidateAsync(password);
 
-            if (password.Contains("abcdef") || password.Contains("123456"))
+            if (password.Contains("abcdef") || password.Contains("123456") || password.Contains("password"))
             {
                 var errors = result.Errors.ToList();
-                errors.Add("Password can not contain sequence of chars");
+                errors.Add("Password can not contain sequence of characters");
                 result = new IdentityResult(errors);
             }
             return result;

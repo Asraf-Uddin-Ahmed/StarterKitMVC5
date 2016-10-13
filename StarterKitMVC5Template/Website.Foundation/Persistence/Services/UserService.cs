@@ -98,17 +98,17 @@ namespace $safeprojectname$.Persistence.Services
         }
 
 
-        public ICollection<User> GetUserBy(Pagination pagination, OrderBy<User> sortBy)
+        public ICollection<User> GetUserBy(Pagination pagination, OrderBy<User> orderBy)
         {
             try
             {
-                List<User> result = _unitOfWork.Users.GetBy(pagination, sortBy).Cast<User>().ToList<User>();
+                List<User> result = _unitOfWork.Users.GetBy(pagination, orderBy).Cast<User>().ToList<User>();
                 return result;
             }
             catch (Exception ex)
             {
                 _logger.Error(ex, "Failed to Get Users with values: pagination={0}, sort={1}",
-                    JsonConvert.SerializeObject(pagination), JsonConvert.SerializeObject(sortBy));
+                    JsonConvert.SerializeObject(pagination), JsonConvert.SerializeObject(orderBy));
                 return null;
             }
         }

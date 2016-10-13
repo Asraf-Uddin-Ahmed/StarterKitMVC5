@@ -12,17 +12,17 @@ namespace $safeprojectname$.Core.Repositories
     public interface IRepository<TEntity> where TEntity : Entity
     {
         void Add(TEntity entity);
-        void AddRange(IEnumerable<TEntity> entities);
+        void AddRange(ICollection<TEntity> entities);
 
         void Update(TEntity entity);
 
         void Remove(TEntity currentItem);
         void Remove(Guid ID);
-        void RemoveRange(IEnumerable<TEntity> entities);
+        void RemoveRange(ICollection<TEntity> entities);
 
         TEntity Get(Guid ID);
-        IEnumerable<TEntity> GetAll();
-        IEnumerable<TEntity> GetBy(Pagination pagination, OrderBy<TEntity> sortBy);
+        ICollection<TEntity> GetAll();
+        ICollection<TEntity> GetBy(Pagination pagination, OrderBy<TEntity> orderBy);
 
         int GetTotal();
     }

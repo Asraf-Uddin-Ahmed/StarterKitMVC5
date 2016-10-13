@@ -98,49 +98,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\ExternalLoginProviderName.cs" />
     <Compile Include="Constants\AuthenticationPropertyKeys.cs" />
     <Compile Include="Constants\Claims\PhoneNumberConfirmed.cs" />
     <Compile Include="Constants\ErrorKeys.cs" />
-    <Compile Include="Constants\ApplicationTypes.cs" />
-    <Compile Include="Aggregates\Client.cs" />
-    <Compile Include="Aggregates\RefreshToken.cs" />
-    <Compile Include="AuthDbContext.cs" />
+    <Compile Include="Constants\ExternalLoginProviderName.cs" />
     <Compile Include="Constants\OwinContextKeys.cs" />
     <Compile Include="Constants\Roles\CustomRoles.cs" />
-    <Compile Include="Constants\Roles\ApplicationRoles.cs" />
     <Compile Include="Helpers\AuthHelper.cs" />
-    <Compile Include="Helpers\HashGenerator.cs" />
     <Compile Include="Helpers\IAuthHelper.cs" />
     <Compile Include="Managers\ApplicationRoleManager.cs" />
+    <Compile Include="Managers\ApplicationUserManager.cs" />
     <Compile Include="Message\IdentityMessageBuilder.cs" />
     <Compile Include="Message\IIdentityMessageBuilder.cs" />
-    <Compile Include="Migrations\201606181109428_Initial.cs" />
-    <Compile Include="Migrations\201606181109428_Initial.Designer.cs">
-      <DependentUpon>201606181109428_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606210423542_ClientAndRefreshToken.cs" />
-    <Compile Include="Migrations\201606210423542_ClientAndRefreshToken.Designer.cs">
-      <DependentUpon>201606210423542_ClientAndRefreshToken.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Aggregates\ApplicationUser.cs" />
-    <Compile Include="Managers\ApplicationUserManager.cs" />
     <Compile Include="Models\ExternalLocalAccessToken.cs" />
     <Compile Include="Models\ParsedExternalAccessToken.cs" />
     <Compile Include="Models\RegisterExternalBindingModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Providers\ApplicationRefreshTokenProvider.cs" />
+    <Compile Include="Providers\EmailServiceProvider.cs" />
+    <Compile Include="Providers\ExtendedClaimsProvider.cs" />
     <Compile Include="Providers\FacebookAuthProvider.cs" />
     <Compile Include="Providers\GoogleAuthProvider.cs" />
+    <Compile Include="Providers\RolesFromClaims.cs" />
     <Compile Include="Repositories\AuthRepository.cs" />
     <Compile Include="Repositories\IAuthRepository.cs" />
     <Compile Include="Validators\CustomPasswordValidator.cs" />
     <Compile Include="Validators\CustomUserValidator.cs" />
-    <Compile Include="Providers\EmailServiceProvider.cs" />
-    <Compile Include="Providers\ExtendedClaimsProvider.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\RolesFromClaims.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -151,14 +135,6 @@
       <Project>{73069f52-24e1-4003-bb07-e7384c2821ad}</Project>
       <Name>Website.Foundation</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606181109428_Initial.resx">
-      <DependentUpon>201606181109428_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606210423542_ClientAndRefreshToken.resx">
-      <DependentUpon>201606210423542_ClientAndRefreshToken.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

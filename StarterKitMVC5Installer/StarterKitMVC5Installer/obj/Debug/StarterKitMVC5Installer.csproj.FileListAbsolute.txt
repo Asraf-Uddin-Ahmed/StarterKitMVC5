@@ -54,3 +54,11 @@ G:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\bin\Debug
 G:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\obj\Debug\StarterKitMVC5Installer.dll
 G:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\obj\Debug\StarterKitMVC5Installer.pdb
 G:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\obj\Debug\extension.vsixmanifest
+F:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\bin\Debug\packages\Antlr.3.5.0.2.nupkg
+F:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\bin\Debug\packages\EntityFramework.6.1.3.nupkg
+F:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\bin\Debug\StarterKitMVC5Installer.vsix
+F:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\bin\Debug\extension.vsixmanifest
+F:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\obj\Debug\StarterKitMVC5Installer.dll
+F:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\obj\Debug\StarterKitMVC5Installer.pdb
+F:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\obj\Debug\extension.vsixmanifest
+F:\HOME\StarterKitMVC5\StarterKitMVC5Installer\StarterKitMVC5Installer\bin\Debug\ProjectTemplates\StarterKitMVC5Template.zip

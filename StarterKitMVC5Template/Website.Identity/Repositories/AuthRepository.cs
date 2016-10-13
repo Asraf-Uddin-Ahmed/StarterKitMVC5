@@ -8,27 +8,28 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using $safeprojectname$;
-using $safeprojectname$.Aggregates;
+using Website.Foundation.Core.Aggregates.Identity;
 using $safeprojectname$.Managers;
 using $safeprojectname$.Models;
+using Website.Foundation.Persistence;
 
 namespace $safeprojectname$.Repositories
 {
 
     public class AuthRepository : IAuthRepository
     {
-        private AuthDbContext _authDbContext;
+        private ApplicationDbContext _appDbContext;
         private ApplicationUserManager _applicationUserManager;
-        public AuthRepository(AuthDbContext authDbContext, ApplicationUserManager applicationUserManager)
+        public AuthRepository(ApplicationDbContext appDbContext, ApplicationUserManager applicationUserManager)
         {
-            _authDbContext = authDbContext;
+            _appDbContext = appDbContext;
             _applicationUserManager = applicationUserManager;
         }
 
-        
+
         public Client FindClient(string clientId)
         {
-            var client = _authDbContext.Clients.Find(clientId);
+            var client = _appDbContext.Clients.Find(clientId);
 
             return client;
         }
@@ -36,51 +37,52 @@ namespace $safeprojectname$.Repositories
         public async Task<bool> AddRefreshToken(RefreshToken token)
         {
 
-           var existingToken = _authDbContext.RefreshTokens.Where(r => r.Subject == token.Subject && r.ClientId == token.ClientId).SingleOrDefault();
+            var existingToken = _appDbContext.RefreshTokens.Where(r => r.Subject == token.Subject && r.ClientId == token.ClientId).SingleOrDefault();
 
-           if (existingToken != null)
-           {
-             var result = await RemoveRefreshToken(existingToken);
-           }
-          
-            _authDbContext.RefreshTokens.Add(token);
+            if (existingToken != null)
+            {
+                var result = await RemoveRefreshToken(existingToken);
+            }
 
-            return await _authDbContext.SaveChangesAsync() > 0;
+            _appDbContext.RefreshTokens.Add(token);
+
+            return await _appDbContext.SaveChangesAsync() > 0;
         }
 
         public async Task<bool> RemoveRefreshToken(string refreshTokenId)
         {
-           var refreshToken = await _authDbContext.RefreshTokens.FindAsync(refreshTokenId);
+            var refreshToken = await _appDbContext.RefreshTokens.FindAsync(refreshTokenId);
 
-           if (refreshToken != null) {
-               _authDbContext.RefreshTokens.Remove(refreshToken);
-               return await _authDbContext.SaveChangesAsync() > 0;
-           }
+            if (refreshToken != null)
+            {
+                _appDbContext.RefreshTokens.Remove(refreshToken);
+                return await _appDbContext.SaveChangesAsync() > 0;
+            }
 
-           return false;
+            return false;
         }
 
         public async Task<bool> RemoveRefreshToken(RefreshToken refreshToken)
         {
-            _authDbContext.RefreshTokens.Remove(refreshToken);
-             return await _authDbContext.SaveChangesAsync() > 0;
+            _appDbContext.RefreshTokens.Remove(refreshToken);
+            return await _appDbContext.SaveChangesAsync() > 0;
         }
 
         public async Task<RefreshToken> FindRefreshToken(string refreshTokenId)
         {
-            var refreshToken = await _authDbContext.RefreshTokens.FindAsync(refreshTokenId);
+            var refreshToken = await _appDbContext.RefreshTokens.FindAsync(refreshTokenId);
 
             return refreshToken;
         }
 
         public List<RefreshToken> GetAllRefreshTokens()
         {
-             return  _authDbContext.RefreshTokens.ToList();
+            return _appDbContext.RefreshTokens.ToList();
         }
 
-        public async Task<IdentityUser> FindAsync(UserLoginInfo loginInfo)
+        public async Task<IdentityUser<Guid, CustomUserLogin, CustomUserRole, CustomUserClaim>> FindAsync(UserLoginInfo loginInfo)
         {
-            IdentityUser user = await _applicationUserManager.FindAsync(loginInfo);
+            IdentityUser<Guid, CustomUserLogin, CustomUserRole, CustomUserClaim> user = await _applicationUserManager.FindAsync(loginInfo);
 
             return user;
         }
@@ -92,7 +94,7 @@ namespace $safeprojectname$.Repositories
             return result;
         }
 
-        public async Task<IdentityResult> AddLoginAsync(string userId, UserLoginInfo login)
+        public async Task<IdentityResult> AddLoginAsync(Guid userId, UserLoginInfo login)
         {
             var result = await _applicationUserManager.AddLoginAsync(userId, login);
 

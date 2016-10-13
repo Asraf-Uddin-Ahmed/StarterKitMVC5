@@ -1,16 +1,9 @@
-﻿using Ratul.Utility.Email;
+﻿using Website.Foundation.Core;
+using Website.Foundation.Persistence.Services.Email;
+using Website.Foundation.Core.Aggregates.Identity;
+using Ratul.Utility.Email;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Website.Foundation.Core;
-using Website.Foundation.Core.Aggregates;
-using Website.Foundation.Core.Repositories;
-using Website.Foundation.Core.Services.Email;
-using Website.Foundation.Persistence.Services.Email;
-using Website.Foundation.Persistence.Template.Email;
-using $safeprojectname$.Aggregates;
 
 namespace $safeprojectname$.Message
 {

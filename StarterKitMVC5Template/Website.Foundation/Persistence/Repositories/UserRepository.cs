@@ -46,10 +46,11 @@ namespace $safeprojectname$.Persistence.Repositories
 
 
 
-        protected override Expression<Func<User, bool>> GetAndSearchCondition(UserSearch searchItem)
+        protected override Func<User, bool> GetAndSearchCondition(UserSearch searchItem)
         {
-            Expression<Func<User, bool>> predicate = (col) =>
-                (searchItem.EmailAddress == null || searchItem.EmailAddress == col.EmailAddress)
+            Func<User, bool> predicate = (col) =>
+                (searchItem != null)
+                && (searchItem.EmailAddress == null || searchItem.EmailAddress == col.EmailAddress)
                 && (searchItem.UserName == null || searchItem.UserName == col.UserName)
                 && (searchItem.TypeOfUser == null || searchItem.TypeOfUser == col.TypeOfUser)
                 && (searchItem.Status == null || searchItem.Status == col.Status)
@@ -59,11 +60,12 @@ namespace $safeprojectname$.Persistence.Repositories
                 && (searchItem.UpdateTime == null || searchItem.UpdateTime == col.UpdateTime);
             return predicate;
         }
-        protected override Expression<Func<User, bool>> GetOrSearchCondition(UserSearch searchItem)
+        protected override Func<User, bool> GetOrSearchCondition(UserSearch searchItem)
         {
             bool isAllNull = base.IsAllPropertyNull(searchItem);
-            Expression<Func<User, bool>> predicate = (col) =>
-                (searchItem.EmailAddress != null && searchItem.EmailAddress == col.EmailAddress)
+            Func<User, bool> predicate = (col) =>
+                (searchItem == null)
+                || (searchItem.EmailAddress != null && searchItem.EmailAddress == col.EmailAddress)
                 || (searchItem.UserName != null && searchItem.UserName == col.UserName)
                 || (searchItem.TypeOfUser != null && searchItem.TypeOfUser == col.TypeOfUser)
                 || (searchItem.Status != null && searchItem.Status == col.Status)

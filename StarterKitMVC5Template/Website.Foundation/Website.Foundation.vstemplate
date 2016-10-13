@@ -19,12 +19,25 @@
       <Folder Name="Core" TargetFolderName="Core">
         <Folder Name="Aggregates" TargetFolderName="Aggregates">
           <ProjectItem ReplaceParameters="true" TargetFileName="Entity.cs">Entity.cs</ProjectItem>
+          <Folder Name="Identity" TargetFolderName="Identity">
+            <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationUser.cs">ApplicationUser.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Client.cs">Client.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="CustomRole.cs">CustomRole.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="CustomUserClaim.cs">CustomUserClaim.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="CustomUserLogin.cs">CustomUserLogin.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="CustomUserRole.cs">CustomUserRole.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RefreshToken.cs">RefreshToken.cs</ProjectItem>
+          </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="PasswordVerification.cs">PasswordVerification.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Settings.cs">Settings.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="User.cs">User.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="UserVerification.cs">UserVerification.cs</ProjectItem>
         </Folder>
+        <Folder Name="Constant" TargetFolderName="Constant">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationRoles.cs">ApplicationRoles.cs</ProjectItem>
+        </Folder>
         <Folder Name="Enums" TargetFolderName="Enums">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationType.cs">ApplicationType.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="LoginStatus.cs">LoginStatus.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="SettingsName.cs">SettingsName.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="SettingsType.cs">SettingsType.cs</ProjectItem>
@@ -33,6 +46,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="VerificationStatus.cs">VerificationStatus.cs</ProjectItem>
         </Folder>
         <Folder Name="Factories" TargetFolderName="Factories">
+          <ProjectItem ReplaceParameters="true" TargetFileName="IApplicationUserFactory.cs">IApplicationUserFactory.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="IPasswordVerificationFactory.cs">IPasswordVerificationFactory.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="IUserFactory.cs">IUserFactory.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="IUserVerificationFactory.cs">IUserVerificationFactory.cs</ProjectItem>
@@ -74,6 +88,9 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="201608080613016_EnhanceUserTable.cs">201608080613016_EnhanceUserTable.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="201608080613016_EnhanceUserTable.Designer.cs">201608080613016_EnhanceUserTable.Designer.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="201608080613016_EnhanceUserTable.resx">201608080613016_EnhanceUserTable.resx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="201610100547365_AddAllIdentityTables.cs">201610100547365_AddAllIdentityTables.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="201610100547365_AddAllIdentityTables.Designer.cs">201610100547365_AddAllIdentityTables.Designer.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="201610100547365_AddAllIdentityTables.resx">201610100547365_AddAllIdentityTables.resx</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Configuration.cs">Configuration.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
@@ -85,6 +102,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="UserVerificationConfiguration.cs">UserVerificationConfiguration.cs</ProjectItem>
         </Folder>
         <Folder Name="Factories" TargetFolderName="Factories">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationUserFactory.cs">ApplicationUserFactory.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="PasswordVerificationFactory.cs">PasswordVerificationFactory.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="UserFactory.cs">UserFactory.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="UserVerificationFactory.cs">UserVerificationFactory.cs</ProjectItem>
@@ -104,6 +122,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordMessageBuilder.cs">ForgotPasswordMessageBuilder.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MessageBuilder.cs">MessageBuilder.cs</ProjectItem>
           </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="HashGenerator.cs">HashGenerator.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="MembershipService.cs">MembershipService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="PasswordVerificationService.cs">PasswordVerificationService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="UserService.cs">UserService.cs</ProjectItem>

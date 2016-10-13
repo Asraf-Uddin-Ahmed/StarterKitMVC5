@@ -5,8 +5,9 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http.Routing;
 using Website.Foundation.Core.Aggregates;
+using $safeprojectname$.Models.Response.Aggregates;
 
-namespace $safeprojectname$.Models.Response
+namespace $safeprojectname$.Models.Response.Aggregates
 {
     public class ApplicationUserResponseModel : ResponseModel
     {
@@ -16,6 +17,6 @@ namespace $safeprojectname$.Models.Response
         public string UserName { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
-        
+
     }
 }

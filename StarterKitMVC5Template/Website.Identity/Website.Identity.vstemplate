@@ -15,15 +15,8 @@
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="Website.Identity.csproj" File="Website.Identity.csproj" ReplaceParameters="true">
-      <Folder Name="Aggregates" TargetFolderName="Aggregates">
-        <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationUser.cs">ApplicationUser.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="Client.cs">Client.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="RefreshToken.cs">RefreshToken.cs</ProjectItem>
-      </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="App.config">App.config</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="AuthDbContext.cs">AuthDbContext.cs</ProjectItem>
       <Folder Name="Constants" TargetFolderName="Constants">
-        <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationTypes.cs">ApplicationTypes.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="AuthenticationPropertyKeys.cs">AuthenticationPropertyKeys.cs</ProjectItem>
         <Folder Name="Claims" TargetFolderName="Claims">
           <ProjectItem ReplaceParameters="true" TargetFileName="PhoneNumberConfirmed.cs">PhoneNumberConfirmed.cs</ProjectItem>
@@ -32,13 +25,11 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="ExternalLoginProviderName.cs">ExternalLoginProviderName.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="OwinContextKeys.cs">OwinContextKeys.cs</ProjectItem>
         <Folder Name="Roles" TargetFolderName="Roles">
-          <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationRoles.cs">ApplicationRoles.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="CustomRoles.cs">CustomRoles.cs</ProjectItem>
         </Folder>
       </Folder>
       <Folder Name="Helpers" TargetFolderName="Helpers">
         <ProjectItem ReplaceParameters="true" TargetFileName="AuthHelper.cs">AuthHelper.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="HashGenerator.cs">HashGenerator.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="IAuthHelper.cs">IAuthHelper.cs</ProjectItem>
       </Folder>
       <Folder Name="Managers" TargetFolderName="Managers">
@@ -48,15 +39,6 @@
       <Folder Name="Message" TargetFolderName="Message">
         <ProjectItem ReplaceParameters="true" TargetFileName="IdentityMessageBuilder.cs">IdentityMessageBuilder.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="IIdentityMessageBuilder.cs">IIdentityMessageBuilder.cs</ProjectItem>
-      </Folder>
-      <Folder Name="Migrations" TargetFolderName="Migrations">
-        <ProjectItem ReplaceParameters="true" TargetFileName="201606181109428_Initial.cs">201606181109428_Initial.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="201606181109428_Initial.Designer.cs">201606181109428_Initial.Designer.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="201606181109428_Initial.resx">201606181109428_Initial.resx</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="201606210423542_ClientAndRefreshToken.cs">201606210423542_ClientAndRefreshToken.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="201606210423542_ClientAndRefreshToken.Designer.cs">201606210423542_ClientAndRefreshToken.Designer.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="201606210423542_ClientAndRefreshToken.resx">201606210423542_ClientAndRefreshToken.resx</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="Configuration.cs">Configuration.cs</ProjectItem>
       </Folder>
       <Folder Name="Models" TargetFolderName="Models">
         <ProjectItem ReplaceParameters="true" TargetFileName="ExternalLocalAccessToken.cs">ExternalLocalAccessToken.cs</ProjectItem>

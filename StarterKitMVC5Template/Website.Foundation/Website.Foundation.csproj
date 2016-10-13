@@ -96,10 +96,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Aggregates\Entity.cs" />
+    <Compile Include="Core\Aggregates\Identity\ApplicationUser.cs" />
+    <Compile Include="Core\Aggregates\Identity\Client.cs" />
+    <Compile Include="Core\Aggregates\Identity\CustomRole.cs" />
+    <Compile Include="Core\Aggregates\Identity\CustomUserClaim.cs" />
+    <Compile Include="Core\Aggregates\Identity\CustomUserLogin.cs" />
+    <Compile Include="Core\Aggregates\Identity\CustomUserRole.cs" />
+    <Compile Include="Core\Aggregates\Identity\RefreshToken.cs" />
     <Compile Include="Core\Aggregates\Settings.cs" />
     <Compile Include="Core\Aggregates\PasswordVerification.cs" />
     <Compile Include="Core\Aggregates\UserVerification.cs" />
     <Compile Include="Core\Aggregates\User.cs" />
+    <Compile Include="Core\Constant\ApplicationRoles.cs" />
+    <Compile Include="Core\Enums\ApplicationType.cs" />
+    <Compile Include="Core\Factories\IApplicationUserFactory.cs" />
     <Compile Include="Core\SearchData\Pagination.cs" />
     <Compile Include="Core\SearchData\OrderBy.cs" />
     <Compile Include="Core\Factories\IPasswordVerificationFactory.cs" />
@@ -130,9 +140,14 @@
     <Compile Include="Migrations\201608080613016_EnhanceUserTable.Designer.cs">
       <DependentUpon>201608080613016_EnhanceUserTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610100547365_AddAllIdentityTables.cs" />
+    <Compile Include="Migrations\201610100547365_AddAllIdentityTables.Designer.cs">
+      <DependentUpon>201610100547365_AddAllIdentityTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\EntityConfigurations\PasswordVerificationConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\UserVerificationConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\UserConfiguration.cs" />
+    <Compile Include="Persistence\Factories\ApplicationUserFactory.cs" />
     <Compile Include="Persistence\Factories\PasswordVerificationFactory.cs" />
     <Compile Include="Persistence\Factories\UserFactory.cs" />
     <Compile Include="Migrations\201503210843158_InitialCreate.cs" />
@@ -150,6 +165,7 @@
     <Compile Include="Persistence\Services\Email\ConfirmUserMessageBuilder.cs" />
     <Compile Include="Persistence\Services\Email\ForgotPasswordMessageBuilder.cs" />
     <Compile Include="Persistence\Services\Email\MessageBuilder.cs" />
+    <Compile Include="Persistence\Services\HashGenerator.cs" />
     <Compile Include="Persistence\Services\MembershipService.cs" />
     <Compile Include="Persistence\Services\PasswordVerificationService.cs" />
     <Compile Include="Persistence\Services\UserService.cs" />
@@ -199,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608080613016_EnhanceUserTable.resx">
       <DependentUpon>201608080613016_EnhanceUserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610100547365_AddAllIdentityTables.resx">
+      <DependentUpon>201610100547365_AddAllIdentityTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

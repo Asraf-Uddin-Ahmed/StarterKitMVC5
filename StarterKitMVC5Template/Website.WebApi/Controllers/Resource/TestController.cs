@@ -18,7 +18,7 @@ using $safeprojectname$.Models.Request;
 namespace $safeprojectname$.Controllers.Resource
 {
     [CustomCorsPolicy]
-    [RoutePrefix("api/test")]
+    [RoutePrefix("test")]
     public class TestController : BaseApiController
     {
         private IUserService _userSevice;

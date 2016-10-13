@@ -13,29 +13,34 @@ using Website.Identity.Managers;
 using $safeprojectname$.Codes.Core.Factories;
 using $safeprojectname$.Models;
 using $safeprojectname$.Models.Request.Role;
+using Website.Foundation.Core.Constant;
+using Website.Foundation.Core.Aggregates.Identity;
+using Ratul.Utility;
+using $safeprojectname$.Codes.Core.Constant;
+using $safeprojectname$.Codes.Core.Factories.Aggregates;
 
 namespace $safeprojectname$.Controllers.Identity
 {
     [Authorize(Roles = ApplicationRoles.ADMIN)]
-    [RoutePrefix("api/roles")]
+    [RoutePrefix("roles")]
     public class RolesController : IdentityApiController
     {
         private IIdentityRoleResponseFactory _identityRoleResponseFactory;
         private ApplicationUserManager _applicationUserManager;
         private ApplicationRoleManager _applicationRoleManager;
         public RolesController(ILogger logger,
-            IIdentityRoleResponseFactory identityRoleResponseFactory, 
-            ApplicationUserManager applicationUserManager, 
+            IIdentityRoleResponseFactory identityRoleResponseFactory,
+            ApplicationUserManager applicationUserManager,
             ApplicationRoleManager applicationRoleManager)
-            :base(logger)
+            : base(logger)
         {
             _identityRoleResponseFactory = identityRoleResponseFactory;
             _applicationUserManager = applicationUserManager;
             _applicationRoleManager = applicationRoleManager;
         }
 
-        [Route("{id:guid}", Name = "GetRoleById")]
-        public async Task<IHttpActionResult> GetRole(string Id)
+        [Route("{id:guid}", Name = UriName.Identity.Roles.GET_ROLE)]
+        public async Task<IHttpActionResult> GetRole(Guid Id)
         {
             var role = await _applicationRoleManager.FindByIdAsync(Id);
 
@@ -48,14 +53,14 @@ namespace $safeprojectname$.Controllers.Identity
 
         }
 
-        [Route("", Name = "GetAllRoles")]
+        [Route("")]
         public IHttpActionResult GetAllRoles()
         {
             var roles = _applicationRoleManager.Roles;
-            return Ok(_identityRoleResponseFactory.Create(roles));
+            return Ok(_identityRoleResponseFactory.Create(roles.ToList()));
         }
 
-        [Route("create")]
+        [Route("")]
         public async Task<IHttpActionResult> Create(CreateRoleRequestModel model)
         {
             if (!ModelState.IsValid)
@@ -63,7 +68,7 @@ namespace $safeprojectname$.Controllers.Identity
                 return BadRequest(ModelState);
             }
 
-            var role = new IdentityRole { Name = model.Name };
+            CustomRole role = new CustomRole { Id = GuidUtility.GetNewSequentialGuid(), Name = model.Name };
 
             var result = await _applicationRoleManager.CreateAsync(role);
 
@@ -72,14 +77,12 @@ namespace $safeprojectname$.Controllers.Identity
                 return GetErrorResult(result);
             }
 
-            Uri locationHeader = new Uri(Url.Link("GetRoleById", new { id = role.Id }));
-
-            return Created(locationHeader, _identityRoleResponseFactory.Create(role));
+            return CreatedAtRoute(UriName.Identity.Roles.GET_ROLE, new { id = role.Id }, _identityRoleResponseFactory.Create(role));
 
         }
 
         [Route("{id:guid}")]
-        public async Task<IHttpActionResult> DeleteRole(string Id)
+        public async Task<IHttpActionResult> DeleteRole(Guid Id)
         {
 
             var role = await _applicationRoleManager.FindByIdAsync(Id);
@@ -101,6 +104,7 @@ namespace $safeprojectname$.Controllers.Identity
         }
 
         [Route("ManageUsersInRole")]
+        [HttpPost]
         public async Task<IHttpActionResult> ManageUsersInRole(UsersInRoleRequestModel model)
         {
             var role = await _applicationRoleManager.FindByIdAsync(model.Id);
@@ -111,7 +115,7 @@ namespace $safeprojectname$.Controllers.Identity
                 return BadRequest(ModelState);
             }
 
-            foreach (string user in model.EnrolledUsers)
+            foreach (Guid user in model.EnrolledUsers)
             {
                 var appUser = await _applicationUserManager.FindByIdAsync(user);
 
@@ -133,7 +137,7 @@ namespace $safeprojectname$.Controllers.Identity
                 }
             }
 
-            foreach (string user in model.RemovedUsers)
+            foreach (Guid user in model.RemovedUsers)
             {
                 var appUser = await _applicationUserManager.FindByIdAsync(user);
 
@@ -159,8 +163,8 @@ namespace $safeprojectname$.Controllers.Identity
             return Ok();
         }
 
-        [Route("user/{userID:guid}", Name = "GetRoleByUserID")]
-        public async Task<IHttpActionResult> GetRoleByUserID(string userID)
+        [Route("user/{userID:guid}", Name = UriName.Identity.Roles.GET_ROLE_BY_USER_ID)]
+        public async Task<IHttpActionResult> GetRoleByUserID(Guid userID)
         {
             IList<string> roles = await _applicationUserManager.GetRolesAsync(userID);
             return Ok(roles);

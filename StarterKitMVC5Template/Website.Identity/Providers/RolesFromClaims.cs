@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Web;
 using $safeprojectname$.Constants.Claims;
 using $safeprojectname$.Constants.Roles;
+using Website.Foundation.Core.Constant;
 
 namespace $safeprojectname$.Providers
 {

@@ -8,7 +8,8 @@ namespace $safeprojectname$.Models
 {
     public class ParsedExternalAccessToken
     {
-        public string user_id { get; set; }
-        public string app_id { get; set; }
+        public string UserID { get; set; }
+        public string AppID { get; set; }
+        public string Email { get; set; }
     }
 }

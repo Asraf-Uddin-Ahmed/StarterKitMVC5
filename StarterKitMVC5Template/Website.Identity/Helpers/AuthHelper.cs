@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using $safeprojectname$.Aggregates;
+using Website.Foundation.Core.Aggregates.Identity;
 using $safeprojectname$.Constants;
 using $safeprojectname$.Managers;
 using $safeprojectname$.Providers;

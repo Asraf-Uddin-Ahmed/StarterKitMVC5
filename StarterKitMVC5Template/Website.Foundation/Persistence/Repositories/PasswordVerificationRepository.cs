@@ -39,7 +39,7 @@ namespace $safeprojectname$.Persistence.Repositories
         }
         public void RemoveByUserID(Guid userID)
         {
-            base.RemoveRange(_context.PasswordVerifications.Where(c => c.UserID == userID));
+            base.RemoveRange(_context.PasswordVerifications.Where(c => c.UserID == userID).ToList());
         }
     }
 }

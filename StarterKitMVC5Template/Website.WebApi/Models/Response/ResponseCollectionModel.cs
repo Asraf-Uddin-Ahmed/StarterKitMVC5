@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using Website.Foundation.Core.Aggregates;
 using Website.Foundation.Core.SearchData;
-using $safeprojectname$.Models.Common;
 
 namespace $safeprojectname$.Models.Response
 {

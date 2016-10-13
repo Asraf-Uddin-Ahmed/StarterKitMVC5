@@ -9,7 +9,7 @@ namespace $safeprojectname$.Core.Services
     public interface IUserService
     {
         bool DeleteUser(Guid userID);
-        ICollection<User> GetUserBy(Pagination pagination, OrderBy<User> sortBy);
+        ICollection<User> GetUserBy(Pagination pagination, OrderBy<User> orderBy);
         User GetUser(Guid userID);
         User GetUserByEmail(string email);
         User GetUserByUserName(string userName);

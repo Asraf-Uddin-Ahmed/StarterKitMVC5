@@ -8,8 +8,8 @@ namespace $safeprojectname$.Models.Request.Role
     public class UsersInRoleRequestModel : RequestModel
     {
 
-        public string Id { get; set; }
-        public List<string> EnrolledUsers { get; set; }
-        public List<string> RemovedUsers { get; set; }
+        public Guid Id { get; set; }
+        public List<Guid> EnrolledUsers { get; set; }
+        public List<Guid> RemovedUsers { get; set; }
     }
 }

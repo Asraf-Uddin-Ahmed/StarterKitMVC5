@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http.Routing;
 using Website.Foundation.Core.SearchData;
-using $safeprojectname$.Models.Common;
+using $safeprojectname$.Models;
 using $safeprojectname$.Models.Response;
 
 namespace $safeprojectname$.Codes.Persistence.Factories

@@ -12,8 +12,8 @@ namespace $safeprojectname$.Core.Repositories
         where TEntity : Entity
         where TSearch : EntitySearch
     {
-        IEnumerable<TEntity> GetByAnd(TSearch searchItem, Pagination pagination, OrderBy<TEntity> sortBy);
-        IEnumerable<TEntity> GetByOr(TSearch searchItem, Pagination pagination, OrderBy<TEntity> sortBy);
+        ICollection<TEntity> GetByAnd(TSearch searchItem, Pagination pagination, OrderBy<TEntity> orderBy);
+        ICollection<TEntity> GetByOr(TSearch searchItem, Pagination pagination, OrderBy<TEntity> orderBy);
         int GetTotalAnd(TSearch searchItem);
         int GetTotalOr(TSearch searchItem);
     }

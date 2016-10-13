@@ -5,17 +5,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using $safeprojectname$.Managers;
-using $safeprojectname$.Aggregates;
+using Website.Foundation.Core.Aggregates.Identity;
 
 namespace $safeprojectname$.Validators
 {
-    public class CustomUserValidator : UserValidator<ApplicationUser>
+    public class CustomUserValidator : UserValidator<ApplicationUser, Guid>
     {
         public CustomUserValidator(ApplicationUserManager appUserManager)
             : base(appUserManager)
         {
             base.AllowOnlyAlphanumericUserNames = false;
-            base.RequireUniqueEmail = false;
+            base.RequireUniqueEmail = true;
         }
 
         public override async Task<IdentityResult> ValidateAsync(ApplicationUser user)

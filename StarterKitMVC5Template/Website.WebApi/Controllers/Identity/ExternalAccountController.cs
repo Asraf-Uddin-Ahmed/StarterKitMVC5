@@ -17,7 +17,7 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Website.Identity.Aggregates;
+using Website.Foundation.Core.Aggregates.Identity;
 using Website.Identity.Constants;
 using Website.Identity.Helpers;
 using Website.Identity.Managers;
@@ -25,16 +25,20 @@ using Website.Identity.Models;
 using Website.Identity.Providers;
 using Website.Identity.Repositories;
 using $safeprojectname$.Configuration.Identity;
+using $safeprojectname$.Codes.Core.Constant;
+using Website.Foundation.Core.Factories;
+using Facebook;
 
 namespace $safeprojectname$.Controllers.Identity
 {
-    [RoutePrefix("api/account/external")]
+    [RoutePrefix("account/external")]
     public class ExternalAccountController : IdentityApiController
     {
         private ILogger _logger;
         private ApplicationUserManager _applicationUserManager;
         private IAuthRepository _authRepository;
         private IAuthHelper _authHelper;
+        private IApplicationUserFactory _applicationUserFactory;
 
         private IAuthenticationManager OwinAuthentication
         {
@@ -44,12 +48,14 @@ namespace $safeprojectname$.Controllers.Identity
         public ExternalAccountController(ILogger logger,
             IAuthRepository authRepository,
             IAuthHelper authHelper,
+            IApplicationUserFactory applicationUserFactory,
             ApplicationUserManager applicationUserManager)
             : base(logger)
         {
             _logger = logger;
             _authRepository = authRepository;
             _authHelper = authHelper;
+            _applicationUserFactory = applicationUserFactory;
             _applicationUserManager = applicationUserManager;
         }
 
@@ -58,7 +64,7 @@ namespace $safeprojectname$.Controllers.Identity
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
         [AllowAnonymous]
-        [Route("Login", Name = "ExternalLogin")]
+        [Route("Login")]
         [HttpGet]
         public async Task<IHttpActionResult> Login(ExternalLoginProviderName provider, string error = null)
         {
@@ -94,7 +100,7 @@ namespace $safeprojectname$.Controllers.Identity
                 return new ChallengeResult(provider, this);
             }
 
-            IdentityUser user = await _authRepository.FindAsync(new UserLoginInfo(externalLogin.LoginProvider.ToString(), externalLogin.ProviderKey));
+            IdentityUser<Guid, CustomUserLogin, CustomUserRole, CustomUserClaim> user = await _authRepository.FindAsync(new UserLoginInfo(externalLogin.LoginProvider.ToString(), externalLogin.ProviderKey));
             bool hasRegistered = user != null;
 
             redirectUri = string.Format("{0}#external_access_token={1}&provider={2}&haslocalaccount={3}&external_user_name={4}",
@@ -120,22 +126,21 @@ namespace $safeprojectname$.Controllers.Identity
                 return BadRequest(ModelState);
             }
 
-            var verifiedAccessToken = await VerifyExternalAccessToken(model.Provider, model.ExternalAccessToken);
+            ParsedExternalAccessToken verifiedAccessToken = await VerifyExternalAccessToken(model.Provider, model.ExternalAccessToken);
             if (verifiedAccessToken == null)
             {
                 return BadRequest("Invalid Provider or External Access Token");
             }
 
-            IdentityUser user = await _authRepository.FindAsync(new UserLoginInfo(model.Provider.ToString(), verifiedAccessToken.user_id));
-
+            IdentityUser<Guid, CustomUserLogin, CustomUserRole, CustomUserClaim> user = await _authRepository.FindAsync(new UserLoginInfo(model.Provider.ToString(), verifiedAccessToken.UserID));
             bool hasRegistered = user != null;
-
             if (hasRegistered)
             {
                 return BadRequest("External user is already registered");
             }
 
-            ApplicationUser appUser = new ApplicationUser() { UserName = model.UserName };
+            ApplicationUser appUser = _applicationUserFactory.Create(model.UserName, verifiedAccessToken.Email);
+            appUser.EmailConfirmed = true;
 
             IdentityResult result = await _authRepository.CreateAsync(appUser);
             if (!result.Succeeded)
@@ -146,7 +151,7 @@ namespace $safeprojectname$.Controllers.Identity
             var info = new ExternalLoginInfo()
             {
                 DefaultUserName = model.UserName,
-                Login = new UserLoginInfo(model.Provider.ToString(), verifiedAccessToken.user_id)
+                Login = new UserLoginInfo(model.Provider.ToString(), verifiedAccessToken.UserID)
             };
 
             result = await _authRepository.AddLoginAsync(appUser.Id, info.Login);
@@ -157,7 +162,6 @@ namespace $safeprojectname$.Controllers.Identity
 
             //generate access token response
             var accessTokenResponse = await GenerateLocalAccessTokenResponse(model.UserName, model.ClientID);
-
             return Ok(accessTokenResponse);
         }
 
@@ -172,16 +176,14 @@ namespace $safeprojectname$.Controllers.Identity
                 return BadRequest(ModelState);
             }
 
-            var verifiedAccessToken = await VerifyExternalAccessToken(model.Provider, model.ExternalAccessToken);
+            ParsedExternalAccessToken verifiedAccessToken = await VerifyExternalAccessToken(model.Provider, model.ExternalAccessToken);
             if (verifiedAccessToken == null)
             {
                 return BadRequest("Invalid Provider or External Access Token");
             }
 
-            IdentityUser user = await _authRepository.FindAsync(new UserLoginInfo(model.Provider.ToString(), verifiedAccessToken.user_id));
-
+            IdentityUser<Guid, CustomUserLogin, CustomUserRole, CustomUserClaim> user = await _authRepository.FindAsync(new UserLoginInfo(model.Provider.ToString(), verifiedAccessToken.UserID));
             bool hasRegistered = user != null;
-
             if (!hasRegistered)
             {
                 return BadRequest("External user is not registered");
@@ -189,9 +191,7 @@ namespace $safeprojectname$.Controllers.Identity
 
             //generate access token response
             var accessTokenResponse = await GenerateLocalAccessTokenResponse(user.UserName, model.ClientID);
-
             return Ok(accessTokenResponse);
-
         }
 
         //GET api/account/external/Signout
@@ -251,8 +251,6 @@ namespace $safeprojectname$.Controllers.Identity
 
         private async Task<ParsedExternalAccessToken> VerifyExternalAccessToken(ExternalLoginProviderName provider, string accessToken)
         {
-            ParsedExternalAccessToken parsedToken = null;
-
             var verifyTokenEndPoint = "";
 
             if (provider == ExternalLoginProviderName.Facebook)
@@ -275,38 +273,41 @@ namespace $safeprojectname$.Controllers.Identity
             var uri = new Uri(verifyTokenEndPoint);
             var response = await client.GetAsync(uri);
 
-            if (response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode)
             {
-                var content = await response.Content.ReadAsStringAsync();
-
-                dynamic jObj = (JObject)Newtonsoft.Json.JsonConvert.DeserializeObject(content);
-
-                parsedToken = new ParsedExternalAccessToken();
-
-                if (provider == ExternalLoginProviderName.Facebook)
-                {
-                    parsedToken.user_id = jObj["data"]["user_id"];
-                    parsedToken.app_id = jObj["data"]["app_id"];
-
-                    if (!string.Equals(Startup.FacebookAuthOptions.AppId, parsedToken.app_id, StringComparison.OrdinalIgnoreCase))
-                    {
-                        return null;
-                    }
-                }
-                else if (provider == ExternalLoginProviderName.Google)
-                {
-                    parsedToken.user_id = jObj["user_id"];
-                    parsedToken.app_id = jObj["audience"];
-
-                    if (!string.Equals(Startup.GoogleAuthOptions.ClientId, parsedToken.app_id, StringComparison.OrdinalIgnoreCase))
-                    {
-                        return null;
-                    }
-
-                }
-
+                return null;
             }
 
+            var content = await response.Content.ReadAsStringAsync();
+            dynamic jObj = (JObject)Newtonsoft.Json.JsonConvert.DeserializeObject(content);
+            ParsedExternalAccessToken parsedToken = new ParsedExternalAccessToken();
+
+            if (provider == ExternalLoginProviderName.Facebook)
+            {
+                parsedToken.UserID = jObj["data"]["user_id"];
+                parsedToken.AppID = jObj["data"]["app_id"];
+
+                if (!string.Equals(Startup.FacebookAuthOptions.AppId, parsedToken.AppID, StringComparison.OrdinalIgnoreCase))
+                {
+                    return null;
+                }
+
+                var fbClient = new FacebookClient(accessToken);
+                dynamic userEmailInfo = fbClient.Get("/me?fields=email");
+                parsedToken.Email = userEmailInfo.email;
+            }
+            else if (provider == ExternalLoginProviderName.Google)
+            {
+                parsedToken.UserID = jObj["user_id"];
+                parsedToken.AppID = jObj["audience"];
+                parsedToken.Email = jObj["email"];
+
+                if (!string.Equals(Startup.GoogleAuthOptions.ClientId, parsedToken.AppID, StringComparison.OrdinalIgnoreCase))
+                {
+                    return null;
+                }
+            }
+            
             return parsedToken;
         }
 

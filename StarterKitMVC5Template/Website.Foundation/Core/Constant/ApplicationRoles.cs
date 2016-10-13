@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace $safeprojectname$.Constants.Roles
+namespace $safeprojectname$.Core.Constant
 {
     public static class ApplicationRoles
     {

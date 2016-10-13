@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Website.Foundation.Core.Aggregates;
 using Website.Foundation.Core.SearchData;
-using $safeprojectname$.Models.Common;
+using $safeprojectname$.Models;
 using $safeprojectname$.Models.Request;
 using $safeprojectname$.Models.Response;
 namespace $safeprojectname$.Codes.Core.Factories

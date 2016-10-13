@@ -36,7 +36,7 @@ namespace $safeprojectname$.App_Start
             httpConfig.MapHttpAttributeRoutes();
             httpConfig.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
